@@ -1,0 +1,7 @@
+.panel-list {
+  border-radius: 4px;
+  display: none;
+
+  width: inherit;
+  height: calc(100% - 3rem);
+}
