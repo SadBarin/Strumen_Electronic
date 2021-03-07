@@ -1,7 +1,19 @@
 .panel-list {
   border-radius: 4px;
-  display: none;
 
   width: inherit;
-  height: calc(100% - 3rem);
+  height: calc(100% - 3.2rem);
+}
+
+#root .panel-hidden {
+  display: none !important;
+}
+
+#root .list-element {
+  font-size: 0.8rem;
+  text-align: center;
+
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
 }

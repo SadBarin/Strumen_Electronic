@@ -1,3 +1,3 @@
-import MenuList from '../panel-list/panel-list';
+import MenuList from './panel-list';
 
 export default MenuList;

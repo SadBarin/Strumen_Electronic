@@ -1,3 +1,3 @@
-import PanelButton from '../panel-button/panel-button';
+import PanelButton from './panel-button';
 
 export default PanelButton;

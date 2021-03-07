@@ -1,3 +1,3 @@
-import AppGrid from '../app-grid/app-grid';
+import AppGrid from './app-grid';
 
 export default AppGrid;
