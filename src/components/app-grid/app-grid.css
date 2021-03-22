@@ -6,17 +6,18 @@
 }
 
 .grid-field {
-  background:
-    linear-gradient(
-      gray, transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      gray, transparent 1px
-    );
-  background-size: 1rem 1rem;
-  background-position: center center;
+  height: 100%;
+  width: 100%;
+}
 
-  height: 3000px;
-  width: 3000px;
+.element-grid {
+  width: 80px;
+  height: 80px;
+
+  border-radius: 7px;
+
+  border: 2px solid #d98d7c;
+  background: #ffa577;
+
+  cursor: all-scroll
 }

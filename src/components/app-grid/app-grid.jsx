@@ -5,7 +5,8 @@ export default class AppGrid extends Component {
   render() {
     return (
       <div className="grid">
-        <div className="grid-field">
+        <div className="p-5 grid-field">
+          {this.props.gridElements}
         </div>
       </div>
     )

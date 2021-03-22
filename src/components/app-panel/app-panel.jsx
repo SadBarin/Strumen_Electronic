@@ -33,9 +33,8 @@ export default class AppPanel extends Component {
           onClick={ () => this.handleClickButton() }
         />
         <MenuList
-          onClick={ () => this.handleChangeSimulateStatus() }
+          onClickAdd={ this.props.onClickAdd }
           display={ this.state.panelVisible ? '' : 'panel-hidden' }
-          simulation={ this.state.simulation ? 'bi bi-play' : 'bi bi-pause'}
         />
       </div>
     )
