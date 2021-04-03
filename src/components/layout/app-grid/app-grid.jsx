@@ -2,7 +2,7 @@ import React from 'react';
 import './app-grid.css'
 import Draggable from "react-draggable";
 
-import AppIconButton from "../app-icon-button";
+import AppIconButton from "../../app-button-icon";
 import AppDraggable from "../app-draggable";
 
 export default function AppGrid (props) {

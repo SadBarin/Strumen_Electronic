@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './app-panel.css'
 
-import MenuButton from "../panel-button";
 import MenuList from "../panel-list";
+import AppIconButton from "../../app-button-icon";
 
-export default class AppPanel extends Component {
+class AppPanel extends Component {
   constructor(props) {
     super(props);
 
@@ -28,9 +29,8 @@ export default class AppPanel extends Component {
   render() {
     return (
       <div className="p-2 panel position-fixed">
-        <MenuButton
-          onClick={ () => this.handleClickButton() }
-        />
+        <AppIconButton icon={'bi-list'} onClick={() => this.handleClickButton()}/>
+
         <MenuList
           activeRemove={this.props.activeRemove}
           onClickAdd={ this.props.onClickAdd }
@@ -41,3 +41,11 @@ export default class AppPanel extends Component {
     )
   }
 }
+
+AppPanel.propTypes = {
+  activeRemove: PropTypes.bool,
+  onClickChangeRemoveStatus: PropTypes.func,
+  onClickAdd: PropTypes.func
+}
+
+export default AppPanel

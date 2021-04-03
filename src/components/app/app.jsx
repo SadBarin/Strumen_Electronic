@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './app.css';
 
-import AppPanel from "../app-panel";
-import AppGrid from "../app-grid";
+import AppPanel from "../panel/app-panel";
+import AppGrid from "../layout/app-grid";
 
 export default class App extends Component {
   constructor(props) {
@@ -39,8 +39,6 @@ export default class App extends Component {
       const item = this.createItem(this.getRandomCoordinates());
       return {gridList: [...state.gridList, item]};
     })
-
-    console.log(this.state.gridList)
   }
 
   handleChangeRemoveStatus() {
@@ -48,14 +46,10 @@ export default class App extends Component {
   }
 
   handleRemoveItem = (id) => {
-    console.log('PRE', this.state.gridList)
-
     this.setState((state) => {
       const items = state.gridList.filter((item) => item.id !== id)
       return {gridList: items};
     })
-
-    console.log('PRO', this.state.gridList)
   }
 
   render() {

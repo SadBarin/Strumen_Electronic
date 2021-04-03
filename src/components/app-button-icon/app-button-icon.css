@@ -1,8 +1,8 @@
 .icon-button {
   background: #896e69 !important;
 
-  width: 2.8rem;
-  height: 2.8rem;
+  min-width: 2.8rem;
+  min-height: 2.8rem;
 
   z-index: 1000;
 }

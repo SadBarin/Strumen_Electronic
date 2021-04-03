@@ -1,7 +1,7 @@
 import React from 'react';
 import './panel-list.css';
 
-import AppIconButton from "../app-icon-button";
+import AppIconButton from "../../app-button-icon";
 
 function MenuList (props) {
   return (
