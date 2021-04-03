@@ -9,8 +9,7 @@ export default class AppPanel extends Component {
     super(props);
 
     this.state = {
-      panelVisible: false,
-      simulation: true
+      panelVisible: true,
     }
   }
 
@@ -33,8 +32,10 @@ export default class AppPanel extends Component {
           onClick={ () => this.handleClickButton() }
         />
         <MenuList
+          activeRemove={this.props.activeRemove}
           onClickAdd={ this.props.onClickAdd }
-          display={ this.state.panelVisible ? '' : 'panel-hidden' }
+          onClickChangeRemoveStatus={ this.props.onClickChangeRemoveStatus }
+          display={ this.state.panelVisible ? '' : ' panel-hidden' }
         />
       </div>
     )

@@ -3,41 +3,75 @@ import './app.css';
 
 import AppPanel from "../app-panel";
 import AppGrid from "../app-grid";
-import Draggable from "react-draggable";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gridElements: []
+      gridList: [],
+      removeStatus: false,
     }
   }
 
-  getRandValue () {
-    return Math.floor(Math.random() * 98) + 2
+  getRandomNumber (min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
   }
 
-  handleAddButton() {
-    let oldState = this.state.gridElements
-    let x = this.getRandValue()
-    let y = this.getRandValue()
+  getRandomCoordinates() {
+    return {
+      x: this.getRandomNumber(10, window.innerWidth),
+      y: this.getRandomNumber(10, window.innerHeight)
+    }
+  }
 
-    oldState.push(
-      <Draggable defaultPosition={{x, y}}>
-        <div className="element-grid d-flex flex-column justify-content-center align-items-center align-content-center text-white">
-          <p className="m-0">X: {x}</p>
-          <p className="m-0">Y: {y}</p>
-        </div>
-      </Draggable>
-    )
-    this.setState({gridElements: oldState})
+  createItem(obj) {
+    const {x, y} = obj
+
+    return {
+      id: Date.now(),
+      x,
+      y
+    };
+  }
+
+  handleAddItem() {
+    this.setState((state) => {
+      const item = this.createItem(this.getRandomCoordinates());
+      return {gridList: [...state.gridList, item]};
+    })
+
+    console.log(this.state.gridList)
+  }
+
+  handleChangeRemoveStatus() {
+    this.setState({removeStatus: !this.state.removeStatus})
+  }
+
+  handleRemoveItem = (id) => {
+    console.log('PRE', this.state.gridList)
+
+    this.setState((state) => {
+      const items = state.gridList.filter((item) => item.id !== id)
+      return {gridList: items};
+    })
+
+    console.log('PRO', this.state.gridList)
   }
 
   render() {
     return (
-      <main className='layout position-relative'>
-        <AppPanel onClickAdd={() => this.handleAddButton()}/>
-        <AppGrid gridElements={this.state.gridElements}/>
+      <main className='layout position-relative offsetParent'>
+        <AppPanel
+          activeRemove={this.state.removeStatus}
+          onClickChangeRemoveStatus={() => this.handleChangeRemoveStatus()}
+          onClickAdd={() => this.handleAddItem()}
+        />
+
+        <AppGrid
+          items={this.state.gridList}
+          statusRemove={this.state.removeStatus}
+          onClickRemove={this.handleRemoveItem}
+        />
       </main>
     )
   }

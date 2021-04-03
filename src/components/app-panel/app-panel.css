@@ -7,18 +7,3 @@
 
   z-index: 1000;
 }
-
-.opacity-8 {
-  opacity: 0.8 !important;
-}
-
-.panel-button {
-  background: #896e69 !important;
-
-  width: 2.8rem;
-  height: 2.8rem;
-}
-
-.btn-check:focus+.btn, .btn:focus {
-  box-shadow: 0 0 0 0.25rem rgba(137, 110, 105, 0.5) !important;
-}

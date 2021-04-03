@@ -1,0 +1,62 @@
+.app-draggable {
+  background: #ffa577;
+  border-radius: 7px;
+  border: hsla(9, 13%, 47%, 0.7) 2px solid;
+
+  width: 120px;
+  height: 100px;
+  padding: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+}
+
+.circle {
+  background: hsla(5, 63%, 56%, 0.7);
+  backdrop-filter: blur(20px);
+  border: hsla(9, 13%, 47%, 0.7) 2px solid;
+  border-radius: 100%;
+
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+
+  cursor: pointer;
+
+  position: absolute;
+  top: 50%;
+}
+
+.circle-left {
+  left: -10px;
+}
+
+.circle-right {
+  right: -10px;
+}
+
+.handle {
+  background: hsla(9, 13%, 47%, 0.7);
+  border-radius: 7px;
+
+  width: 100%;
+  height: 50%;
+  margin-bottom: 7px;
+
+  cursor: all-scroll;
+}
+
+.form-select {
+  border: none !important;
+  background: #ffa577 !important;
+  color: #f9f9f9 !important;
+  font-weight: bold !important;
+
+  cursor: pointer !important;
+}
+
+.form-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(137, 110, 105, 0.5) !important;
+}

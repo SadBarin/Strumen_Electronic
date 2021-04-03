@@ -1,0 +1,24 @@
+.icon-button {
+  background: #896e69 !important;
+
+  width: 2.8rem;
+  height: 2.8rem;
+
+  z-index: 1000;
+}
+
+.icon-button.active {
+  background: #D55448 !important;
+}
+
+.icon-button.disable {
+  opacity: 0.5 !important;
+}
+
+.icon-button.bg-transparent {
+  background: transparent !important;
+}
+
+.btn-check:focus+.btn, .btn:focus {
+  box-shadow: 0 0 0 0.25rem rgba(137, 110, 105, 0.5) !important;
+}
