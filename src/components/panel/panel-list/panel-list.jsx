@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './panel-list.css';
 
-import AppIconButton from '../../app-button-icon';
+import IconButton from '../../button-icon';
 
 function PanelList({
   display, onClickAdd, activeRemove, onClickChangeRemoveStatus,
 }) {
   return (
     <div className={`text-center text-white panel-list d-flex flex-column align-items-center opacity-8${display}`}>
-      <AppIconButton icon="bi-patch-plus" onClick={onClickAdd} />
-      <AppIconButton icon="bi-patch-minus" onClick={onClickChangeRemoveStatus} propsClass={(activeRemove) ? 'active' : ''} />
+      <IconButton icon="bi-patch-plus" onClick={onClickAdd} />
+      <IconButton icon="bi-patch-minus" onClick={onClickChangeRemoveStatus} propsClass={(activeRemove) ? 'active' : ''} />
+
       { /* <AppIconButton icon="bi-pin-angle" propsClass="disable" /> */ }
       { /* <AppIconButton icon="bi-card-text" propsClass="disable" /> */ }
       { /* <AppIconButton icon="bi-camera" propsClass="disable" /> */ }

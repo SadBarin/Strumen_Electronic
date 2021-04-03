@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './app-button-icon.css';
+import './button-icon.css';
 
-function AppButtonIcon(props) {
+function ButtonIcon(props) {
   const { icon, onClick, propsClass } = props;
 
   return (
@@ -12,14 +12,14 @@ function AppButtonIcon(props) {
   );
 }
 
-AppButtonIcon.defaultProps = {
+ButtonIcon.defaultProps = {
   propsClass: '',
 };
 
-AppButtonIcon.propTypes = {
+ButtonIcon.propTypes = {
   icon: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   propsClass: PropTypes.string,
 };
 
-export default AppButtonIcon;
+export default ButtonIcon;

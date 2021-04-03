@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './app-panel.css';
 
 import PanelList from '../panel-list';
-import AppIconButton from '../../app-button-icon';
+import IconButton from '../../button-icon';
 
 class AppPanel extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class AppPanel extends Component {
 
     return (
       <div className="p-2 panel position-fixed">
-        <AppIconButton icon="bi-list" onClick={() => this.handleClickButton()} />
+        <IconButton icon="bi-list" onClick={() => this.handleClickButton()} />
 
         <PanelList
           activeRemove={activeRemove}
