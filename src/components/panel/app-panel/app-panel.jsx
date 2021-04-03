@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './app-panel.css'
+import './app-panel.css';
 
-import MenuList from "../panel-list";
-import AppIconButton from "../../app-button-icon";
+import PanelList from '../panel-list';
+import AppIconButton from '../../app-button-icon';
 
 class AppPanel extends Component {
   constructor(props) {
@@ -11,41 +11,46 @@ class AppPanel extends Component {
 
     this.state = {
       panelVisible: true,
-    }
+    };
   }
 
   handleClickButton() {
-    this.setState({
-      panelVisible: !this.state.panelVisible,
-    })
-  }
+    const { panelVisible } = this.state;
 
-  handleChangeSimulateStatus() {
     this.setState({
-      simulation: !this.state.simulation
-    })
+      panelVisible: !panelVisible,
+    });
   }
 
   render() {
+    const { panelVisible } = this.state;
+    const { activeRemove, onClickChangeRemoveStatus, onClickAdd } = this.props;
+
     return (
       <div className="p-2 panel position-fixed">
-        <AppIconButton icon={'bi-list'} onClick={() => this.handleClickButton()}/>
+        <AppIconButton icon="bi-list" onClick={() => this.handleClickButton()} />
 
-        <MenuList
-          activeRemove={this.props.activeRemove}
-          onClickAdd={ this.props.onClickAdd }
-          onClickChangeRemoveStatus={ this.props.onClickChangeRemoveStatus }
-          display={ this.state.panelVisible ? '' : ' panel-hidden' }
+        <PanelList
+          activeRemove={activeRemove}
+          onClickAdd={onClickAdd}
+          onClickChangeRemoveStatus={onClickChangeRemoveStatus}
+          display={panelVisible ? '' : ' panel-hidden'}
         />
       </div>
-    )
+    );
   }
 }
+
+AppPanel.defaultProps = {
+  activeRemove: false,
+  onClickChangeRemoveStatus: () => {},
+  onClickAdd: () => {},
+};
 
 AppPanel.propTypes = {
   activeRemove: PropTypes.bool,
   onClickChangeRemoveStatus: PropTypes.func,
-  onClickAdd: PropTypes.func
-}
+  onClickAdd: PropTypes.func,
+};
 
-export default AppPanel
+export default AppPanel;

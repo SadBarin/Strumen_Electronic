@@ -1,72 +1,76 @@
 import React, { Component } from 'react';
 import './app.css';
 
-import AppPanel from "../panel/app-panel";
-import AppGrid from "../layout/app-grid";
+import AppPanel from '../panel/app-panel';
+import AppGrid from '../layout/app-grid';
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       gridList: [],
       removeStatus: false,
-    }
-  }
-
-  getRandomNumber (min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-  getRandomCoordinates() {
-    return {
-      x: this.getRandomNumber(10, window.innerWidth),
-      y: this.getRandomNumber(10, window.innerHeight)
-    }
-  }
-
-  createItem(obj) {
-    const {x, y} = obj
-
-    return {
-      id: Date.now(),
-      x,
-      y
     };
   }
 
   handleAddItem() {
     this.setState((state) => {
       const item = this.createItem(this.getRandomCoordinates());
-      return {gridList: [...state.gridList, item]};
-    })
+      return { gridList: [...state.gridList, item] };
+    });
   }
 
   handleChangeRemoveStatus() {
-    this.setState({removeStatus: !this.state.removeStatus})
+    const { removeStatus } = this.state;
+
+    this.setState({ removeStatus: !removeStatus });
   }
+
+  getRandomCoordinates() {
+    return {
+      x: this.getRandomNumber(10, window.innerWidth),
+      y: this.getRandomNumber(10, window.innerHeight),
+    };
+  }
+
+  getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
   handleRemoveItem = (id) => {
     this.setState((state) => {
-      const items = state.gridList.filter((item) => item.id !== id)
-      return {gridList: items};
-    })
+      const items = state.gridList.filter((item) => item.id !== id);
+      return { gridList: items };
+    });
+  }
+
+  createItem = (obj) => {
+    const { x, y } = obj;
+
+    return {
+      id: Date.now(),
+      x,
+      y,
+    };
   }
 
   render() {
+    const { removeStatus, gridList } = this.state;
+
     return (
-      <main className='layout position-relative offsetParent'>
+      <main className="layout position-relative offsetParent">
         <AppPanel
-          activeRemove={this.state.removeStatus}
+          activeRemove={removeStatus}
           onClickChangeRemoveStatus={() => this.handleChangeRemoveStatus()}
           onClickAdd={() => this.handleAddItem()}
         />
 
         <AppGrid
-          items={this.state.gridList}
-          statusRemove={this.state.removeStatus}
+          items={gridList}
+          statusRemove={removeStatus}
           onClickRemove={this.handleRemoveItem}
         />
       </main>
-    )
+    );
   }
 }
+
+export default App;
