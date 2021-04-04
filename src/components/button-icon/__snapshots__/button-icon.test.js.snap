@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot check props LogicElement use Default Props 1`] = `
+<button
+  class="btn text-white icon-button "
+  type="button"
+>
+  <i
+    class="bi bi-cpu"
+  />
+</button>
+`;
+
+exports[`Snapshot check props LogicElement use Transferred Props 1`] = `
+<button
+  class="btn text-white icon-button test"
+  type="button"
+>
+  <i
+    class="bi bi-eyedropper"
+  />
+</button>
+`;

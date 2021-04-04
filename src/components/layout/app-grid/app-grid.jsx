@@ -5,7 +5,6 @@ import Draggable from 'react-draggable';
 
 import AppIconButton from '../../button-icon';
 import LogicElement from '../logic-element';
-import TextElement from '../text-element';
 
 function AppGrid(props) {
   const { items } = props;
@@ -48,8 +47,7 @@ function AppGrid(props) {
       <div className="p-5 grid-field position-relative">
         {gridList}
 
-        <div className="position-absolute"><LogicElement id={1} /></div>
-        <div className="position-absolute"><TextElement id={2} /></div>
+        <LogicElement id={1} logic="NAND" />
       </div>
     </div>
   );

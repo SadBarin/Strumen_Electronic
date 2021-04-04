@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LogicElement snapshot check 1`] = `
+<div
+  class="position-absolute logic-element-container"
+>
+  <div
+    class="logic-element react-draggable"
+    style="transform:translate(20px,120px)"
+  >
+    <div
+      class="circle circle-left"
+    />
+    <div
+      class="handle"
+    />
+    <select
+      class="form-select logic-element-select"
+    >
+      <option
+        value="OR"
+      >
+        OR
+      </option>
+      <option
+        selected=""
+        value="AND"
+      >
+        AND
+      </option>
+      <option
+        selected=""
+        value="AND"
+      >
+        NOT
+      </option>
+      <option
+        selected=""
+        value="AND"
+      >
+        NOR
+      </option>
+      <option
+        value="NAND"
+      >
+        NAND
+      </option>
+      <option
+        value="XOR"
+      >
+        XOR
+      </option>
+      <option
+        value="XNOR"
+      >
+        XNOR
+      </option>
+    </select>
+    <div
+      class="circle circle-right"
+    />
+  </div>
+</div>
+`;

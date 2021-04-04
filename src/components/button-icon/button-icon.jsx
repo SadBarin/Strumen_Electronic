@@ -13,12 +13,14 @@ function ButtonIcon(props) {
 }
 
 ButtonIcon.defaultProps = {
+  icon: 'bi-cpu',
+  onClick: () => {},
   propsClass: '',
 };
 
 ButtonIcon.propTypes = {
-  icon: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  icon: PropTypes.string,
+  onClick: PropTypes.func,
   propsClass: PropTypes.string,
 };
 
