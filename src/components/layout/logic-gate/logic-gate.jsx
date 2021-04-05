@@ -1,21 +1,21 @@
 import React from 'react';
-import './logic-element.css';
+import './logic-gate.css';
 import PropTypes from 'prop-types';
 
 import Draggable from 'react-draggable';
 
-function LogicElement(props) {
+function LogicGate(props) {
   const {
     id, logic, x, y,
   } = props;
 
   return (
-    <div className="position-absolute logic-element-container" key={id}>
+    <div className="position-absolute logic-gate-container" key={id}>
       <Draggable defaultPosition={{ x, y }} handle=".handle">
-        <div className="logic-element">
+        <div className="logic-gate">
           <div className="circle circle-left" />
           <div className="handle" />
-          <select className="form-select logic-element-select" defaultValue={logic}>
+          <select className="form-select logic-gate-select" defaultValue={logic}>
             <option value="OR">OR</option>
             <option value="AND">AND</option>
             <option value="AND">NOT</option>
@@ -31,11 +31,11 @@ function LogicElement(props) {
   );
 }
 
-LogicElement.propTypes = {
+LogicGate.propTypes = {
   id: PropTypes.number.isRequired,
   logic: PropTypes.string.isRequired,
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
 };
 
-export default LogicElement;
+export default LogicGate;

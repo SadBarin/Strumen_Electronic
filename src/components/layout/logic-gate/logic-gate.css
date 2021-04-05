@@ -1,4 +1,4 @@
-.logic-element {
+.logic-gate {
   background: #ffa577;
   border-radius: 7px;
   border: hsla(9, 13%, 47%, 0.7) 2px solid;
@@ -13,7 +13,7 @@
   position: relative;
 }
 
-.logic-element .circle {
+.logic-gate .circle {
   background: hsla(5, 63%, 56%, 0.7);
   backdrop-filter: blur(20px);
   border: hsla(9, 13%, 47%, 0.7) 2px solid;
@@ -29,15 +29,15 @@
   top: 50%;
 }
 
-.logic-element .circle-left {
+.logic-gate .circle-left {
   left: -10px;
 }
 
-.logic-element .circle-right {
+.logic-gate .circle-right {
   right: -10px;
 }
 
-.logic-element .handle {
+.logic-gate .handle {
   background: hsla(9, 13%, 47%, 0.7);
   border-radius: 7px;
 
@@ -48,7 +48,7 @@
   cursor: all-scroll;
 }
 
-.logic-element .form-select {
+.logic-gate .form-select {
   border: none !important;
   background: #ffa577 !important;
   color: #f9f9f9 !important;
@@ -57,6 +57,6 @@
   cursor: pointer !important;
 }
 
-.logic-element .form-select:focus {
+.logic-gate .form-select:focus {
   box-shadow: 0 0 0 0.25rem rgba(137, 110, 105, 0.5) !important;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import './app-layout.css';
 import PropTypes from 'prop-types';
 
-import LogicElement from '../logic-element';
+import LogicGate from '../logic-gate';
 
 function AppLayout(props) {
   const { items } = props;
@@ -15,7 +15,7 @@ function AppLayout(props) {
 
     return (
       <div className="position-absolute" key={id}>
-        <LogicElement id={id} logic={type} x={x} y={y} />
+        <LogicGate id={id} logic={type} x={x} y={y} />
       </div>
     );
   });

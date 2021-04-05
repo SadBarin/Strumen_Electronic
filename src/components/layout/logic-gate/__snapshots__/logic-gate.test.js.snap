@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LogicElement snapshot check 1`] = `
+exports[`LogicGate snapshot check 1`] = `
 <div
-  class="position-absolute logic-element-container"
+  class="position-absolute logic-gate-container"
 >
   <div
-    class="logic-element react-draggable"
-    style="transform:translate(undefinedpx,undefinedpx)"
+    class="logic-gate react-draggable"
+    style="transform:translate(0px,0px)"
   >
     <div
       class="circle circle-left"
@@ -15,7 +15,7 @@ exports[`LogicElement snapshot check 1`] = `
       class="handle"
     />
     <select
-      class="form-select logic-element-select"
+      class="form-select logic-gate-select"
     >
       <option
         value="OR"
