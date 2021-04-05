@@ -6,7 +6,7 @@ exports[`LogicElement snapshot check 1`] = `
 >
   <div
     class="logic-element react-draggable"
-    style="transform:translate(20px,120px)"
+    style="transform:translate(undefinedpx,undefinedpx)"
   >
     <div
       class="circle circle-left"

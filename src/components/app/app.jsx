@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './app.css';
 
 import AppPanel from '../panel/app-panel';
-import AppGrid from '../layout/app-grid';
+import AppLayout from '../layout/app-layout';
 
 class App extends Component {
   constructor(props) {
@@ -47,6 +47,7 @@ class App extends Component {
 
     return {
       id: Date.now(),
+      type: 'AND',
       x,
       y,
     };
@@ -63,7 +64,7 @@ class App extends Component {
           onClickAdd={() => this.handleAddItem()}
         />
 
-        <AppGrid
+        <AppLayout
           items={gridList}
           statusRemove={removeStatus}
           onClickRemove={this.handleRemoveItem}

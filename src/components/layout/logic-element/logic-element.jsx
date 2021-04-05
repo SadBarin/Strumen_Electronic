@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
 
 function LogicElement(props) {
-  const { id, logic } = props;
+  const {
+    id, logic, x, y,
+  } = props;
 
   return (
     <div className="position-absolute logic-element-container" key={id}>
-      <Draggable defaultPosition={{ x: 20, y: 120 }} handle=".handle">
+      <Draggable defaultPosition={{ x, y }} handle=".handle">
         <div className="logic-element">
           <div className="circle circle-left" />
           <div className="handle" />
@@ -32,6 +34,8 @@ function LogicElement(props) {
 LogicElement.propTypes = {
   id: PropTypes.number.isRequired,
   logic: PropTypes.string.isRequired,
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
 };
 
 export default LogicElement;
