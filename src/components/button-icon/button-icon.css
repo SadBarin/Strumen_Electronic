@@ -7,8 +7,8 @@
   z-index: 1000;
 }
 
-.icon-button.active {
-  background: #D55448 !important;
+.icon-button.hidden {
+  display: none !important;
 }
 
 .icon-button.disable {

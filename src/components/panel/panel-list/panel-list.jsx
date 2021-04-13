@@ -5,12 +5,12 @@ import './panel-list.css';
 import IconButton from '../../button-icon';
 
 function PanelList({
-  display, onClickAdd, activeRemove, onClickChangeRemoveStatus,
+  selectElementID, display, onClickAdd, onClickChangeRemoveStatus,
 }) {
   return (
     <div className={`text-center text-white panel-list d-flex flex-column align-items-center opacity-8${display}`}>
       <IconButton icon="bi-patch-plus" onClick={onClickAdd} />
-      <IconButton icon="bi-patch-minus" onClick={onClickChangeRemoveStatus} propsClass={(activeRemove) ? 'active' : ''} />
+      <IconButton icon="bi-patch-minus" onClick={onClickChangeRemoveStatus} propsClass={(selectElementID) ? '' : 'hidden'} />
 
       { /* <AppIconButton icon="bi-pin-angle" propsClass="disable" /> */ }
       { /* <AppIconButton icon="bi-card-text" propsClass="disable" /> */ }
@@ -21,15 +21,16 @@ function PanelList({
 }
 
 PanelList.defaultProps = {
+  selectElementID: false,
   onClickAdd: () => {},
-  activeRemove: false,
   onClickChangeRemoveStatus: () => {},
 };
 
 PanelList.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  selectElementID: PropTypes.any,
   display: PropTypes.string.isRequired,
   onClickAdd: PropTypes.func,
-  activeRemove: PropTypes.bool,
   onClickChangeRemoveStatus: PropTypes.func,
 };
 

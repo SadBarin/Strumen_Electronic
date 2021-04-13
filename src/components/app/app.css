@@ -5,3 +5,11 @@
 .opacity-8 {
   opacity: 0.8 !important;
 }
+
+.info-element {
+  margin: 0;
+
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+}

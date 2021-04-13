@@ -6,11 +6,13 @@ import Draggable from 'react-draggable';
 
 function LogicGate(props) {
   const {
-    id, logic, x, y,
+    id, logic, x, y, onClickSetSelectElementID,
   } = props;
 
   return (
-    <div className="position-absolute logic-gate-container" key={id}>
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,no-shadow
+    <div className="position-absolute logic-gate-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
       <Draggable defaultPosition={{ x, y }} handle=".handle">
         <div className="logic-gate">
           <div className="circle circle-left" />
@@ -36,6 +38,7 @@ LogicGate.propTypes = {
   logic: PropTypes.string.isRequired,
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
+  onClickSetSelectElementID: PropTypes.func.isRequired,
 };
 
 export default LogicGate;

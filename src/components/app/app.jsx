@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       gridList: [],
-      removeStatus: false,
+      selectElementID: null,
     };
   }
 
@@ -24,6 +24,10 @@ class App extends Component {
     const { removeStatus } = this.state;
 
     this.setState({ removeStatus: !removeStatus });
+  }
+
+  handleSetSelectElementID(id) {
+    this.setState({ selectElementID: id });
   }
 
   getRandomCoordinates() {
@@ -54,21 +58,22 @@ class App extends Component {
   }
 
   render() {
-    const { removeStatus, gridList } = this.state;
+    const { gridList, selectElementID } = this.state;
 
     return (
       <main className="layout position-relative offsetParent">
         <AppPanel
-          activeRemove={removeStatus}
-          onClickChangeRemoveStatus={() => this.handleChangeRemoveStatus()}
+          selectElementID={selectElementID}
+          onClickChangeRemoveStatus={() => this.handleRemoveItem(selectElementID)}
           onClickAdd={() => this.handleAddItem()}
         />
 
         <AppLayout
           items={gridList}
-          statusRemove={removeStatus}
-          onClickRemove={this.handleRemoveItem}
+          onClickSetSelectElementID={this.handleSetSelectElementID.bind(this)}
         />
+
+        <p className="info-element">{`ID: ${String(selectElementID)}`}</p>
       </main>
     );
   }

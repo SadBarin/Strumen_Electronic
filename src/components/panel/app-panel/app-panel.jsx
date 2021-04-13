@@ -24,14 +24,14 @@ class AppPanel extends Component {
 
   render() {
     const { panelVisible } = this.state;
-    const { activeRemove, onClickChangeRemoveStatus, onClickAdd } = this.props;
+    const { selectElementID, onClickChangeRemoveStatus, onClickAdd } = this.props;
 
     return (
       <div className="p-2 panel position-fixed">
         <IconButton icon="bi-list" onClick={() => this.handleClickButton()} />
 
         <PanelList
-          activeRemove={activeRemove}
+          selectElementID={selectElementID}
           onClickAdd={onClickAdd}
           onClickChangeRemoveStatus={onClickChangeRemoveStatus}
           display={panelVisible ? '' : ' panel-hidden'}
@@ -42,13 +42,14 @@ class AppPanel extends Component {
 }
 
 AppPanel.defaultProps = {
-  activeRemove: false,
+  selectElementID: false,
   onClickChangeRemoveStatus: () => {},
   onClickAdd: () => {},
 };
 
 AppPanel.propTypes = {
-  activeRemove: PropTypes.bool,
+  // eslint-disable-next-line react/forbid-prop-types,react/no-unused-prop-types
+  selectElementID: PropTypes.any,
   onClickChangeRemoveStatus: PropTypes.func,
   onClickAdd: PropTypes.func,
 };
