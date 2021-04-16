@@ -7,12 +7,14 @@ import PropTypes from 'prop-types';
 import LogicGate from '../logic-gate';
 
 function AppLayout(props) {
-  const { items, onClickSetSelectElementID } = props;
+  const { items, onClickSetSelectElementID, selectElementID } = props;
 
   const layoutList = items.map((item) => {
     const {
-      id, type, x, y,
+      id, type, x, y
     } = item;
+
+    const elementSelectStatus = (selectElementID === id)
 
     return (
       <div className="position-absolute" key={id}>
@@ -22,6 +24,8 @@ function AppLayout(props) {
           x={x}
           y={y}
           onClickSetSelectElementID={onClickSetSelectElementID}
+          selectElementID={selectElementID}
+          selectStatus={elementSelectStatus}
         />
       </div>
     );
@@ -29,7 +33,7 @@ function AppLayout(props) {
 
   return (
     <div className="app-layout position-relative">
-      <div className="background-layout" onClick={() => onClickSetSelectElementID(null)} />
+      <div className="background-layout" onClick={() => onClickSetSelectElementID(-1)} />
 
       {layoutList}
     </div>
@@ -37,6 +41,7 @@ function AppLayout(props) {
 }
 
 AppLayout.propTypes = {
+  selectElementID: PropTypes.number.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   items: PropTypes.array.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,

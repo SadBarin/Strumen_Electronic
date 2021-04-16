@@ -3,14 +3,24 @@ import './app.css';
 
 import AppPanel from '../panel/app-panel';
 import AppLayout from '../layout/app-layout';
+import PopupSelect from '../popups-collection/popup-select';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       gridList: [],
-      selectElementID: null,
+      selectElementID: -1,
+      hiddenPopupSelect: true,
     };
+  }
+
+  handleToggleHiddenPopupSelect() {
+    // eslint-disable-next-line react/destructuring-assignment,react/no-access-state-in-setstate
+    if (this.state.selectElementID !== -1) {
+      // eslint-disable-next-line react/destructuring-assignment,react/no-access-state-in-setstate
+      this.setState({ hiddenPopupSelect: !this.state.hiddenPopupSelect });
+    }
   }
 
   handleAddItem() {
@@ -54,26 +64,36 @@ class App extends Component {
       type: 'AND',
       x,
       y,
+      focus: false,
+      pin: false,
     };
   }
 
   render() {
-    const { gridList, selectElementID } = this.state;
+    const { gridList, selectElementID, hiddenPopupSelect } = this.state;
 
     return (
       <main className="layout position-relative offsetParent">
+        {/* eslint-disable-next-line max-len */}
+        <PopupSelect hidden={hiddenPopupSelect} closePopup={() => this.handleToggleHiddenPopupSelect()} />
+
         <AppPanel
           selectElementID={selectElementID}
           onClickChangeRemoveStatus={() => this.handleRemoveItem(selectElementID)}
+          onClickToggleHiddenPopupSelect={() => this.handleToggleHiddenPopupSelect()}
           onClickAdd={() => this.handleAddItem()}
         />
 
         <AppLayout
+          selectElementID={selectElementID}
           items={gridList}
           onClickSetSelectElementID={this.handleSetSelectElementID.bind(this)}
         />
 
-        <p className="info-element">{`ID: ${String(selectElementID)}`}</p>
+        <div className="info-element">
+          <p>{`ID: ${String(selectElementID)}`}</p>
+          <p>{`Hidden Popup Select: ${String(hiddenPopupSelect)}`}</p>
+        </div>
       </main>
     );
   }

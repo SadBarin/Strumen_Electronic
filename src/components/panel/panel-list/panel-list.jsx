@@ -5,12 +5,13 @@ import './panel-list.css';
 import IconButton from '../../button-icon';
 
 function PanelList({
-  selectElementID, display, onClickAdd, onClickChangeRemoveStatus,
+  selectElementID, display, onClickAdd, onClickChangeRemoveStatus, onClickToggleHiddenPopupSelect,
 }) {
   return (
     <div className={`text-center text-white panel-list d-flex flex-column align-items-center opacity-8${display}`}>
-      <IconButton icon="bi-patch-plus" onClick={onClickAdd} />
-      <IconButton icon="bi-patch-minus" onClick={onClickChangeRemoveStatus} propsClass={(selectElementID) ? '' : 'hidden'} />
+      <IconButton icon="bi-plus-circle" onClick={onClickAdd} />
+      <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus} propsClass={(selectElementID) ? '' : 'hidden'} />
+      <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupSelect} propsClass={(selectElementID) ? '' : 'hidden'} />
 
       { /* <AppIconButton icon="bi-pin-angle" propsClass="disable" /> */ }
       { /* <AppIconButton icon="bi-card-text" propsClass="disable" /> */ }
@@ -32,6 +33,7 @@ PanelList.propTypes = {
   display: PropTypes.string.isRequired,
   onClickAdd: PropTypes.func,
   onClickChangeRemoveStatus: PropTypes.func,
+  onClickToggleHiddenPopupSelect: PropTypes.func.isRequired,
 };
 
 export default PanelList;

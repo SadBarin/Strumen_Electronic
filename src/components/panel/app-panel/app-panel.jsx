@@ -24,7 +24,9 @@ class AppPanel extends Component {
 
   render() {
     const { panelVisible } = this.state;
-    const { selectElementID, onClickChangeRemoveStatus, onClickAdd } = this.props;
+    const {
+      selectElementID, onClickChangeRemoveStatus, onClickAdd, onClickToggleHiddenPopupSelect,
+    } = this.props;
 
     return (
       <div className="p-2 panel position-fixed">
@@ -34,6 +36,7 @@ class AppPanel extends Component {
           selectElementID={selectElementID}
           onClickAdd={onClickAdd}
           onClickChangeRemoveStatus={onClickChangeRemoveStatus}
+          onClickToggleHiddenPopupSelect={onClickToggleHiddenPopupSelect}
           display={panelVisible ? '' : ' panel-hidden'}
         />
       </div>
@@ -51,6 +54,7 @@ AppPanel.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types,react/no-unused-prop-types
   selectElementID: PropTypes.any,
   onClickChangeRemoveStatus: PropTypes.func,
+  onClickToggleHiddenPopupSelect: PropTypes.func.isRequired,
   onClickAdd: PropTypes.func,
 };
 

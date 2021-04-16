@@ -12,4 +12,10 @@
   position: fixed;
   bottom: 1rem;
   left: 1rem;
+
+  z-index: 100000;
+}
+
+.info-element > p {
+  margin: 0;
 }

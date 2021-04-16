@@ -1,0 +1,12 @@
+.select {
+  background: hsla(20, 100%, 73%, 0.8);
+  border: none;
+  border-radius: 7px;
+
+  color: #f9f9f9;
+  font-weight: bold;
+
+  width: 100%;
+
+  padding: 0.2rem;
+}

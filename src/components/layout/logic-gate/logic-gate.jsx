@@ -6,26 +6,25 @@ import Draggable from 'react-draggable';
 
 function LogicGate(props) {
   const {
-    id, logic, x, y, onClickSetSelectElementID,
+    id, logic,
+    x, y,
+    onClickSetSelectElementID,
+    selectStatus,
   } = props;
+
+  const LogicElementSelect = (selectStatus) ? ' active' : '';
 
   return (
     // eslint-disable-next-line max-len
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,no-shadow
-    <div className="position-absolute logic-gate-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
-      <Draggable defaultPosition={{ x, y }} handle=".handle">
-        <div className="logic-gate">
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+    <div title={id} className="position-absolute logic-gate-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
+
+      <Draggable defaultPosition={{ x, y }}>
+        <div className={`logic-gate${LogicElementSelect}`}>
           <div className="circle circle-left" />
-          <div className="handle" />
-          <select className="form-select logic-gate-select" defaultValue={logic}>
-            <option value="OR">OR</option>
-            <option value="AND">AND</option>
-            <option value="AND">NOT</option>
-            <option value="AND">NOR</option>
-            <option value="NAND">NAND</option>
-            <option value="XOR">XOR</option>
-            <option value="XNOR">XNOR</option>
-          </select>
+          <div className="logic-gate-content">
+            <span>{logic}</span>
+          </div>
           <div className="circle circle-right" />
         </div>
       </Draggable>
@@ -34,6 +33,7 @@ function LogicGate(props) {
 }
 
 LogicGate.propTypes = {
+  selectStatus: PropTypes.bool.isRequired,
   id: PropTypes.number.isRequired,
   logic: PropTypes.string.isRequired,
   x: PropTypes.number.isRequired,
