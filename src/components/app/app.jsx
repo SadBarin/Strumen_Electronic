@@ -3,7 +3,7 @@ import './app.css';
 
 import AppPanel from '../panel/app-panel';
 import AppLayout from '../layout/app-layout';
-import PopupSelect from '../popups-collection/popup-select';
+import PopupSelect from '../layout/popups/popup-select';
 
 class App extends Component {
   constructor(props) {
