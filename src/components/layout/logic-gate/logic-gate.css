@@ -44,7 +44,7 @@
 }
 
 .logic-gate .circle-left-bottom {
-  bottom: 1px;
+  bottom: 0;
 }
 
 .logic-gate .circle-right {
