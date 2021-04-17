@@ -4,6 +4,7 @@ import './app.css';
 import AppPanel from '../panel/app-panel';
 import AppLayout from '../layout/app-layout';
 import PopupSelect from '../layout/popups/popup-select';
+import PopupInfo from "../layout/popups/popup-info";
 
 class App extends Component {
   constructor(props) {
@@ -12,15 +13,18 @@ class App extends Component {
       gridList: [],
       selectElementID: -1,
       hiddenPopupSelect: true,
+      hiddenPopupInfo: true,
     };
   }
 
   handleToggleHiddenPopupSelect() {
-    // eslint-disable-next-line react/destructuring-assignment,react/no-access-state-in-setstate
     if (this.state.selectElementID !== -1) {
-      // eslint-disable-next-line react/destructuring-assignment,react/no-access-state-in-setstate
       this.setState({ hiddenPopupSelect: !this.state.hiddenPopupSelect });
     }
+  }
+
+  handleToggleHiddenPopupInfo() {
+    this.setState({ hiddenPopupInfo: !this.state.hiddenPopupInfo });
   }
 
   handleAddItem() {
@@ -86,11 +90,12 @@ class App extends Component {
   }
 
   render() {
-    const { gridList, selectElementID, hiddenPopupSelect } = this.state;
+    const { gridList, selectElementID, hiddenPopupSelect, hiddenPopupInfo} = this.state;
 
     return (
       <main className="layout">
         <PopupSelect hidden={hiddenPopupSelect} closePopup={() => this.handleToggleHiddenPopupSelect()} />
+        <PopupInfo hidden={hiddenPopupInfo} closePopup={() => this.handleToggleHiddenPopupInfo()} />
 
         <AppPanel
           selectElementID={selectElementID}
@@ -98,6 +103,7 @@ class App extends Component {
           onClickToggleHiddenPopupSelect={() => this.handleToggleHiddenPopupSelect()}
           onClickChangePin={() => this.handleChangePin()}
           onClickAdd={() => this.handleAddItem()}
+          onClickToggleHiddenPopupInfo={() => this.handleToggleHiddenPopupInfo()}
         />
 
         <AppLayout

@@ -5,7 +5,7 @@ import './panel-list.css';
 import IconButton from '../../button-icon';
 
 function PanelList({
-  selectElementID, display, onClickAdd, onClickChangeRemoveStatus, onClickToggleHiddenPopupSelect, onClickChangePin
+  selectElementID, display, onClickAdd, onClickChangeRemoveStatus, onClickToggleHiddenPopupSelect, onClickChangePin, onClickToggleHiddenPopupInfo
 }) {
   return (
     <div className={`panel-list ${display}`}>
@@ -13,6 +13,7 @@ function PanelList({
       <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus} propsClass={(selectElementID !== -1) ? '' : 'hidden'} />
       <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupSelect} propsClass={(selectElementID !== -1) ? '' : 'hidden'} />
       <IconButton icon="bi-pin" onClick={onClickChangePin} propsClass={(selectElementID !== -1) ? '' : 'hidden'} />
+      <IconButton icon="bi-info-circle" onClick={onClickToggleHiddenPopupInfo}/>
 
       { /* <AppIconButton icon="bi-pin-angle" propsClass="disable" /> */ }
       { /* <AppIconButton icon="bi-card-text" propsClass="disable" /> */ }
@@ -24,8 +25,7 @@ function PanelList({
 
 PanelList.defaultProps = {
   selectElementID: false,
-  onClickAdd: () => {},
-  onClickChangeRemoveStatus: () => {},
+  onClickAdd: () => {}
 };
 
 PanelList.propTypes = {
@@ -35,6 +35,7 @@ PanelList.propTypes = {
   onClickAdd: PropTypes.func,
   onClickChangeRemoveStatus: PropTypes.func,
   onClickToggleHiddenPopupSelect: PropTypes.func.isRequired,
+  onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
   onClickChangePin: PropTypes.func.isRequired
 };
 
