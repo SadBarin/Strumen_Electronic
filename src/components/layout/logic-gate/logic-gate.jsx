@@ -15,7 +15,7 @@ function LogicGate(props) {
   const LogicElementSelect = (selectStatus) ? ' active' : '';
 
   return (
-    <div title={id} className="position-absolute logic-gate-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
+    <div title={id} className="logic-gate-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
 
       <Draggable defaultPosition={{ x, y }}>
         <div className={`logic-gate${LogicElementSelect}`}>

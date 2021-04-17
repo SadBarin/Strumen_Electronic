@@ -1,3 +1,7 @@
+.logic-gate-container {
+  position: absolute;
+}
+
 .logic-gate {
   background: #ffa577;
   border-radius: 7px;

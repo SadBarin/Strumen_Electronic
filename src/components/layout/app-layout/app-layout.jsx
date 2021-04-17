@@ -17,7 +17,7 @@ function AppLayout(props) {
     const elementSelectStatus = (selectElementID === id)
 
     return (
-      <div className="position-absolute" key={id}>
+      <div className="logic-gate-container" key={id}>
         <LogicGate
           id={id}
           logic={type}
@@ -32,7 +32,7 @@ function AppLayout(props) {
   });
 
   return (
-    <div className="app-layout position-relative">
+    <div className="app-layout">
       <div className="background-layout" onClick={() => onClickSetSelectElementID(-1)} />
 
       {layoutList}

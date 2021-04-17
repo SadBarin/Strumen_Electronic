@@ -1,24 +1,30 @@
 .icon-button {
-  background: #896e69 !important;
+  background: hsl(9, 13%, 47%);
+  border: none;
+  border-radius: 7px;
+
+  color: hsl(0, 0%, 100%);
 
   min-width: 2.8rem;
   min-height: 2.8rem;
 
   z-index: 1000;
+
+  cursor: pointer;
 }
 
 .icon-button.hidden {
-  display: none !important;
+  display: none;
 }
 
 .icon-button.disable {
-  opacity: 0.5 !important;
+  opacity: 0.5;
 }
 
 .icon-button.bg-transparent {
-  background: transparent !important;
+  background: transparent;
 }
 
 .btn-check:focus+.btn, .btn:focus {
-  box-shadow: 0 0 0 0.25rem rgba(137, 110, 105, 0.5) !important;
+  box-shadow: 0 0 0 0.25rem rgba(137, 110, 105, 0.5);
 }

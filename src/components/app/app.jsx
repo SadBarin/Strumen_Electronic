@@ -73,8 +73,7 @@ class App extends Component {
     const { gridList, selectElementID, hiddenPopupSelect } = this.state;
 
     return (
-      <main className="layout position-relative offsetParent">
-        {/* eslint-disable-next-line max-len */}
+      <main className="layout">
         <PopupSelect hidden={hiddenPopupSelect} closePopup={() => this.handleToggleHiddenPopupSelect()} />
 
         <AppPanel

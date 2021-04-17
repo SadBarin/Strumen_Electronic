@@ -6,7 +6,7 @@ function ButtonIcon(props) {
   const { icon, onClick, propsClass } = props;
 
   return (
-    <button type="button" className={`btn text-white icon-button ${propsClass}`} onClick={onClick}>
+    <button type="button" className={`icon-button ${propsClass}`} onClick={onClick}>
       <i className={`bi ${icon}`} />
     </button>
   );

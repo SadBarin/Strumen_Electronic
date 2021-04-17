@@ -29,7 +29,7 @@ class AppPanel extends Component {
     } = this.props;
 
     return (
-      <div className="p-2 panel position-fixed">
+      <div className="panel">
         <IconButton icon="bi-list" onClick={() => this.handleClickButton()} />
 
         <PanelList

@@ -1,5 +1,6 @@
 .panel {
   height: 100vh;
+  padding: 1rem;
 
   display: flex;
   flex-direction: column;
@@ -8,4 +9,6 @@
   z-index: 1000;
 
   overflow-y: auto;
+
+  position: fixed;
 }

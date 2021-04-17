@@ -8,7 +8,7 @@ function PanelList({
   selectElementID, display, onClickAdd, onClickChangeRemoveStatus, onClickToggleHiddenPopupSelect,
 }) {
   return (
-    <div className={`text-center text-white panel-list d-flex flex-column align-items-center opacity-8${display}`}>
+    <div className={`panel-list ${display}`}>
       <IconButton icon="bi-plus-circle" onClick={onClickAdd} />
       <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus} propsClass={(selectElementID) ? '' : 'hidden'} />
       <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupSelect} propsClass={(selectElementID) ? '' : 'hidden'} />

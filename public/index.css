@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'JetBrains Mono Regular';
+  src: url(JetBrainsMono-Regular.ttf);
+}
+
+* {
+  font-family: 'JetBrains Mono Regular', serif;
+}
+
+body {
+  margin: 0;
+}

@@ -1,8 +1,16 @@
 .panel-list {
   border-radius: 7px;
+  opacity: 0.8;
+
+  text-align: center;
+  color: hsl(0, 0%, 100%);
 
   width: inherit;
   height: calc(100% - 3.2rem);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .panel-list > * {
