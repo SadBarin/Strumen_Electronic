@@ -7,7 +7,7 @@ import Draggable from 'react-draggable';
 function LogicGate(props) {
   const {
     id, logic,
-    x, y,
+    x, y, pin,
     onClickSetSelectElementID,
     selectStatus,
   } = props;
@@ -17,7 +17,7 @@ function LogicGate(props) {
   return (
     <div title={id} className="logic-gate-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
 
-      <Draggable defaultPosition={{ x, y }}>
+      <Draggable defaultPosition={{ x, y }} disabled={pin}>
         <div className={`logic-gate${LogicElementSelect}`}>
           <div className="circle circle-left circle-left-top" />
           <div className="circle circle-left circle-left-bottom" />

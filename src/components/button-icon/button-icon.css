@@ -25,6 +25,11 @@
   background: transparent;
 }
 
-.btn-check:focus+.btn, .btn:focus {
-  box-shadow: 0 0 0 0.25rem rgba(137, 110, 105, 0.5);
+.icon-button:focus,
+.icon-button:hover {
+  box-shadow: 0 0 0 0.20rem rgba(137, 110, 105, 0.5);
+}
+
+.icon-button:active {
+  transform: scale(0.95);
 }

@@ -30,12 +30,6 @@ class App extends Component {
     });
   }
 
-  handleChangeRemoveStatus() {
-    const { removeStatus } = this.state;
-
-    this.setState({ removeStatus: !removeStatus });
-  }
-
   handleSetSelectElementID(id) {
     this.setState({ selectElementID: id });
   }
@@ -54,6 +48,25 @@ class App extends Component {
       const items = state.gridList.filter((item) => item.id !== id);
       return { gridList: items };
     });
+  }
+
+  handleChangePin() {
+    const list = this.state.gridList
+    const id = this.state.selectElementID
+
+    let pos;
+
+    for(let i = 0; i <= list.length; i++) {
+      if(list[i].id === id) {
+        pos = i
+        break
+      }
+    }
+
+    const elementPin = list[pos].pin
+    list[pos].pin = !elementPin
+
+    this.setState({gridList: list})
   }
 
   createItem = (obj) => {
@@ -80,6 +93,7 @@ class App extends Component {
           selectElementID={selectElementID}
           onClickChangeRemoveStatus={() => this.handleRemoveItem(selectElementID)}
           onClickToggleHiddenPopupSelect={() => this.handleToggleHiddenPopupSelect()}
+          onClickChangePin={() => this.handleChangePin()}
           onClickAdd={() => this.handleAddItem()}
         />
 

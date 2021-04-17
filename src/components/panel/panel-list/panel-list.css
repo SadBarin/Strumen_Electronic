@@ -17,6 +17,7 @@
    margin-bottom: 0.3rem;
  }
 
-#root .panel-hidden {
-  display: none !important;
+.panel-hidden,
+.hidden {
+  display: none;
 }

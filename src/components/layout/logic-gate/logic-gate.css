@@ -3,7 +3,7 @@
 }
 
 .logic-gate {
-  background: #ffa577;
+  background: hsl(20, 100%, 73%);
   border-radius: 7px;
 
   width: 60px;
@@ -16,10 +16,12 @@
   position: relative;
 
   z-index: 10;
+
+  user-select: none;
 }
 
 .logic-gate.active{
-  border: hsla(9, 13%, 47%, 0.7) 2px solid;
+  box-shadow: 0 0 0 0.20rem hsla(5, 63%, 56%, 0.7);
 }
 
 .logic-gate .circle {

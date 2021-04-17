@@ -11,7 +11,7 @@ function AppLayout(props) {
 
   const layoutList = items.map((item) => {
     const {
-      id, type, x, y
+      id, type, x, y, pin
     } = item;
 
     const elementSelectStatus = (selectElementID === id)
@@ -23,6 +23,7 @@ function AppLayout(props) {
           logic={type}
           x={x}
           y={y}
+          pin={pin}
           onClickSetSelectElementID={onClickSetSelectElementID}
           selectElementID={selectElementID}
           selectStatus={elementSelectStatus}
