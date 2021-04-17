@@ -79,6 +79,9 @@ class App extends Component {
       y,
       focus: false,
       pin: false,
+      pointLeftTop: null,
+      pointLeftBottom: null,
+      pointRight: null,
     };
   }
 

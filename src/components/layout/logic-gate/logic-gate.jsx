@@ -13,12 +13,13 @@ function LogicGate(props) {
   } = props;
 
   const LogicElementSelect = (selectStatus) ? ' active' : '';
+  const LogicElementPin = (pin) ? ' pin' : '';
 
   return (
     <div title={id} className="logic-gate-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
 
       <Draggable defaultPosition={{ x, y }} disabled={pin}>
-        <div className={`logic-gate${LogicElementSelect}`}>
+        <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`}>
           <div className="circle circle-left circle-left-top" />
           <div className="circle circle-left circle-left-bottom" />
 

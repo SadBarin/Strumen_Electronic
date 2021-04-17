@@ -21,7 +21,11 @@
 }
 
 .logic-gate.active{
-  box-shadow: 0 0 0 0.20rem hsla(5, 63%, 56%, 0.7);
+  box-shadow: 0 0 0 0.20rem hsla(5, 63%, 56%, 0.6);
+}
+
+.logic-gate.pin{
+  opacity: 0.8;
 }
 
 .logic-gate .circle {
