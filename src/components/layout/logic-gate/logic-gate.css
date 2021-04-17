@@ -5,10 +5,9 @@
 .logic-gate {
   background: #ffa577;
   border-radius: 7px;
-  border: hsla(9, 13%, 47%, 0.7) 2px solid;
 
-  width: 80px;
-  height: 60px;
+  width: 60px;
+  height: 40px;
   padding: 0.5rem;
 
   display: flex;
@@ -16,11 +15,11 @@
 
   position: relative;
 
-  z-index: 10 !important;
+  z-index: 10;
 }
 
 .logic-gate.active{
-  border: hsla(9, 13%, 47%, 0.7) 4px solid;
+  border: hsla(9, 13%, 47%, 0.7) 2px solid;
 }
 
 .logic-gate .circle {
@@ -35,19 +34,26 @@
   cursor: pointer;
 
   position: absolute;
-  top: 50%;
 }
 
 .logic-gate .circle-left {
-  left: -10px;
+  left: -8px;
+}
+.logic-gate .circle-left-top {
+  top: 10px;
+}
+
+.logic-gate .circle-left-bottom {
+  bottom: 1px;
 }
 
 .logic-gate .circle-right {
-  right: -10px;
+  top: 50%;
+  right: -8px;
 }
 
 .logic-gate .logic-gate-content {
-  color: #f9f9f9 !important;
+  color: hsl(0, 0%, 98%);
   font-weight: bold;
 
   width: 100%;

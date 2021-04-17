@@ -19,10 +19,13 @@ function LogicGate(props) {
 
       <Draggable defaultPosition={{ x, y }}>
         <div className={`logic-gate${LogicElementSelect}`}>
-          <div className="circle circle-left" />
+          <div className="circle circle-left circle-left-top" />
+          <div className="circle circle-left circle-left-bottom" />
+
           <div className="logic-gate-content">
             <span>{logic}</span>
           </div>
+
           <div className="circle circle-right" />
         </div>
       </Draggable>
