@@ -73,6 +73,23 @@ class App extends Component {
     this.setState({gridList: list})
   }
 
+  handleChangeLogic(event) {
+    const list = this.state.gridList
+    const id = this.state.selectElementID
+
+    let pos;
+
+    for(let i = 0; i <= list.length; i++) {
+      if(list[i].id === id) {
+        pos = i
+        break
+      }
+    }
+
+    list[pos].type = event.target.value
+    this.setState({gridList: list})
+  }
+
   createItem = (obj) => {
     const { x, y } = obj;
 
@@ -94,7 +111,7 @@ class App extends Component {
 
     return (
       <main className="layout">
-        <PopupSelect hidden={hiddenPopupSelect} closePopup={() => this.handleToggleHiddenPopupSelect()} />
+        <PopupSelect hidden={hiddenPopupSelect} closePopup={() => this.handleToggleHiddenPopupSelect()} changeLogic={this.handleChangeLogic.bind(this)}/>
         <PopupInfo hidden={hiddenPopupInfo} closePopup={() => this.handleToggleHiddenPopupInfo()} />
 
         <AppPanel

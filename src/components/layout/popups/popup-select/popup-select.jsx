@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupSelect({ hidden, closePopup }) {
+function PopupSelect({ hidden, closePopup, changeLogic }) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Выберите логику">
-      <select className="select">
+      <select className="select" onChange={(e) => changeLogic(e)}>
         <option value="AND">AND</option>
         <option value="OR">OR</option>
       </select>
@@ -18,6 +18,7 @@ function PopupSelect({ hidden, closePopup }) {
 PopupSelect.propTypes = {
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
+  changeLogic: PropTypes.func.isRequired
 };
 
 export default PopupSelect;
