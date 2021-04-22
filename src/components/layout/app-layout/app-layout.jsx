@@ -1,5 +1,3 @@
-/*eslint-disable*/
-
 import React from 'react';
 import './app-layout.css';
 import PropTypes from 'prop-types';
@@ -7,7 +5,7 @@ import PropTypes from 'prop-types';
 import LogicGate from '../logic-gate';
 
 function AppLayout(props) {
-  const { items, onClickSetSelectElementID, selectElementID } = props;
+  const { items, onClickSetSelectElementID, selectElementID, onClickSetConnect } = props;
 
   const layoutList = items.map((item) => {
     const {
@@ -27,6 +25,7 @@ function AppLayout(props) {
           onClickSetSelectElementID={onClickSetSelectElementID}
           selectElementID={selectElementID}
           selectStatus={elementSelectStatus}
+          onClickSetConnect={onClickSetConnect}
         />
       </div>
     );
@@ -43,9 +42,9 @@ function AppLayout(props) {
 
 AppLayout.propTypes = {
   selectElementID: PropTypes.number.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   items: PropTypes.array.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
+  onClickSetConnect: PropTypes.func.isRequired
 };
 
 export default AppLayout;

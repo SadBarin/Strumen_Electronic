@@ -14,6 +14,10 @@ class App extends Component {
       selectElementID: -1,
       hiddenPopupSelect: true,
       hiddenPopupInfo: true,
+      connect: {
+        from: { x: null, y: null },
+        to: { x: null, y: null }
+      }
     };
   }
 
@@ -106,8 +110,74 @@ class App extends Component {
     };
   }
 
+  handleConnectElement(e, id) {
+    console.log(e)
+    console.log(id)
+
+    if (this.state.connect.from.x === null) {
+      const list = this.state.gridList
+      let pos;
+
+      this.setState({
+        connect: {
+          from: { x: e.clientX,  y: e.clientY },
+          to: { x: null, y: null }
+        }
+      });
+
+      for(let i = 0; i <= list.length; i++) {
+        if(list[i].id === id) {
+          pos = i
+          break
+        }
+      }
+
+      list[pos].pin = true
+
+      this.setState({gridList: list})
+
+      let elem = document.createElement("div");
+      elem.className = 'connect-line'
+      elem.style.left = e.clientX + 'px'
+      elem.style.top = e.clientY + 'px'
+      elem.style.width = '100px'
+      let layout = document.querySelector('.layout')
+      console.log(layout)
+      layout.appendChild(elem)
+
+    } else if(this.state.connect.from.x !== null && this.state.connect.to.x === null) {
+      const list = this.state.gridList
+      let pos;
+
+      this.setState({
+        connect: {
+          from: { x: this.state.connect.from.x,  y: this.state.connect.from.y },
+          to: { x: e.clientX,  y: e.clientY }
+        }
+      });
+
+      for(let i = 0; i <= list.length; i++) {
+        if(list[i].id === id) {
+          pos = i
+          break
+        }
+      }
+
+      list[pos].pin = true
+
+      this.setState({gridList: list})
+    } else {
+      this.setState({
+        connect: {
+          from: { x: null, y: null },
+          to: { x: null, y: null }
+        }
+      });
+    }
+  }
+
   render() {
-    const { gridList, selectElementID, hiddenPopupSelect, hiddenPopupInfo} = this.state;
+    const { gridList, selectElementID, hiddenPopupSelect, hiddenPopupInfo, connect} = this.state;
 
     return (
       <main className="layout">
@@ -127,11 +197,13 @@ class App extends Component {
           selectElementID={selectElementID}
           items={gridList}
           onClickSetSelectElementID={this.handleSetSelectElementID.bind(this)}
+          onClickSetConnect={this.handleConnectElement.bind(this)}
         />
 
         <div className="info-element">
           <p>{`ID: ${String(selectElementID)}`}</p>
           <p>{`Hidden Popup Select: ${String(hiddenPopupSelect)}`}</p>
+          <p>{`From x: ${connect.from.x} y: ${connect.from.y} to x: ${connect.to.x} y: ${connect.to.y}`}</p>
         </div>
       </main>
     );

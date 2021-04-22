@@ -10,3 +10,13 @@
 body {
   margin: 0;
 }
+
+.connect-line {
+  background: red;
+
+  height: 3px;
+
+  z-index: 100;
+
+  position: absolute;
+}
