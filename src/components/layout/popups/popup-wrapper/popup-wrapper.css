@@ -48,7 +48,9 @@
 .popup-wrapper-close {
   background: transparent;
   border: none;
+
   color: #f9f9f9;
+  font-size: 1.4rem;
 
   margin-left: 2.6rem;
   padding: 0;

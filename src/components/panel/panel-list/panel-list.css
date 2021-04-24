@@ -14,8 +14,9 @@
 }
 
 .panel-list > * {
-   margin-bottom: 0.3rem;
- }
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
 
 .panel-hidden,
 .hidden {

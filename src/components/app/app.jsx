@@ -5,6 +5,7 @@ import AppPanel from '../panel/app-panel';
 import AppLayout from '../layout/app-layout';
 import PopupSelect from '../layout/popups/popup-select';
 import PopupInfo from "../layout/popups/popup-info";
+import AppInfo from "../app-info";
 
 class App extends Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class App extends Component {
   }
 
   handleChangeDevStatus() {
-    this.setState({ hiddenDevStatus: !this.state.hiddenDevStatus });
+    this.setState({ hiddenDevInfo: !this.state.hiddenDevInfo });
   }
 
   handleChangePin() {
@@ -111,7 +112,7 @@ class App extends Component {
   }
 
   render() {
-    const { gridList, selectElementID, hiddenDevStatus, hiddenPopupSelect, hiddenPopupInfo} = this.state;
+    const { gridList, selectElementID, hiddenDevInfo, hiddenPopupSelect, hiddenPopupInfo} = this.state;
 
     return (
       <main className="layout">
@@ -134,12 +135,12 @@ class App extends Component {
           onClickSetSelectElementID={this.handleSetSelectElementID.bind(this)}
         />
 
-        <div className={`info-element ${(hiddenDevStatus)? "hidden" : ""}`}>
-          <p>{`ID: ${String(selectElementID)}`}</p>
-          <p>{`Count elements: ${String(gridList.length)}`}</p>
-          <p>{`Hidden Popup Select: ${String(hiddenPopupSelect)}`}</p>
-          <p>{`Hidden Popup Info: ${String(hiddenPopupInfo)}`}</p>
-        </div>
+        <AppInfo
+          gridListLength={gridList.length}
+          hiddenPopupInfo={hiddenPopupInfo}
+          selectElementID={selectElementID}
+          hiddenDevInfo={hiddenDevInfo}
+          hiddenPopupSelect={hiddenPopupSelect}/>
       </main>
     );
   }
