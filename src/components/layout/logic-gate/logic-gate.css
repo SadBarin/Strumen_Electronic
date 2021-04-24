@@ -26,6 +26,9 @@
 
 .logic-gate.pin{
   opacity: 0.8;
+  filter: grayscale(50%);
+
+  z-index: 1;
 }
 
 .logic-gate .circle {

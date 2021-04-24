@@ -9,8 +9,7 @@ function LogicGate(props) {
     id, logic,
     x, y, pin,
     onClickSetSelectElementID,
-    selectStatus,
-    onClickSetConnect
+    selectStatus
   } = props;
 
   const LogicElementSelect = (selectStatus) ? ' active' : '';
@@ -21,14 +20,9 @@ function LogicGate(props) {
 
       <Draggable defaultPosition={{ x, y }} disabled={pin}>
         <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`}>
-          <div className="circle circle-left circle-left-top" onClick={(e) => onClickSetConnect(e, id)}/>
-          <div className="circle circle-left circle-left-bottom" onClick={(e) => onClickSetConnect(e, id)}/>
-
           <div className="logic-gate-content">
             <span>{logic}</span>
           </div>
-
-          <div className="circle circle-right" onClick={(e) => onClickSetConnect(e, id)}/>
         </div>
       </Draggable>
     </div>
@@ -41,8 +35,7 @@ LogicGate.propTypes = {
   logic: PropTypes.string.isRequired,
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
-  onClickSetSelectElementID: PropTypes.func.isRequired,
-  onClickSetConnect: PropTypes.func.isRequired
+  onClickSetSelectElementID: PropTypes.func.isRequired
 };
 
 export default LogicGate;

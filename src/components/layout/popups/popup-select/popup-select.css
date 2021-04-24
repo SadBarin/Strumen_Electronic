@@ -10,3 +10,10 @@
 
   padding: 0.2rem;
 }
+
+.select:focus,
+.select:hover {
+  box-shadow: 0 0 0 0.20rem rgba(137, 110, 105, 0.5);
+  outline: none;
+  border: none
+}

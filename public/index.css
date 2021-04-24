@@ -7,16 +7,11 @@
   font-family: 'JetBrains Mono Regular', serif;
 }
 
-body {
-  margin: 0;
+*::selection {
+  background: hsl(9, 13%, 47%);
+  color: hsl(0, 0%, 100%);
 }
 
-.connect-line {
-  background: red;
-
-  height: 3px;
-
-  z-index: 100;
-
-  position: absolute;
+body {
+  margin: 0;
 }

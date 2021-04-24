@@ -25,7 +25,8 @@ class AppPanel extends Component {
   render() {
     const { panelVisible } = this.state;
     const {
-      selectElementID, onClickChangeRemoveStatus, onClickAdd, onClickToggleHiddenPopupSelect, onClickChangePin, onClickToggleHiddenPopupInfo
+      selectElementID, onClickChangeRemoveStatus, onClickAdd, onClickToggleHiddenPopupSelect,
+      onClickChangePin, onClickToggleHiddenPopupInfo, onClockHiddenDevStatus
     } = this.props;
 
     return (
@@ -39,6 +40,7 @@ class AppPanel extends Component {
           onClickToggleHiddenPopupSelect={onClickToggleHiddenPopupSelect}
           onClickChangePin={onClickChangePin}
           onClickToggleHiddenPopupInfo={onClickToggleHiddenPopupInfo}
+          onClockHiddenDevStatus={onClockHiddenDevStatus}
           display={panelVisible ? '' : ' panel-hidden'}
         />
       </div>
@@ -55,7 +57,8 @@ AppPanel.propTypes = {
   onClickToggleHiddenPopupSelect: PropTypes.func.isRequired,
   onClickAdd: PropTypes.func.isRequired,
   onClickChangePin: PropTypes.func.isRequired,
-  onClickToggleHiddenPopupInfo: PropTypes.func.isRequired
+  onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
+  onClockHiddenDevStatus: PropTypes.func.isRequired
 };
 
 export default AppPanel;

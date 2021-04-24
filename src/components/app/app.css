@@ -1,5 +1,5 @@
 .layout {
-  background: #f9f9f9;
+  background: hsl(0, 0%, 98%);
   position: relative;
 }
 
@@ -8,15 +8,25 @@
 }
 
 .info-element {
+  background: hsla(0, 0%, 98%, 0.5);
+  backdrop-filter: blur(7px);
+  border-radius: 7px;
+
+  padding: 1rem;
   margin: 0;
 
   position: fixed;
-  bottom: 1rem;
-  left: 1rem;
+  bottom: 0;
+  left: 0;
 
   z-index: 100000;
 }
 
 .info-element > p {
   margin: 0;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
 }
