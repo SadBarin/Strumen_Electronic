@@ -12,15 +12,15 @@ class App extends Component {
     super(props);
     this.state = {
       gridList: [],
-      selectElementID: -1,
+      selectElementID: 0,
       hiddenDevInfo: false,
       hiddenPopupSelect: true,
-      hiddenPopupInfo: true
+      hiddenPopupInfo: true,
     };
   }
 
   handleToggleHiddenPopupSelect() {
-    if (this.state.selectElementID !== -1) {
+    if (this.state.selectElementID !== 0) {
       this.setState({ hiddenPopupSelect: !this.state.hiddenPopupSelect });
     }
   }
@@ -52,7 +52,7 @@ class App extends Component {
   handleRemoveItem = (id) => {
     this.setState((state) => {
       const items = state.gridList.filter((item) => item.id !== id);
-      return { gridList: items };
+      return { gridList: items, selectElementID: 0 };
     });
   }
 
@@ -104,10 +104,7 @@ class App extends Component {
       type: 'AND',
       x,
       y,
-      pin: false,
-      inputTop: null,
-      inputBottom: null,
-      output: null
+      pin: false
     };
   }
 

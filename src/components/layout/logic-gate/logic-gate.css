@@ -6,22 +6,21 @@
   background: hsl(20, 100%, 73%);
   border-radius: 7px;
 
-  width: 80px;
-  height: 40px;
-  padding: 0.6rem;
+  width: 100px;
+  height: 60px;
 
   display: flex;
-  flex-direction: column;
 
   position: relative;
 
+  overflow: hidden;
   z-index: 10;
 
   user-select: none;
 }
 
 .logic-gate.active{
-  box-shadow: 0 0 0 0.20rem hsla(5, 63%, 56%, 0.6);
+  box-shadow: 0 0 0 0.20rem hsla(5, 63%, 56%, 0.8);
 }
 
 .logic-gate.pin{
@@ -29,36 +28,6 @@
   filter: grayscale(50%);
 
   z-index: 1;
-}
-
-.logic-gate .circle {
-  background: hsla(5, 63%, 56%, 0.7);
-  backdrop-filter: blur(20px);
-  border-radius: 100%;
-
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-
-  cursor: pointer;
-
-  position: absolute;
-}
-
-.logic-gate .circle-left {
-  left: -8px;
-}
-.logic-gate .circle-left-top {
-  top: 10px;
-}
-
-.logic-gate .circle-left-bottom {
-  bottom: 0;
-}
-
-.logic-gate .circle-right {
-  top: 50%;
-  right: -8px;
 }
 
 .logic-gate .logic-gate-content {

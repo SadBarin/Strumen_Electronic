@@ -16,9 +16,9 @@ function LogicGate(props) {
   const LogicElementPin = (pin) ? ' pin' : '';
 
   return (
-    <div title={id} className="logic-gate-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
+    <div className="logic-gate-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
 
-      <Draggable defaultPosition={{ x, y }} disabled={pin}>
+      <Draggable grid={[10, 10]} defaultPosition={{ x, y }} disabled={pin}>
         <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`}>
           <div className="logic-gate-content">
             <span>{logic}</span>
@@ -35,7 +35,7 @@ LogicGate.propTypes = {
   logic: PropTypes.string.isRequired,
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
-  onClickSetSelectElementID: PropTypes.func.isRequired
+  onClickSetSelectElementID: PropTypes.func.isRequired,
 };
 
 export default LogicGate;

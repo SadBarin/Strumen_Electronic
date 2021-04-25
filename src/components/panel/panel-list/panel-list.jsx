@@ -11,9 +11,9 @@ function PanelList({
     <div className={`panel-list ${display}`}>
       <IconButton icon="bi-plus-circle" onClick={onClickAdd} />
       <IconButton icon="bi-arrow-counterclockwise" onClick={() => window.location.reload()}/>
-      <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus} propsClass={(selectElementID !== -1) ? '' : 'hidden'} />
-      <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupSelect} propsClass={(selectElementID !== -1) ? '' : 'hidden'} />
-      <IconButton icon="bi-pin" onClick={onClickChangePin} propsClass={(selectElementID !== -1) ? '' : 'hidden'} />
+      <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus} propsClass={(selectElementID !== 0) ? '' : 'hidden'} />
+      <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupSelect} propsClass={(selectElementID !== 0) ? '' : 'hidden'} />
+      <IconButton icon="bi-pin" onClick={onClickChangePin} propsClass={(selectElementID !== 0) ? '' : 'hidden'} />
       <IconButton icon="bi-flag" onClick={onClockHiddenDevStatus}/>
       <IconButton icon="bi-info-circle" onClick={onClickToggleHiddenPopupInfo}/>
     </div>

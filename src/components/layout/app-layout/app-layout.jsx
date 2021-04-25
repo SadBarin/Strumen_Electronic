@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './app-layout.css';
 import PropTypes from 'prop-types';
 
 import LogicGate from '../logic-gate';
 
 function AppLayout(props) {
-  const { items, onClickSetSelectElementID, selectElementID, onClickSetConnect } = props;
+  const { items, onClickSetSelectElementID, selectElementID } = props;
 
   const layoutList = items.map((item) => {
     const { id, type, x, y, pin } = item;
@@ -22,7 +22,6 @@ function AppLayout(props) {
           onClickSetSelectElementID={onClickSetSelectElementID}
           selectElementID={selectElementID}
           selectStatus={elementSelectStatus}
-          onClickSetConnect={onClickSetConnect}
         />
       </div>
     );
@@ -30,7 +29,7 @@ function AppLayout(props) {
 
   return (
     <div className="app-layout">
-      <div className="background-layout" onClick={() => onClickSetSelectElementID(-1)} />
+      <canvas className="background-layout" onClick={() => onClickSetSelectElementID(0)} />
       {layoutList}
     </div>
   );

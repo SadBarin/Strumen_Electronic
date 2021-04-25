@@ -6,7 +6,7 @@ function AppInfo({hiddenDevInfo, selectElementID, gridListLength, hiddenPopupSel
   return (
     <div className={`info-element ${(hiddenDevInfo) ? "hidden" : ""}`}>
       <p>{`ID: ${String(selectElementID)}`}</p>
-      <p>{`Count elements: ${String(gridListLength)}`}</p>
+      <p>{`Count Elements: ${String(gridListLength)}`}</p>
       <p>{`Hidden Popup Select: ${String(hiddenPopupSelect)}`}</p>
       <p>{`Hidden Popup Info: ${String(hiddenPopupInfo)}`}</p>
       <p>{`Hidden Dev Info: ${String(hiddenDevInfo)}`}</p>

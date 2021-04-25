@@ -49,7 +49,7 @@ class AppPanel extends Component {
 }
 
 AppPanel.defaultProps = {
-  selectElementID: -1,
+  selectElementID: 0,
 };
 
 AppPanel.propTypes = {
