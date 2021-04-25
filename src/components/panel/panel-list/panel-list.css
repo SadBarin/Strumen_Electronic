@@ -9,11 +9,20 @@
   height: calc(100% - 3.2rem);
 
   display: flex;
+  gap: 0.4rem
+}
+
+.list {
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.panel-list > * {
+.list-additional {
+  opacity: 0.8;
+}
+
+.panel-list .list > * {
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
 }

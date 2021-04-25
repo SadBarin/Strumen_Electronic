@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './app-panel.css';
 
@@ -15,7 +15,7 @@ class AppPanel extends Component {
   }
 
   handleClickButton() {
-    const { panelVisible } = this.state;
+    const {panelVisible} = this.state;
 
     this.setState({
       panelVisible: !panelVisible,
@@ -23,25 +23,34 @@ class AppPanel extends Component {
   }
 
   render() {
-    const { panelVisible } = this.state;
+    const {panelVisible} = this.state;
     const {
-      selectElementID, onClickChangeRemoveStatus, onClickAdd, onClickToggleHiddenPopupSelect,
-      onClickChangePin, onClickToggleHiddenPopupInfo, onClockHiddenDevStatus
+      selectElementID,
+      onClickChangeRemoveStatus,
+      onClickAdd,
+      onClickToggleHiddenPopupSelect,
+      onClickChangePin,
+      onClickToggleHiddenPopupInfo,
+      onClockHiddenDevStatus,
+      onClickToggleHiddenListAdd,
+      hiddenListAdd
     } = this.props;
 
     return (
       <div className="panel">
-        <IconButton icon="bi-list" onClick={() => this.handleClickButton()} />
+        <IconButton icon="bi-list" onClick={() => this.handleClickButton()}/>
 
         <PanelList
           selectElementID={selectElementID}
           onClickAdd={onClickAdd}
+          onClickToggleHiddenListAdd={onClickToggleHiddenListAdd}
           onClickChangeRemoveStatus={onClickChangeRemoveStatus}
           onClickToggleHiddenPopupSelect={onClickToggleHiddenPopupSelect}
           onClickChangePin={onClickChangePin}
           onClickToggleHiddenPopupInfo={onClickToggleHiddenPopupInfo}
           onClockHiddenDevStatus={onClockHiddenDevStatus}
           display={panelVisible ? '' : ' panel-hidden'}
+          hiddenListAdd={hiddenListAdd}
         />
       </div>
     );
@@ -56,9 +65,11 @@ AppPanel.propTypes = {
   selectElementID: PropTypes.number,
   onClickToggleHiddenPopupSelect: PropTypes.func.isRequired,
   onClickAdd: PropTypes.func.isRequired,
+  onClickToggleHiddenListAdd: PropTypes.func.isRequired,
   onClickChangePin: PropTypes.func.isRequired,
   onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
-  onClockHiddenDevStatus: PropTypes.func.isRequired
+  onClockHiddenDevStatus: PropTypes.func.isRequired,
+  hiddenListAdd: PropTypes.bool.isRequired
 };
 
 export default AppPanel;

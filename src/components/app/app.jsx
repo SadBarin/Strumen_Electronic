@@ -16,6 +16,7 @@ class App extends Component {
       hiddenDevInfo: false,
       hiddenPopupSelect: true,
       hiddenPopupInfo: true,
+      hiddenListAdd: true,
     };
   }
 
@@ -23,6 +24,10 @@ class App extends Component {
     if (this.state.selectElementID !== 0) {
       this.setState({ hiddenPopupSelect: !this.state.hiddenPopupSelect });
     }
+  }
+
+  handleToggleHiddenListAdd() {
+    this.setState({ hiddenListAdd: !this.state.hiddenListAdd });
   }
 
   handleToggleHiddenPopupInfo() {
@@ -109,7 +114,7 @@ class App extends Component {
   }
 
   render() {
-    const { gridList, selectElementID, hiddenDevInfo, hiddenPopupSelect, hiddenPopupInfo} = this.state;
+    const { gridList, selectElementID, hiddenDevInfo, hiddenPopupSelect, hiddenPopupInfo, hiddenListAdd} = this.state;
 
     return (
       <main className="layout">
@@ -122,6 +127,8 @@ class App extends Component {
           onClickToggleHiddenPopupSelect={() => this.handleToggleHiddenPopupSelect()}
           onClickChangePin={() => this.handleChangePin()}
           onClickAdd={() => this.handleAddItem()}
+          onClickToggleHiddenListAdd={() => this.handleToggleHiddenListAdd()}
+          hiddenListAdd={hiddenListAdd}
           onClickToggleHiddenPopupInfo={() => this.handleToggleHiddenPopupInfo()}
           onClockHiddenDevStatus={() => this.handleChangeDevStatus()}
         />
@@ -137,7 +144,9 @@ class App extends Component {
           hiddenPopupInfo={hiddenPopupInfo}
           selectElementID={selectElementID}
           hiddenDevInfo={hiddenDevInfo}
-          hiddenPopupSelect={hiddenPopupSelect}/>
+          hiddenPopupSelect={hiddenPopupSelect}
+          hiddenListAdd={hiddenListAdd}
+        />
       </main>
     );
   }
