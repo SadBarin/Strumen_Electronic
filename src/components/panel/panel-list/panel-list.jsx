@@ -14,7 +14,8 @@ function PanelList({
  onClickToggleHiddenPopupInfo,
  onClockHiddenDevStatus,
  onClickToggleHiddenListAdd,
- hiddenListAdd
+ hiddenListAdd,
+ hiddenListGate
 }) {
   return (
     <div className={`panel-list ${display}`}>
@@ -31,10 +32,10 @@ function PanelList({
         <IconButton icon="bi-chat-square-text"/>
       </div>
 
-      <div className="list-logic-gates list list-additional">
-        <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus} propsClass={(selectElementID !== 0) ? '' : 'hidden'}/>
-        <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupSelect} propsClass={(selectElementID !== 0) ? '' : 'hidden'}/>
-        <IconButton icon="bi-pin" onClick={onClickChangePin} propsClass={(selectElementID !== 0) ? '' : 'hidden'}/>
+      <div className={`list-logic-gates list list-additional ${(hiddenListGate)? 'hidden' : ''}`}>
+        <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
+        <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupSelect}/>
+        <IconButton icon="bi-pin" onClick={onClickChangePin}/>
       </div>
     </div>
   );
@@ -56,7 +57,8 @@ PanelList.propTypes = {
   onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
   onClickChangePin: PropTypes.func.isRequired,
   onClockHiddenDevStatus: PropTypes.func.isRequired,
-  hiddenListAdd: PropTypes.bool.isRequired
+  hiddenListAdd: PropTypes.bool.isRequired,
+  hiddenListGate: PropTypes.bool.isRequired
 };
 
 export default PanelList;

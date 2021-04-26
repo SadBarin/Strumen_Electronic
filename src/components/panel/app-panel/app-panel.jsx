@@ -33,7 +33,8 @@ class AppPanel extends Component {
       onClickToggleHiddenPopupInfo,
       onClockHiddenDevStatus,
       onClickToggleHiddenListAdd,
-      hiddenListAdd
+      hiddenListAdd,
+      hiddenListGate
     } = this.props;
 
     return (
@@ -51,6 +52,7 @@ class AppPanel extends Component {
           onClockHiddenDevStatus={onClockHiddenDevStatus}
           display={panelVisible ? '' : ' panel-hidden'}
           hiddenListAdd={hiddenListAdd}
+          hiddenListGate={hiddenListGate}
         />
       </div>
     );
@@ -69,7 +71,8 @@ AppPanel.propTypes = {
   onClickChangePin: PropTypes.func.isRequired,
   onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
   onClockHiddenDevStatus: PropTypes.func.isRequired,
-  hiddenListAdd: PropTypes.bool.isRequired
+  hiddenListAdd: PropTypes.bool.isRequired,
+  hiddenListGate: PropTypes.bool.isRequired
 };
 
 export default AppPanel;

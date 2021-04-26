@@ -17,6 +17,7 @@ class App extends Component {
       hiddenPopupSelect: true,
       hiddenPopupInfo: true,
       hiddenListAdd: true,
+      hiddenListGate: true
     };
   }
 
@@ -43,6 +44,27 @@ class App extends Component {
 
   handleSetSelectElementID(id) {
     this.setState({ selectElementID: id });
+
+    if (id !== 0) {
+      const list = this.state.gridList
+      let pos;
+
+      for(let i = 0; i <= list.length; i++) {
+        if(list[i].id === id) {
+          pos = i
+          break
+        }
+      }
+
+      const element = list[pos]
+
+      if (element.group === 'gate' && id !== 0) {
+        console.log('1')
+        this.setState({ hiddenListGate: false });
+      }
+    } else {
+      this.setState({ hiddenListGate: true })
+    }
   }
 
   getRandomCoordinates() {
@@ -106,6 +128,7 @@ class App extends Component {
 
     return {
       id: Date.now(),
+      group: 'gate',
       type: 'AND',
       x,
       y,
@@ -114,7 +137,7 @@ class App extends Component {
   }
 
   render() {
-    const { gridList, selectElementID, hiddenDevInfo, hiddenPopupSelect, hiddenPopupInfo, hiddenListAdd} = this.state;
+    const { gridList, selectElementID, hiddenDevInfo, hiddenPopupSelect, hiddenPopupInfo, hiddenListAdd, hiddenListGate} = this.state;
 
     return (
       <main className="layout">
@@ -131,6 +154,7 @@ class App extends Component {
           hiddenListAdd={hiddenListAdd}
           onClickToggleHiddenPopupInfo={() => this.handleToggleHiddenPopupInfo()}
           onClockHiddenDevStatus={() => this.handleChangeDevStatus()}
+          hiddenListGate={hiddenListGate}
         />
 
         <AppLayout
@@ -146,6 +170,7 @@ class App extends Component {
           hiddenDevInfo={hiddenDevInfo}
           hiddenPopupSelect={hiddenPopupSelect}
           hiddenListAdd={hiddenListAdd}
+          hiddenListGate={hiddenListGate}
         />
       </main>
     );

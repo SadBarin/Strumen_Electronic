@@ -2,7 +2,7 @@ import React from 'react';
 import './app-info.css';
 import PropTypes from "prop-types";
 
-function AppInfo({hiddenDevInfo, selectElementID, gridListLength, hiddenPopupSelect, hiddenPopupInfo, hiddenListAdd}) {
+function AppInfo({hiddenDevInfo, selectElementID, gridListLength, hiddenPopupSelect, hiddenPopupInfo, hiddenListAdd, hiddenListGate}) {
   return (
     <div className={`info-element ${(hiddenDevInfo) ? "hidden" : ""}`}>
       <p>{`ID: ${String(selectElementID)}`}</p>
@@ -11,6 +11,7 @@ function AppInfo({hiddenDevInfo, selectElementID, gridListLength, hiddenPopupSel
       <p>{`Hidden Popup Info: ${String(hiddenPopupInfo)}`}</p>
       <p>{`Hidden Dev Info: ${String(hiddenDevInfo)}`}</p>
       <p>{`Hidden List Add: ${String(hiddenListAdd)}`}</p>
+      <p>{`Hidden List Gate: ${String(hiddenListGate)}`}</p>
     </div>
   );
 }
@@ -21,7 +22,8 @@ AppInfo.propTypes = {
   gridListLength: PropTypes.number.isRequired,
   hiddenPopupSelect: PropTypes.bool.isRequired,
   hiddenPopupInfo: PropTypes.bool.isRequired,
-  hiddenListAdd: PropTypes.bool.isRequired
+  hiddenListAdd: PropTypes.bool.isRequired,
+  hiddenListGate: PropTypes.bool.isRequired
 
 };
 

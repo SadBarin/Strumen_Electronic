@@ -6,8 +6,8 @@
 
   color: hsl(0, 0%, 100%);
 
-  min-width: 2.8rem;
-  min-height: 2.8rem;
+  width: 2.8rem;
+  height: 2.8rem;
 
   z-index: 1000;
 
