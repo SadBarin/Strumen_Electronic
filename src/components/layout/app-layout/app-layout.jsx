@@ -3,6 +3,7 @@ import './app-layout.css';
 import PropTypes from 'prop-types';
 
 import LogicGate from '../logic-gate';
+import LogicLine from "../logic-line";
 
 function AppLayout(props) {
   const { items, onClickSetSelectElementID, selectElementID } = props;
@@ -29,7 +30,10 @@ function AppLayout(props) {
 
   return (
     <div className="app-layout">
-      <canvas className="background-layout" onClick={() => onClickSetSelectElementID(0)} />
+      <div className="background-layout" onClick={() => onClickSetSelectElementID(0)} />
+
+      <LogicLine id={1} x={-1000} y={200}/>
+
       {layoutList}
     </div>
   );

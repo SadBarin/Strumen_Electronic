@@ -5,7 +5,6 @@ import './panel-list.css';
 import IconButton from '../../button-icon';
 
 function PanelList({
- selectElementID,
  display,
  onClickAdd,
  onClickChangeRemoveStatus,
@@ -48,7 +47,6 @@ PanelList.defaultProps = {
 };
 
 PanelList.propTypes = {
-  selectElementID: PropTypes.any,
   display: PropTypes.string.isRequired,
   onClickAdd: PropTypes.func,
   onClickToggleHiddenListAdd: PropTypes.func.isRequired,

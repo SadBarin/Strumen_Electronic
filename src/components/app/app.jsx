@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './app.css';
 
 import AppPanel from '../panel/app-panel';
@@ -21,84 +21,79 @@ class App extends Component {
     };
   }
 
-  handleToggleHiddenPopupSelect() {
-    if (this.state.selectElementID !== 0) {
-      this.setState({ hiddenPopupSelect: !this.state.hiddenPopupSelect });
+  getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
+  getRandomCoordinates() {
+    return {
+      x: this.getRandomNumber(100, window.innerWidth - 100),
+      y: this.getRandomNumber(100, window.innerHeight - 100),
+    };
+  }
+
+  getElementArrayPositionByID(array, id) {
+    const list = this.state.gridList
+    let pos;
+
+    for (let i = 0; i <= list.length; i++) {
+      if (list[i].id === id) {
+        pos = i
+        break
+      }
     }
+
+    return pos
   }
 
-  handleToggleHiddenListAdd() {
-    this.setState({ hiddenListAdd: !this.state.hiddenListAdd });
+  getElementGridList(id) {
+    const list = this.state.gridList
+    let pos = this.getElementArrayPositionByID(list, id)
+
+    return list[pos]
   }
 
-  handleToggleHiddenPopupInfo() {
-    this.setState({ hiddenPopupInfo: !this.state.hiddenPopupInfo });
+  handleToggle(key) {
+    let buffer = {}
+    buffer[key] = !this.state[key]
+
+    this.setState(buffer);
+  }
+
+  handleToggleHiddenPopupSelect() {
+    if (this.state.selectElementID !== 0) this.handleToggle('hiddenPopupSelect')
   }
 
   handleAddItem() {
     this.setState((state) => {
       const item = this.createItem(this.getRandomCoordinates());
-      return { gridList: [...state.gridList, item] };
+      return {gridList: [...state.gridList, item]};
     });
   }
 
   handleSetSelectElementID(id) {
-    this.setState({ selectElementID: id });
+    this.setState({selectElementID: id});
 
     if (id !== 0) {
-      const list = this.state.gridList
-      let pos;
-
-      for(let i = 0; i <= list.length; i++) {
-        if(list[i].id === id) {
-          pos = i
-          break
-        }
-      }
-
-      const element = list[pos]
+      const element = this.getElementGridList(id)
 
       if (element.group === 'gate' && id !== 0) {
-        console.log('1')
-        this.setState({ hiddenListGate: false });
+        this.setState({hiddenListGate: false});
       }
     } else {
-      this.setState({ hiddenListGate: true })
+      this.setState({hiddenListGate: true})
     }
   }
-
-  getRandomCoordinates() {
-    return {
-      x: this.getRandomNumber(10, window.innerWidth),
-      y: this.getRandomNumber(10, window.innerHeight),
-    };
-  }
-
-  getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
   handleRemoveItem = (id) => {
     this.setState((state) => {
       const items = state.gridList.filter((item) => item.id !== id);
-      return { gridList: items, selectElementID: 0 };
+      return {gridList: items, selectElementID: 0, hiddenListGate: true};
     });
-  }
-
-  handleChangeDevStatus() {
-    this.setState({ hiddenDevInfo: !this.state.hiddenDevInfo });
   }
 
   handleChangePin() {
     const list = this.state.gridList
     const id = this.state.selectElementID
-
-    let pos;
-
-    for(let i = 0; i <= list.length; i++) {
-      if(list[i].id === id) {
-        pos = i
-        break
-      }
-    }
+    const pos = this.getElementArrayPositionByID(list, id)
 
     const elementPin = list[pos].pin
     list[pos].pin = !elementPin
@@ -109,22 +104,14 @@ class App extends Component {
   handleChangeLogic(event) {
     const list = this.state.gridList
     const id = this.state.selectElementID
-
-    let pos;
-
-    for(let i = 0; i <= list.length; i++) {
-      if(list[i].id === id) {
-        pos = i
-        break
-      }
-    }
+    const pos = this.getElementArrayPositionByID(list, id)
 
     list[pos].type = event.target.value
     this.setState({gridList: list})
   }
 
   createItem = (obj) => {
-    const { x, y } = obj;
+    const {x, y} = obj;
 
     return {
       id: Date.now(),
@@ -137,23 +124,36 @@ class App extends Component {
   }
 
   render() {
-    const { gridList, selectElementID, hiddenDevInfo, hiddenPopupSelect, hiddenPopupInfo, hiddenListAdd, hiddenListGate} = this.state;
+    const {
+      gridList,
+      selectElementID,
+      hiddenDevInfo,
+      hiddenPopupSelect,
+      hiddenPopupInfo,
+      hiddenListAdd,
+      hiddenListGate
+    } = this.state;
 
     return (
       <main className="layout">
-        <PopupSelect hidden={hiddenPopupSelect} closePopup={() => this.handleToggleHiddenPopupSelect()} changeLogic={this.handleChangeLogic.bind(this)}/>
-        <PopupInfo hidden={hiddenPopupInfo} closePopup={() => this.handleToggleHiddenPopupInfo()} />
+        <PopupSelect hidden={hiddenPopupSelect}
+                     closePopup={() => this.handleToggleHiddenPopupSelect()}
+                     changeLogic={this.handleChangeLogic.bind(this)}
+        />
+        <PopupInfo hidden={hiddenPopupInfo}
+                   closePopup={() => this.handleToggle('hiddenPopupInfo')}
+        />
 
         <AppPanel
-          selectElementID={selectElementID}
           onClickChangeRemoveStatus={() => this.handleRemoveItem(selectElementID)}
           onClickToggleHiddenPopupSelect={() => this.handleToggleHiddenPopupSelect()}
           onClickChangePin={() => this.handleChangePin()}
           onClickAdd={() => this.handleAddItem()}
-          onClickToggleHiddenListAdd={() => this.handleToggleHiddenListAdd()}
+          onClickToggleHiddenListAdd={() => this.handleToggle('hiddenListAdd')}
+          onClickToggleHiddenPopupInfo={() => this.handleToggle('hiddenPopupInfo')}
+          onClockHiddenDevStatus={() => this.handleToggle('hiddenDevInfo')}
+
           hiddenListAdd={hiddenListAdd}
-          onClickToggleHiddenPopupInfo={() => this.handleToggleHiddenPopupInfo()}
-          onClockHiddenDevStatus={() => this.handleChangeDevStatus()}
           hiddenListGate={hiddenListGate}
         />
 
@@ -164,9 +164,10 @@ class App extends Component {
         />
 
         <AppInfo
-          gridListLength={gridList.length}
-          hiddenPopupInfo={hiddenPopupInfo}
           selectElementID={selectElementID}
+          gridListLength={gridList.length}
+
+          hiddenPopupInfo={hiddenPopupInfo}
           hiddenDevInfo={hiddenDevInfo}
           hiddenPopupSelect={hiddenPopupSelect}
           hiddenListAdd={hiddenListAdd}

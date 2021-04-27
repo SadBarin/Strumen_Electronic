@@ -25,7 +25,6 @@ class AppPanel extends Component {
   render() {
     const {panelVisible} = this.state;
     const {
-      selectElementID,
       onClickChangeRemoveStatus,
       onClickAdd,
       onClickToggleHiddenPopupSelect,
@@ -42,7 +41,6 @@ class AppPanel extends Component {
         <IconButton icon="bi-list" onClick={() => this.handleClickButton()}/>
 
         <PanelList
-          selectElementID={selectElementID}
           onClickAdd={onClickAdd}
           onClickToggleHiddenListAdd={onClickToggleHiddenListAdd}
           onClickChangeRemoveStatus={onClickChangeRemoveStatus}
