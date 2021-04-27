@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import './app.css';
 
+import PopupInfo from "../layout/popups/popup-info";
+import PopupChangeGate from '../layout/popups/popup-change-gate';
+import PopupChangeLine from "../layout/popups/popup-change-line";
 import AppPanel from '../panel/app-panel';
 import AppLayout from '../layout/app-layout';
-import PopupSelect from '../layout/popups/popup-select';
-import PopupInfo from "../layout/popups/popup-info";
 import AppInfo from "../app-info";
+
 
 class App extends Component {
   constructor(props) {
@@ -13,11 +15,15 @@ class App extends Component {
     this.state = {
       gridList: [],
       selectElementID: 0,
-      hiddenDevInfo: false,
-      hiddenPopupSelect: true,
+
+      hiddenPopupGate: true,
+      hiddenPopupLine: true,
       hiddenPopupInfo: true,
+
+      hiddenDevInfo: false,
       hiddenListAdd: true,
-      hiddenListGate: true
+      hiddenListGate: true,
+      hiddenListLine: true
     };
   }
 
@@ -58,17 +64,6 @@ class App extends Component {
     this.setState(buffer);
   }
 
-  handleToggleHiddenPopupSelect() {
-    if (this.state.selectElementID !== 0) this.handleToggle('hiddenPopupSelect')
-  }
-
-  handleAddItem() {
-    this.setState((state) => {
-      const item = this.createItem(this.getRandomCoordinates());
-      return {gridList: [...state.gridList, item]};
-    });
-  }
-
   handleSetSelectElementID(id) {
     this.setState({selectElementID: id});
 
@@ -77,9 +72,11 @@ class App extends Component {
 
       if (element.group === 'gate' && id !== 0) {
         this.setState({hiddenListGate: false});
+      }else if (element.group === 'line' && id !== 0){
+        this.setState({hiddenListLine: false});
       }
     } else {
-      this.setState({hiddenListGate: true})
+      this.setState({hiddenListGate: true, hiddenListLine: true})
     }
   }
 
@@ -110,7 +107,13 @@ class App extends Component {
     this.setState({gridList: list})
   }
 
-  createItem = (obj) => {
+  handleAdd(item) {
+    this.setState((state) => {
+      return {gridList: [...state.gridList, item]};
+    });
+  }
+
+  createGate = (obj) => {
     const {x, y} = obj;
 
     return {
@@ -123,38 +126,70 @@ class App extends Component {
     };
   }
 
+  handleAddGate = () => this.handleAdd(this.createGate(this.getRandomCoordinates()))
+
+  createLine = (obj) => {
+    const {x, y} = obj;
+
+    return {
+      id: Date.now(),
+      group: 'line',
+      x, y,
+      width: 150,
+      height: 5,
+      turn: 100,
+      pin: false
+    };
+  }
+
+  handleAddLine = () => this.handleAdd(this.createLine(this.getRandomCoordinates()))
+
   render() {
     const {
       gridList,
+
       selectElementID,
+
       hiddenDevInfo,
-      hiddenPopupSelect,
-      hiddenPopupInfo,
       hiddenListAdd,
-      hiddenListGate
+      hiddenListGate,
+      hiddenListLine,
+
+      hiddenPopupGate,
+      hiddenPopupInfo,
+      hiddenPopupLine
     } = this.state;
 
     return (
       <main className="layout">
-        <PopupSelect hidden={hiddenPopupSelect}
-                     closePopup={() => this.handleToggleHiddenPopupSelect()}
-                     changeLogic={this.handleChangeLogic.bind(this)}
-        />
         <PopupInfo hidden={hiddenPopupInfo}
                    closePopup={() => this.handleToggle('hiddenPopupInfo')}
         />
 
+        <PopupChangeGate hidden={hiddenPopupGate}
+                         closePopup={() => this.handleToggle('hiddenPopupGate')}
+                         changeLogic={this.handleChangeLogic.bind(this)}
+        />
+
+        <PopupChangeLine hidden={hiddenPopupLine}
+                         closePopup={() => this.handleToggle('hiddenPopupLine')}/>
+
         <AppPanel
           onClickChangeRemoveStatus={() => this.handleRemoveItem(selectElementID)}
-          onClickToggleHiddenPopupSelect={() => this.handleToggleHiddenPopupSelect()}
           onClickChangePin={() => this.handleChangePin()}
-          onClickAdd={() => this.handleAddItem()}
           onClickToggleHiddenListAdd={() => this.handleToggle('hiddenListAdd')}
-          onClickToggleHiddenPopupInfo={() => this.handleToggle('hiddenPopupInfo')}
           onClockHiddenDevStatus={() => this.handleToggle('hiddenDevInfo')}
+
+          onClickToggleHiddenPopupInfo={() => this.handleToggle('hiddenPopupInfo')}
+          onClickToggleHiddenPopupGate={() => this.handleToggle('hiddenPopupGate')}
+          onClickToggleHiddenPopupLine={() => this.handleToggle('hiddenPopupLine')}
+
+          onClickAddGate={() => this.handleAddGate()}
+          onClickAddLine={() => this.handleAddLine()}
 
           hiddenListAdd={hiddenListAdd}
           hiddenListGate={hiddenListGate}
+          hiddenListLine={hiddenListLine}
         />
 
         <AppLayout
@@ -169,7 +204,7 @@ class App extends Component {
 
           hiddenPopupInfo={hiddenPopupInfo}
           hiddenDevInfo={hiddenDevInfo}
-          hiddenPopupSelect={hiddenPopupSelect}
+          hiddenPopupSelect={hiddenPopupGate}
           hiddenListAdd={hiddenListAdd}
           hiddenListGate={hiddenListGate}
         />

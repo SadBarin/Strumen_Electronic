@@ -1,10 +1,10 @@
 import React from 'react';
-import './popup-select.css';
+import './popup-change-gate.css';
 import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupSelect({ hidden, closePopup, changeLogic }) {
+function PopupChangeGate({ hidden, closePopup, changeLogic }) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Выберите логику">
       <select className="select" onChange={(e) => changeLogic(e)}>
@@ -22,10 +22,10 @@ function PopupSelect({ hidden, closePopup, changeLogic }) {
   );
 }
 
-PopupSelect.propTypes = {
+PopupChangeGate.propTypes = {
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
   changeLogic: PropTypes.func.isRequired
 };
 
-export default PopupSelect;
+export default PopupChangeGate;

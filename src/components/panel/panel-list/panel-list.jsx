@@ -6,15 +6,22 @@ import IconButton from '../../button-icon';
 
 function PanelList({
  display,
- onClickAdd,
+
  onClickChangeRemoveStatus,
- onClickToggleHiddenPopupSelect,
  onClickChangePin,
- onClickToggleHiddenPopupInfo,
  onClockHiddenDevStatus,
  onClickToggleHiddenListAdd,
+
+ onClickToggleHiddenPopupInfo,
+ onClickToggleHiddenPopupGate,
+ onClickToggleHiddenPopupLine,
+
+ onClickAddGate,
+ onClickAddLine,
+
  hiddenListAdd,
- hiddenListGate
+ hiddenListGate,
+ hiddenListLine
 }) {
   return (
     <div className={`panel-list ${display}`}>
@@ -26,14 +33,20 @@ function PanelList({
       </div>
 
       <div className={`list-add list list-additional ${(hiddenListAdd)? 'hidden' : ''}`}>
-        <IconButton icon="bi-file-binary" onClick={onClickAdd}/>
-        <IconButton icon="bi-bezier2"/>
+        <IconButton icon="bi-file-binary" onClick={onClickAddGate}/>
+        <IconButton icon="bi-bezier2" onClick={onClickAddLine}/>
         <IconButton icon="bi-chat-square-text"/>
       </div>
 
       <div className={`list-logic-gates list list-additional ${(hiddenListGate)? 'hidden' : ''}`}>
         <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
-        <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupSelect}/>
+        <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupGate}/>
+        <IconButton icon="bi-pin" onClick={onClickChangePin}/>
+      </div>
+
+      <div className={`list-logic-line list list-additional ${(hiddenListLine)? 'hidden' : ''}`}>
+        <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
+        <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupLine}/>
         <IconButton icon="bi-pin" onClick={onClickChangePin}/>
       </div>
     </div>
@@ -48,15 +61,22 @@ PanelList.defaultProps = {
 
 PanelList.propTypes = {
   display: PropTypes.string.isRequired,
-  onClickAdd: PropTypes.func,
+
   onClickToggleHiddenListAdd: PropTypes.func.isRequired,
   onClickChangeRemoveStatus: PropTypes.func,
-  onClickToggleHiddenPopupSelect: PropTypes.func.isRequired,
-  onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
   onClickChangePin: PropTypes.func.isRequired,
   onClockHiddenDevStatus: PropTypes.func.isRequired,
+
+  onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
+  onClickToggleHiddenPopupGate: PropTypes.func.isRequired,
+  onClickToggleHiddenPopupLine: PropTypes.func.isRequired,
+
+  onClickAddGate: PropTypes.func,
+  onClickAddLine: PropTypes.func,
+
   hiddenListAdd: PropTypes.bool.isRequired,
-  hiddenListGate: PropTypes.bool.isRequired
+  hiddenListGate: PropTypes.bool.isRequired,
+  hiddenListLine: PropTypes.bool.isRequired
 };
 
 export default PanelList;

@@ -1,5 +1,16 @@
 .logic-line {
   background: hsl(20, 100%, 73%);
-  width: 150px;
-  height: 4px;
+
+  cursor: all-scroll;
+}
+
+.logic-line.active{
+  box-shadow: 0 0 0 0.20rem hsla(5, 63%, 56%, 0.8);
+}
+
+.logic-line.pin{
+  opacity: 0.8;
+  filter: grayscale(50%);
+
+  z-index: 1;
 }
