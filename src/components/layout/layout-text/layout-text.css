@@ -3,7 +3,7 @@
   backdrop-filter: blur(7px);
   border-radius: 7px;
 
-  max-width: 30%;
+  max-width: 30rem;
   width: fit-content;
   height: fit-content;
   padding: 1rem;
@@ -24,4 +24,10 @@
   background: hsl(20, 100%, 73%);
   color: hsl(0, 0%, 98%);
   font-weight: bold;
+
+  cursor: no-drop;
+}
+
+.layout-text.pin.active{
+  box-shadow: 0 0 0 0.20rem hsla(5, 63%, 56%, 0.8);
 }

@@ -14,4 +14,6 @@
   filter: grayscale(50%);
 
   z-index: 1;
+
+  cursor: no-drop;
 }

@@ -9,7 +9,7 @@ import LayoutText from "../layout-text";
 function AppLayout(props) {
   const { items, onClickSetSelectElementID, selectElementID } = props;
 
-  const layoutListGrid = items.map((item) => {
+  const gridListGate = items.map((item) => {
     if(item.group === 'gate') {
       const { id, type, x, y, turn, pin } = item;
       const elementSelectStatus = (selectElementID === id)
@@ -30,7 +30,8 @@ function AppLayout(props) {
       );
     }
   });
-  const layoutListLine = items.map((item) => {
+
+  const gridListLine = items.map((item) => {
     if (item.group === 'line') {
       const {id, type, x, y, pin, width, height, turn} = item;
       const elementSelectStatus = (selectElementID === id)
@@ -54,13 +55,34 @@ function AppLayout(props) {
     }
   })
 
+  const gridLayoutText = items.map((item) => {
+    if (item.group === 'text') {
+      const {id, type, x, y, pin, content} = item;
+      const elementSelectStatus = (selectElementID === id)
+
+      return (
+        <div className="logic-gate-container" key={id}>
+          <LayoutText
+            id={id}
+            logic={type}
+            x={x} y={y}
+            content={content}
+            pin={pin}
+            onClickSetSelectElementID={onClickSetSelectElementID}
+            selectElementID={selectElementID}
+            selectStatus={elementSelectStatus}
+          />
+        </div>
+      );
+    }
+  })
+
   return (
     <div className="app-layout">
       <div className="background-layout" onClick={() => onClickSetSelectElementID(0)} />
-      {layoutListGrid}
-      {layoutListLine}
-
-      <LayoutText id={1} x={150} y={150} content={'Я в шоке от ваших интриг'} onClickSetSelectElementID={() => {}}/>
+      {gridListGate}
+      {gridListLine}
+      {gridLayoutText}
     </div>
   );
 }

@@ -16,13 +16,16 @@ function PanelList({
  onClickToggleHiddenPopupInfo,
  onClickToggleHiddenPopupGate,
  onClickToggleHiddenPopupLine,
+ onClickToggleHiddenPopupText,
 
  onClickAddGate,
  onClickAddLine,
+ onClickAddText,
 
  hiddenListAdd,
  hiddenListGate,
- hiddenListLine
+ hiddenListLine,
+ hiddenListText
 }) {
   return (
     <div className={`panel-list ${display}`}>
@@ -36,7 +39,7 @@ function PanelList({
       <div className={`list-add list list-additional ${(hiddenListAdd)? 'hidden' : ''}`}>
         <IconButton icon="bi-file-binary" onClick={onClickAddGate}/>
         <IconButton icon="bi-bezier2" onClick={onClickAddLine}/>
-        <IconButton icon="bi-chat-square-text"/>
+        <IconButton icon="bi-chat-square-text" onClick={onClickAddText}/>
       </div>
 
       <div className={`list-logic-gates list list-additional ${(hiddenListGate)? 'hidden' : ''}`}>
@@ -50,6 +53,13 @@ function PanelList({
         <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
         <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
         <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupLine}/>
+        <IconButton icon="bi-pin" onClick={onClickChangePin}/>
+      </div>
+
+      <div className={`list-logic-text list list-additional ${(hiddenListText)? 'hidden' : ''}`}>
+        <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
+        <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
+        <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupText}/>
         <IconButton icon="bi-pin" onClick={onClickChangePin}/>
       </div>
     </div>
@@ -74,13 +84,16 @@ PanelList.propTypes = {
   onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
   onClickToggleHiddenPopupGate: PropTypes.func.isRequired,
   onClickToggleHiddenPopupLine: PropTypes.func.isRequired,
+  onClickToggleHiddenPopupText: PropTypes.func.isRequired,
 
   onClickAddGate: PropTypes.func,
   onClickAddLine: PropTypes.func,
+  onClickAddText: PropTypes.func,
 
   hiddenListAdd: PropTypes.bool.isRequired,
   hiddenListGate: PropTypes.bool.isRequired,
-  hiddenListLine: PropTypes.bool.isRequired
+  hiddenListLine: PropTypes.bool.isRequired,
+  hiddenListText: PropTypes.bool.isRequired
 };
 
 export default PanelList;

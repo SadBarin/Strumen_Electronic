@@ -34,13 +34,16 @@ class AppPanel extends Component {
       onClickToggleHiddenPopupInfo,
       onClickToggleHiddenPopupGate,
       onClickToggleHiddenPopupLine,
+      onClickToggleHiddenPopupText,
 
       onClickAddGate,
       onClickAddLine,
+      onClickAddText,
 
       hiddenListAdd,
       hiddenListGate,
-      hiddenListLine
+      hiddenListLine,
+      hiddenListText
     } = this.props;
 
     return (
@@ -59,13 +62,16 @@ class AppPanel extends Component {
           onClickToggleHiddenPopupInfo={onClickToggleHiddenPopupInfo}
           onClickToggleHiddenPopupGate={onClickToggleHiddenPopupGate}
           onClickToggleHiddenPopupLine={onClickToggleHiddenPopupLine}
+          onClickToggleHiddenPopupText={onClickToggleHiddenPopupText}
 
           onClickAddGate={onClickAddGate}
           onClickAddLine={onClickAddLine}
+          onClickAddText={onClickAddText}
 
           hiddenListAdd={hiddenListAdd}
           hiddenListGate={hiddenListGate}
           hiddenListLine={hiddenListLine}
+          hiddenListText={hiddenListText}
         />
       </div>
     );
@@ -87,13 +93,16 @@ AppPanel.propTypes = {
   onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
   onClickToggleHiddenPopupGate: PropTypes.func.isRequired,
   onClickToggleHiddenPopupLine: PropTypes.func.isRequired,
+  onClickToggleHiddenPopupText: PropTypes.func.isRequired,
 
   onClickAddGate: PropTypes.func.isRequired,
   onClickAddLine: PropTypes.func.isRequired,
+  onClickAddText: PropTypes.func.isRequired,
 
   hiddenListAdd: PropTypes.bool.isRequired,
   hiddenListGate: PropTypes.bool.isRequired,
-  hiddenListLine: PropTypes.bool.isRequired
+  hiddenListLine: PropTypes.bool.isRequired,
+  hiddenListText: PropTypes.bool.isRequired,
 };
 
 export default AppPanel;
