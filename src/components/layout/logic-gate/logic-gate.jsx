@@ -8,6 +8,7 @@ function LogicGate(props) {
   const {
     id, logic,
     x, y, pin,
+    turn,
     onClickSetSelectElementID,
     selectStatus
   } = props;
@@ -15,13 +16,19 @@ function LogicGate(props) {
   const LogicElementSelect = (selectStatus) ? ' active' : '';
   const LogicElementPin = (pin) ? ' pin' : '';
 
+  const style = {
+    transform: `rotate(${turn}deg)`
+  }
+
   return (
     <div className="logic-gate-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
 
       <Draggable grid={[10, 10]} defaultPosition={{ x, y }} disabled={pin}>
-        <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`}>
-          <div className="logic-gate-content">
-            <span>{logic}</span>
+        <div className="logic-gate-wrapper">
+          <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`} style={style}>
+            <div className="logic-gate-content">
+              <span>{logic}</span>
+            </div>
           </div>
         </div>
       </Draggable>

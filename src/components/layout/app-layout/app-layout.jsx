@@ -10,7 +10,7 @@ function AppLayout(props) {
 
   const layoutListGrid = items.map((item) => {
     if(item.group === 'gate') {
-      const { id, type, x, y, pin } = item;
+      const { id, type, x, y, turn, pin } = item;
       const elementSelectStatus = (selectElementID === id)
 
       return (
@@ -19,6 +19,7 @@ function AppLayout(props) {
             id={id}
             logic={type}
             x={x} y={y}
+            turn={turn}
             pin={pin}
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={selectElementID}

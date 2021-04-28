@@ -20,16 +20,16 @@ function LogicLine(props) {
   const style = {
     width: width + 'px',
     height: height + 'px',
-    transform: `rotate(${turn}deg) !important`
+    transform: `rotate(${turn}deg)`
   }
-
-  console.log(style)
 
   return (
     <div className="logic-line-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
 
       <Draggable grid={[10, 10]} defaultPosition={{ x, y }} disabled={pin}>
-        <div className={`logic-line${LogicElementSelect}${LogicElementPin}`} style={style}/>
+        <div className='logic-line-wrapper'>
+          <div className={`logic-line${LogicElementSelect}${LogicElementPin}`} style={style}/>
+        </div>
       </Draggable>
     </div>
   );

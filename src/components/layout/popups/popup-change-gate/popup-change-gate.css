@@ -12,8 +12,29 @@
   padding: 0.2rem;
 }
 
-.select:focus,
-.select:hover {
+.change-gate-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
+.change-gate-number input,
+.change-gate-select select{
+  background: hsla(20, 100%, 73%, 0.8);
+  border: none;
+  border-radius: 7px;
+
+  color: #f9f9f9;
+  font-weight: bold;
+  font-size: 1rem;
+
+  margin-left: 1rem;
+}
+
+.change-gate-select select:focus,
+.change-gate-select select:hover,
+.change-gate-number input:focus,
+.change-gate-number input:hover {
   box-shadow: 0 0 0 0.20rem rgba(137, 110, 105, 0.5);
   outline: none;
   border: none

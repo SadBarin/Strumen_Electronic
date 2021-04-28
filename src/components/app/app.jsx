@@ -51,10 +51,14 @@ class App extends Component {
   }
 
   getElementGridList(id) {
-    const list = this.state.gridList
-    let pos = this.getElementArrayPositionByID(list, id)
+    if(id !== 0) {
+      const list = this.state.gridList
+      let pos = this.getElementArrayPositionByID(list, id)
 
-    return {...list[pos]}
+      return {...list[pos]}
+    }else {
+      return {}
+    }
   }
 
   handleToggle(key) {
@@ -119,6 +123,15 @@ class App extends Component {
     this.setState({gridList: list})
   }
 
+  handleChangeTurnGate(event) {
+    const list = this.state.gridList
+    const id = this.state.selectElementID
+    const pos = this.getElementArrayPositionByID(list, id)
+
+    list[pos].turn = event.target.value
+    this.setState({gridList: list})
+  }
+
   handleAdd(item) {
     this.setState((state) => {
       return {gridList: [...state.gridList, item]};
@@ -134,6 +147,7 @@ class App extends Component {
       type: 'AND',
       x,
       y,
+      turn: 0,
       pin: false
     };
   }
@@ -149,7 +163,7 @@ class App extends Component {
       x, y,
       width: 150,
       height: 5,
-      turn: 100,
+      turn: 0,
       pin: false
     };
   }
@@ -159,7 +173,6 @@ class App extends Component {
   render() {
     const {
       gridList,
-
       selectElementID,
 
       hiddenDevInfo,
@@ -172,6 +185,8 @@ class App extends Component {
       hiddenPopupLine
     } = this.state;
 
+    const currentElement = this.getElementGridList(selectElementID)
+
     return (
       <main className="layout">
         <PopupInfo hidden={hiddenPopupInfo}
@@ -181,6 +196,8 @@ class App extends Component {
         <PopupChangeGate hidden={hiddenPopupGate}
                          closePopup={() => this.handleToggle('hiddenPopupGate')}
                          changeLogic={this.handleChangeLogic.bind(this)}
+                         changeTurn={this.handleChangeTurnGate.bind(this)}
+                         currentElement={currentElement}
         />
 
         <PopupChangeLine hidden={hiddenPopupLine}

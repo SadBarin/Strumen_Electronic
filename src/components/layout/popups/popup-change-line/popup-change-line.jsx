@@ -6,7 +6,7 @@ import PopupWrapper from '../popup-wrapper';
 
 function PopupChangeLine({ hidden, closePopup }) {
   return (
-    <PopupWrapper closePopup={closePopup} hidden={hidden} title="Выберите настройки линии">
+    <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки линии">
       <div className="change-line-container">
         <label htmlFor="width" className='change-line-number'>
           Длина:
