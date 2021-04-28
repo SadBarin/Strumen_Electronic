@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import LogicGate from '../logic-gate';
 import LogicLine from "../logic-line";
+import LayoutText from "../layout-text";
 
 function AppLayout(props) {
   const { items, onClickSetSelectElementID, selectElementID } = props;
@@ -58,6 +59,8 @@ function AppLayout(props) {
       <div className="background-layout" onClick={() => onClickSetSelectElementID(0)} />
       {layoutListGrid}
       {layoutListLine}
+
+      <LayoutText id={1} x={150} y={150} content={'Я в шоке от ваших интриг'} onClickSetSelectElementID={() => {}}/>
     </div>
   );
 }
