@@ -123,12 +123,30 @@ class App extends Component {
     this.setState({gridList: list})
   }
 
-  handleChangeTurnGate(event) {
+  handleChangeTurn(event) {
     const list = this.state.gridList
     const id = this.state.selectElementID
     const pos = this.getElementArrayPositionByID(list, id)
 
     list[pos].turn = event.target.value
+    this.setState({gridList: list})
+  }
+
+  handleChangeWidth(event) {
+    const list = this.state.gridList
+    const id = this.state.selectElementID
+    const pos = this.getElementArrayPositionByID(list, id)
+
+    list[pos].width = event.target.value
+    this.setState({gridList: list})
+  }
+
+  handleChangeHeight(event) {
+    const list = this.state.gridList
+    const id = this.state.selectElementID
+    const pos = this.getElementArrayPositionByID(list, id)
+
+    list[pos].height = event.target.value
     this.setState({gridList: list})
   }
 
@@ -196,12 +214,17 @@ class App extends Component {
         <PopupChangeGate hidden={hiddenPopupGate}
                          closePopup={() => this.handleToggle('hiddenPopupGate')}
                          changeLogic={this.handleChangeLogic.bind(this)}
-                         changeTurn={this.handleChangeTurnGate.bind(this)}
+                         changeTurn={this.handleChangeTurn.bind(this)}
                          currentElement={currentElement}
         />
 
         <PopupChangeLine hidden={hiddenPopupLine}
-                         closePopup={() => this.handleToggle('hiddenPopupLine')}/>
+                         closePopup={() => this.handleToggle('hiddenPopupLine')}
+                         changeWidth={this.handleChangeWidth.bind(this)}
+                         changeHeight={this.handleChangeHeight.bind(this)}
+                         changeTurn={this.handleChangeTurn.bind(this)}
+                         currentElement={currentElement}
+        />
 
         <AppPanel
           onClickChangeRemoveStatus={() => this.handleRemoveItem(selectElementID)}

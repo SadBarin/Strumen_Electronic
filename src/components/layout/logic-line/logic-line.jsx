@@ -39,9 +39,9 @@ LogicLine.propTypes = {
   id: PropTypes.number.isRequired,
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  turn: PropTypes.number.isRequired,
+  width: PropTypes.any.isRequired,
+  height: PropTypes.any.isRequired,
+  turn: PropTypes.any.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired
 };
 
