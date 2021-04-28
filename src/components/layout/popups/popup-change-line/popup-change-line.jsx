@@ -13,7 +13,7 @@ function PopupChangeLine({ hidden, closePopup, changeWidth, changeHeight, change
           <input type="number"
                  id="width"
                  value={currentElement.width}
-                 onChange={(e) => changeWidth(e)}/>
+                 onChange={(e) => changeWidth(e, 'width')}/>
         </label>
 
         <label htmlFor="height" className='change-line-number'>
@@ -21,7 +21,7 @@ function PopupChangeLine({ hidden, closePopup, changeWidth, changeHeight, change
           <input type="number"
                  id="height"
                  value={currentElement.height}
-                 onChange={(e) => changeHeight(e)}/>
+                 onChange={(e) => changeHeight(e, 'height')}/>
         </label>
 
         <label htmlFor="degree" className='change-line-number'>
@@ -29,7 +29,7 @@ function PopupChangeLine({ hidden, closePopup, changeWidth, changeHeight, change
           <input type="number"
                  id="degree"
                  value={currentElement.turn}
-                 onChange={(e) => changeTurn(e)}
+                 onChange={(e) => changeTurn(e, 'turn')}
           />
         </label>
       </div>

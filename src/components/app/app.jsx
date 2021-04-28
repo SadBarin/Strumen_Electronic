@@ -75,9 +75,9 @@ class App extends Component {
       const element = this.getElementGridList(id)
 
       if (element.group === 'gate' && id !== 0) {
-        this.setState({hiddenListGate: false});
+        this.setState({hiddenListGate: false, hiddenListLine: true});
       }else if (element.group === 'line' && id !== 0){
-        this.setState({hiddenListLine: false});
+        this.setState({hiddenListLine: false, hiddenListGate: true});
       }
     } else {
       this.setState({hiddenListGate: true, hiddenListLine: true})
@@ -114,39 +114,12 @@ class App extends Component {
     this.setState({selectElementID: element.id})
   }
 
-  handleChangeLogic(event) {
+  handleChangeElementValue(event, key) {
     const list = this.state.gridList
     const id = this.state.selectElementID
-    const pos = this.getElementArrayPositionByID(list, id)
+    const element = list[this.getElementArrayPositionByID(list, id)]
 
-    list[pos].type = event.target.value
-    this.setState({gridList: list})
-  }
-
-  handleChangeTurn(event) {
-    const list = this.state.gridList
-    const id = this.state.selectElementID
-    const pos = this.getElementArrayPositionByID(list, id)
-
-    list[pos].turn = event.target.value
-    this.setState({gridList: list})
-  }
-
-  handleChangeWidth(event) {
-    const list = this.state.gridList
-    const id = this.state.selectElementID
-    const pos = this.getElementArrayPositionByID(list, id)
-
-    list[pos].width = event.target.value
-    this.setState({gridList: list})
-  }
-
-  handleChangeHeight(event) {
-    const list = this.state.gridList
-    const id = this.state.selectElementID
-    const pos = this.getElementArrayPositionByID(list, id)
-
-    list[pos].height = event.target.value
+    element[key] = event.target.value
     this.setState({gridList: list})
   }
 
@@ -213,16 +186,16 @@ class App extends Component {
 
         <PopupChangeGate hidden={hiddenPopupGate}
                          closePopup={() => this.handleToggle('hiddenPopupGate')}
-                         changeLogic={this.handleChangeLogic.bind(this)}
-                         changeTurn={this.handleChangeTurn.bind(this)}
+                         changeLogic={this.handleChangeElementValue.bind(this)}
+                         changeTurn={this.handleChangeElementValue.bind(this)}
                          currentElement={currentElement}
         />
 
         <PopupChangeLine hidden={hiddenPopupLine}
                          closePopup={() => this.handleToggle('hiddenPopupLine')}
-                         changeWidth={this.handleChangeWidth.bind(this)}
-                         changeHeight={this.handleChangeHeight.bind(this)}
-                         changeTurn={this.handleChangeTurn.bind(this)}
+                         changeWidth={this.handleChangeElementValue.bind(this)}
+                         changeHeight={this.handleChangeElementValue.bind(this)}
+                         changeTurn={this.handleChangeElementValue.bind(this)}
                          currentElement={currentElement}
         />
 

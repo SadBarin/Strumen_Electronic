@@ -11,7 +11,7 @@ function PopupChangeGate({hidden, closePopup, changeLogic, changeTurn, currentEl
         <label htmlFor="logic" className="change-gate-select">
           Логика:
           <select id="logic"
-                  onChange={(e) => changeLogic(e)}
+                  onChange={(e) => changeLogic(e, 'type')}
                   value={currentElement.type}>
             <option value="1">1</option>
             <option value="0">0</option>
@@ -28,7 +28,7 @@ function PopupChangeGate({hidden, closePopup, changeLogic, changeTurn, currentEl
         <label htmlFor="degree" className='change-gate-number'>
           Наклон:
           <input type="number" id="degree"
-                 onChange={(e) => changeTurn(e)}
+                 onChange={(e) => changeTurn(e, 'turn')}
                  value={currentElement.turn}/>
         </label>
       </div>
