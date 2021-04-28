@@ -159,6 +159,7 @@ class App extends Component {
       width: 150,
       height: 5,
       turn: 0,
+      active: 'false',
       pin: false
     };
   }
@@ -214,6 +215,7 @@ class App extends Component {
                          changeWidth={this.handleChangeElementValue.bind(this)}
                          changeHeight={this.handleChangeElementValue.bind(this)}
                          changeTurn={this.handleChangeElementValue.bind(this)}
+                         changeActive={this.handleChangeElementValue.bind(this)}
                          currentElement={currentElement}
         />
 

@@ -1,10 +1,50 @@
+/*.change-line-container {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  gap: 10px*/
+/*}*/
+
+/*.change-line-number input {*/
+/*  background: hsla(20, 100%, 73%, 0.8);*/
+/*  border: none;*/
+/*  border-radius: 7px;*/
+
+/*  color: #f9f9f9;*/
+/*  font-weight: bold;*/
+/*  font-size: 1rem;*/
+
+/*  margin-left: 1rem;*/
+/*}*/
+
+/*.change-line-number input:focus,*/
+/*.change-line-number input:hover {*/
+/*  box-shadow: 0 0 0 0.20rem rgba(137, 110, 105, 0.5);*/
+/*  outline: none;*/
+/*  border: none*/
+/*}*/
+
+.select {
+  background: hsla(20, 100%, 73%, 0.8);
+  border: none;
+  border-radius: 7px;
+
+  color: #f9f9f9;
+  font-weight: bold;
+  font-size: 1.2rem;
+
+  width: 100%;
+
+  padding: 0.2rem;
+}
+
 .change-line-container {
   display: flex;
   flex-direction: column;
   gap: 10px
 }
 
-.change-line-number input {
+.change-line-number input,
+.change-line-select select{
   background: hsla(20, 100%, 73%, 0.8);
   border: none;
   border-radius: 7px;
@@ -16,6 +56,8 @@
   margin-left: 1rem;
 }
 
+.change-line-select select:focus,
+.change-line-select select:hover,
 .change-line-number input:focus,
 .change-line-number input:hover {
   box-shadow: 0 0 0 0.20rem rgba(137, 110, 105, 0.5);

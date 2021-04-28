@@ -10,12 +10,13 @@ function LogicLine(props) {
     x, y, pin,
     selectStatus,
     width, height,
-    turn,
+    turn, active,
     onClickSetSelectElementID
   } = props;
 
   const LogicElementSelect = (selectStatus) ? ' active' : '';
   const LogicElementPin = (pin) ? ' pin' : '';
+  const LogicElementActive = (active === 'true') ? ' on' : '';
 
   const style = {
     width: width + 'px',
@@ -26,9 +27,9 @@ function LogicLine(props) {
   return (
     <div className="logic-line-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
 
-      <Draggable grid={[10, 10]} defaultPosition={{ x, y }} disabled={pin}>
+      <Draggable defaultPosition={{ x, y }} disabled={pin}>
         <div className='logic-line-wrapper'>
-          <div className={`logic-line${LogicElementSelect}${LogicElementPin}`} style={style}/>
+          <div className={`logic-line${LogicElementSelect}${LogicElementPin}${LogicElementActive}`} style={style} title={active}/>
         </div>
       </Draggable>
     </div>
@@ -42,6 +43,7 @@ LogicLine.propTypes = {
   width: PropTypes.any.isRequired,
   height: PropTypes.any.isRequired,
   turn: PropTypes.any.isRequired,
+  active: PropTypes.string.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired
 };
 

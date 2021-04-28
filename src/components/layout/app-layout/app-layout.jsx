@@ -33,7 +33,7 @@ function AppLayout(props) {
 
   const gridListLine = items.map((item) => {
     if (item.group === 'line') {
-      const {id, type, x, y, pin, width, height, turn} = item;
+      const {id, type, x, y, pin, width, height, turn, active} = item;
       const elementSelectStatus = (selectElementID === id)
 
       return (
@@ -45,11 +45,11 @@ function AppLayout(props) {
             width={width}
             height={height}
             turn={turn}
+            active={active}
             pin={pin}
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={selectElementID}
-            selectStatus={elementSelectStatus}
-          />
+            selectStatus={elementSelectStatus}/>
         </div>
       );
     }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupChangeLine({ hidden, closePopup, changeWidth, changeHeight, changeTurn, currentElement }) {
+function PopupChangeLine({ hidden, closePopup, changeWidth, changeHeight, changeTurn, changeActive, currentElement }) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки линии">
       <div className="change-line-container">
@@ -32,6 +32,16 @@ function PopupChangeLine({ hidden, closePopup, changeWidth, changeHeight, change
                  onChange={(e) => changeTurn(e, 'turn')}
           />
         </label>
+
+        <label htmlFor="active" className="change-line-select">
+          Активен:
+          <select id="active"
+                  onChange={(e) => changeActive(e, 'active')}
+                  value={currentElement.active}>
+            <option value={true}>Да</option>
+            <option value={false}>Нет</option>
+          </select>
+        </label>
       </div>
     </PopupWrapper>
   );
@@ -45,6 +55,7 @@ PopupChangeLine.propTypes = {
   changeWidth: PropTypes.func.isRequired,
   changeHeight: PropTypes.func.isRequired,
   changeTurn: PropTypes.func.isRequired,
+  changeActive: PropTypes.func.isRequired,
 };
 
 export default PopupChangeLine;
