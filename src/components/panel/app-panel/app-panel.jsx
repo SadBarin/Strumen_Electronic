@@ -27,6 +27,7 @@ class AppPanel extends Component {
     const {
       onClickChangeRemoveStatus,
       onClickChangePin,
+      onClickCloneElement,
       onClockHiddenDevStatus,
       onClickToggleHiddenListAdd,
 
@@ -52,6 +53,7 @@ class AppPanel extends Component {
           onClickToggleHiddenListAdd={onClickToggleHiddenListAdd}
           onClickChangeRemoveStatus={onClickChangeRemoveStatus}
           onClickChangePin={onClickChangePin}
+          onClickCloneElement={onClickCloneElement}
           onClockHiddenDevStatus={onClockHiddenDevStatus}
 
           onClickToggleHiddenPopupInfo={onClickToggleHiddenPopupInfo}
@@ -79,6 +81,7 @@ AppPanel.propTypes = {
 
   onClickToggleHiddenListAdd: PropTypes.func.isRequired,
   onClickChangePin: PropTypes.func.isRequired,
+  onClickCloneElement: PropTypes.func.isRequired,
   onClockHiddenDevStatus: PropTypes.func.isRequired,
 
   onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,

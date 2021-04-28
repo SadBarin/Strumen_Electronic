@@ -9,6 +9,7 @@ function PanelList({
 
  onClickChangeRemoveStatus,
  onClickChangePin,
+ onClickCloneElement,
  onClockHiddenDevStatus,
  onClickToggleHiddenListAdd,
 
@@ -40,12 +41,14 @@ function PanelList({
 
       <div className={`list-logic-gates list list-additional ${(hiddenListGate)? 'hidden' : ''}`}>
         <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
+        <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
         <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupGate}/>
         <IconButton icon="bi-pin" onClick={onClickChangePin}/>
       </div>
 
       <div className={`list-logic-line list list-additional ${(hiddenListLine)? 'hidden' : ''}`}>
         <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
+        <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
         <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupLine}/>
         <IconButton icon="bi-pin" onClick={onClickChangePin}/>
       </div>
@@ -65,6 +68,7 @@ PanelList.propTypes = {
   onClickToggleHiddenListAdd: PropTypes.func.isRequired,
   onClickChangeRemoveStatus: PropTypes.func,
   onClickChangePin: PropTypes.func.isRequired,
+  onClickCloneElement: PropTypes.func.isRequired,
   onClockHiddenDevStatus: PropTypes.func.isRequired,
 
   onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,

@@ -54,7 +54,7 @@ class App extends Component {
     const list = this.state.gridList
     let pos = this.getElementArrayPositionByID(list, id)
 
-    return list[pos]
+    return {...list[pos]}
   }
 
   handleToggle(key) {
@@ -96,6 +96,18 @@ class App extends Component {
     list[pos].pin = !elementPin
 
     this.setState({gridList: list})
+  }
+
+  handleCloneElement() {
+    const list = this.state.gridList
+    const id = this.state.selectElementID
+
+    let element = this.getElementGridList(id)
+    element.id = Date.now()
+
+    list.push(element)
+    this.setState({gridList: list})
+    this.setState({selectElementID: element.id})
   }
 
   handleChangeLogic(event) {
@@ -177,6 +189,7 @@ class App extends Component {
         <AppPanel
           onClickChangeRemoveStatus={() => this.handleRemoveItem(selectElementID)}
           onClickChangePin={() => this.handleChangePin()}
+          onClickCloneElement={() => this.handleCloneElement()}
           onClickToggleHiddenListAdd={() => this.handleToggle('hiddenListAdd')}
           onClockHiddenDevStatus={() => this.handleToggle('hiddenDevInfo')}
 
