@@ -6,7 +6,7 @@ import PopupWrapper from '../popup-wrapper';
 
 function PopupChangeText({hidden, closePopup, changeContent, currentElement}) {
   return (
-    <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки вентеля">
+    <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки комментария">
       <div className="change-text-container">
         <label htmlFor="content" className='change-text'>
           Комментарий:

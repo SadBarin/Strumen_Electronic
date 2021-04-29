@@ -79,7 +79,10 @@ function AppLayout(props) {
 
   return (
     <div className="app-layout">
-      <div className="background-layout" onClick={() => onClickSetSelectElementID(0)} />
+      <div className="background-layout"
+           onClick={() => onClickSetSelectElementID(0)}
+           onTouchStart={() => onClickSetSelectElementID(0)}
+      />
       {gridListGate}
       {gridListLine}
       {gridLayoutText}

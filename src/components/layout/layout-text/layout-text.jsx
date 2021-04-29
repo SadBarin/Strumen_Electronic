@@ -17,7 +17,10 @@ function LayoutText(props) {
   const LogicElementPin = (pin) ? ' pin' : '';
 
   return (
-    <div className="layout-text-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
+    <div className="layout-text-container" key={id}
+         onClick={() => { onClickSetSelectElementID(id); }}
+         onTouchStart={() => { onClickSetSelectElementID(id); }}
+    >
 
       <Draggable defaultPosition={{ x, y }} disabled={pin}>
         <div className='layout-text-wrapper'>

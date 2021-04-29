@@ -25,7 +25,10 @@ function LogicLine(props) {
   }
 
   return (
-    <div className="logic-line-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
+    <div className="logic-line-container" key={id}
+         onClick={() => { onClickSetSelectElementID(id); }}
+         onTouchStart={() => { onClickSetSelectElementID(id); }}
+    >
 
       <Draggable defaultPosition={{ x, y }} disabled={pin}>
         <div className='logic-line-wrapper'>

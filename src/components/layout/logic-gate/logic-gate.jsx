@@ -21,7 +21,10 @@ function LogicGate(props) {
   }
 
   return (
-    <div className="logic-gate-container" key={id} onClick={() => { onClickSetSelectElementID(id); }}>
+    <div className="logic-gate-container" key={id}
+         onClick={() => { onClickSetSelectElementID(id); }}
+         onTouchStart={() => { onClickSetSelectElementID(id); }}
+    >
 
       <Draggable defaultPosition={{ x, y }} disabled={pin}>
         <div className="logic-gate-wrapper">
