@@ -46,3 +46,7 @@
 .logic-gate.pin .logic-gate-content{
   cursor: no-drop;
 }
+
+.logic-line-wrapper {
+  padding: 1rem;
+}
