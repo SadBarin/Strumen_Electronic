@@ -2,14 +2,16 @@
   background: hsla(0, 0%, 98%, 0.5);
   backdrop-filter: blur(7px);
 
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   position: absolute;
+
+  overflow: hidden;
 
   z-index: 10000;
 }
@@ -21,19 +23,31 @@
   color: #f9f9f9;
   font-weight: bold;
 
-  position: absolute;
+  max-width: 90%;
+  max-height: 95%;
 
-  overflow: hidden;
+  overflow: auto;
+
+  position: absolute;
+}
+
+.popup-content {
+  box-sizing: content-box;
 }
 
 .popup-wrapper-header {
-  background: hsla(9, 13%, 47%, 0.2);
+  background: hsl(20, 88%, 72%);
+  color: #f9f9f9;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.3rem;
+
+  box-sizing: border-box;
+
+  z-index: 1000;
 }
 
 .popup-wrapper-header > h3 {
