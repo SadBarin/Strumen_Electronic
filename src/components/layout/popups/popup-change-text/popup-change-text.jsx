@@ -9,7 +9,7 @@ function PopupChangeText({hidden, closePopup, changeContent, currentElement}) {
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки комментария">
       <div className="change-text-container">
         <label htmlFor="content" className='change-text'>
-          Комментарий:
+          Текст:
           <input type="text" id="content"
                  onChange={(e) => changeContent(e, 'content')}
                  value={currentElement.content}/>
