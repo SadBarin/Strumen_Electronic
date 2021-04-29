@@ -9,6 +9,8 @@ function PopupWrapper({
 
   return (
     <div className={`popup-wrapper-overlay${hiddenClass}`}>
+      <div className="popup-wrapper-bg" onClick={closePopup}/>
+
       <div className="popup-wrapper">
         <div className="popup-wrapper-header">
           <h3>{title}</h3>
