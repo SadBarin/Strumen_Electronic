@@ -17,41 +17,15 @@ function LogicGate(props) {
   const LogicElementSelect = (selectStatus) ? ' active' : '';
   const LogicElementPin = (pin) ? ' pin' : '';
 
-  const style = {
-    transform: `rotate(${turn}deg)`
-  }
+  const style = { transform: `rotate(${turn}deg)` }
 
   function setNewCord(e) {
-    switch (e.type) {
-      case 'mouseup':
-        const sizeDesktop = {
-          width: e.target.offsetWidth + 2,
-          height: e.target.offsetHeight + 2
-        }
-
-        const cordDesktop = {
-          x: e.pageX,
-          y: e.pageY,
-        }
-
-        changeCord(id, cordDesktop, sizeDesktop)
-
-        break;
-      case 'touchend':
-        const sizeMobile = {
-          width: e.target.offsetWidth,
-          height: e.target.offsetHeight
-        }
-
-        const cordMobile = {
-          x: e.changedTouches[0].clientX,
-          y: e.changedTouches[0].clientY,
-        }
-
-        changeCord(id, cordMobile, sizeMobile)
-
-        break;
+    const cord = {
+      x: e.target.getBoundingClientRect().x - e.target.offsetLeft,
+      y: e.target.getBoundingClientRect().y - e.target.offsetTop,
     }
+
+    changeCord(id, cord)
   }
 
   return (
