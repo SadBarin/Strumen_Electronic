@@ -130,10 +130,13 @@ class App extends Component {
 
   changeCord(id, cord) {
     const list = this.state.gridList
-    const element = list[this.getElementArrayPositionByID(list, id)]
+    let element = list[this.getElementArrayPositionByID(list, id)]
 
-    element.x = cord.x
-    element.y = cord.y
+    element.x = (cord.x > 0)? cord.x : 0
+    element.y = (cord.y > 0)? cord.y : 0
+
+    if(element.x > window.innerWidth - 50) element.x = window.innerWidth - 100
+    if(element.y > window.innerHeight - 50) element.y = window.innerHeight - 50
 
     this.setState({gridList: list})
   }
