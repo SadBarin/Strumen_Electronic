@@ -33,6 +33,13 @@ function PopupChangeLine({ hidden, closePopup, changeWidth, changeHeight, change
           />
         </label>
 
+        <div className="degree-preset-container">
+          <button className="button-preset" value={0} onClick={(e) => changeTurn(e, 'turn')}>0  — </button>
+          <button className="button-preset" value={45} onClick={(e) => changeTurn(e, 'turn')}>45  \ </button>
+          <button className="button-preset" value={90} onClick={(e) => changeTurn(e, 'turn')}>90  | </button>
+          <button className="button-preset" value={135} onClick={(e) => changeTurn(e, 'turn')}>135 / </button>
+        </div>
+
         <label htmlFor="active" className="change-line-select">
           Активен:
           <select id="active"

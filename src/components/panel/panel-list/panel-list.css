@@ -6,7 +6,8 @@
   color: hsl(0, 0%, 100%);
 
   width: inherit;
-  height: calc(100% - 3.2rem);
+  height: fit-content;
+  margin-top: 0.5rem;
 
   display: flex;
   gap: 0.4rem
