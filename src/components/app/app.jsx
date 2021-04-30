@@ -92,7 +92,7 @@ class App extends Component {
   handleRemoveItem = (id) => {
     this.setState((state) => {
       const items = state.gridList.filter((item) => item.id !== id);
-      return {gridList: items, selectElementID: 0, hiddenListGate: true};
+      return {gridList: items, selectElementID: 0, hiddenListGate: true, hiddenListLine: true, hiddenListText: true};
     });
   }
 
