@@ -60,7 +60,7 @@ function AppLayout(props) {
 
   const gridLayoutText = items.map((item) => {
     if (item.group === 'text') {
-      const {id, type, x, y, pin, content} = item;
+      const {id, type, x, y, pin, content, turn} = item;
       const elementSelectStatus = (selectElementID === id)
 
       return (
@@ -71,6 +71,7 @@ function AppLayout(props) {
             x={x} y={y}
             content={content}
             pin={pin}
+            turn={turn}
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={selectElementID}
             selectStatus={elementSelectStatus}

@@ -194,6 +194,7 @@ class App extends Component {
       group: 'text',
       x, y,
       content: 'Блок комментария',
+      turn: 0,
       pin: false
     };
   }

@@ -15,6 +15,22 @@ function PopupChangeText({hidden, closePopup, handleChangeElementValue, currentE
                  value={currentElement.content}/>
         </label>
 
+        <label htmlFor="degree" className='change-line-number'>
+          Наклон:
+          <input type="number"
+                 id="degree"
+                 value={currentElement.turn}
+                 onChange={(e) => handleChangeElementValue(e, 'turn')}
+          />
+        </label>
+
+        <div className="degree-preset-container">
+          <button className="button-preset" value={0} onClick={(e) => handleChangeElementValue(e, 'turn')}>0  — </button>
+          <button className="button-preset" value={45} onClick={(e) => handleChangeElementValue(e, 'turn')}>45  \ </button>
+          <button className="button-preset" value={90} onClick={(e) => handleChangeElementValue(e, 'turn')}>90  | </button>
+          <button className="button-preset" value={135} onClick={(e) => handleChangeElementValue(e, 'turn')}>135 / </button>
+        </div>
+
         <label htmlFor="cordX" className='change-gate-number'>
           Коорд. X:
           <input type="number" id="cordX"

@@ -9,6 +9,7 @@ function LayoutText(props) {
     id,
     x, y, pin,
     content,
+    turn,
     selectStatus,
     onClickSetSelectElementID,
     handleSetNewCord
@@ -25,7 +26,7 @@ function LayoutText(props) {
 
       <Draggable position={{ x, y }} disabled={pin} onStop={(event) => {handleSetNewCord(id, event)}}>
         <div className='layout-text-wrapper'>
-          <div className={`layout-text${LogicElementSelect}${LogicElementPin}`}>
+          <div className={`layout-text${LogicElementSelect}${LogicElementPin}`} style={{transform: `rotate(${turn}deg)`}}>
             {content}
           </div>
         </div>
@@ -38,6 +39,7 @@ LayoutText.propTypes = {
   id: PropTypes.number.isRequired,
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
+  turn: PropTypes.any.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
   handleSetNewCord: PropTypes.func.isRequired
 };
