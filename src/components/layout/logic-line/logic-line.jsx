@@ -11,7 +11,8 @@ function LogicLine(props) {
     selectStatus,
     width, height,
     turn, active,
-    onClickSetSelectElementID
+    onClickSetSelectElementID,
+    handleSetNewCord
   } = props;
 
   const LogicElementSelect = (selectStatus) ? ' active' : '';
@@ -30,7 +31,7 @@ function LogicLine(props) {
          onTouchStart={() => { onClickSetSelectElementID(id); }}
     >
 
-      <Draggable defaultPosition={{ x, y }} disabled={pin}>
+      <Draggable position={{ x, y }} disabled={pin} onStop={(event) => {handleSetNewCord(id, event)}}>
         <div className='logic-line-wrapper'>
           <div className={`logic-line${LogicElementSelect}${LogicElementPin}${LogicElementActive}`} style={style} title={active}/>
         </div>
@@ -47,7 +48,8 @@ LogicLine.propTypes = {
   height: PropTypes.any.isRequired,
   turn: PropTypes.any.isRequired,
   active: PropTypes.string.isRequired,
-  onClickSetSelectElementID: PropTypes.func.isRequired
+  onClickSetSelectElementID: PropTypes.func.isRequired,
+  handleSetNewCord: PropTypes.func.isRequired
 };
 
 export default LogicLine;

@@ -10,7 +10,8 @@ function LayoutText(props) {
     x, y, pin,
     content,
     selectStatus,
-    onClickSetSelectElementID
+    onClickSetSelectElementID,
+    handleSetNewCord
   } = props;
 
   const LogicElementSelect = (selectStatus) ? ' active' : '';
@@ -22,7 +23,7 @@ function LayoutText(props) {
          onTouchStart={() => { onClickSetSelectElementID(id); }}
     >
 
-      <Draggable defaultPosition={{ x, y }} disabled={pin}>
+      <Draggable position={{ x, y }} disabled={pin} onStop={(event) => {handleSetNewCord(id, event)}}>
         <div className='layout-text-wrapper'>
           <div className={`layout-text${LogicElementSelect}${LogicElementPin}`}>
             {content}
@@ -37,7 +38,8 @@ LayoutText.propTypes = {
   id: PropTypes.number.isRequired,
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
-  onClickSetSelectElementID: PropTypes.func.isRequired
+  onClickSetSelectElementID: PropTypes.func.isRequired,
+  handleSetNewCord: PropTypes.func.isRequired
 };
 
 export default LayoutText;

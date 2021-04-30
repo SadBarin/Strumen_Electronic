@@ -11,7 +11,7 @@ function LogicGate(props) {
     turn,
     onClickSetSelectElementID,
     selectStatus,
-    changeCord
+    handleSetNewCord
   } = props;
 
   const LogicElementSelect = (selectStatus) ? ' active' : '';
@@ -19,22 +19,13 @@ function LogicGate(props) {
 
   const style = { transform: `rotate(${turn}deg)` }
 
-  function setNewCord(e) {
-    const cord = {
-      x: e.target.getBoundingClientRect().x - e.target.offsetLeft,
-      y: e.target.getBoundingClientRect().y - e.target.offsetTop,
-    }
-
-    changeCord(id, cord)
-  }
-
   return (
     <div className="logic-gate-container" key={id}
          onClick={() => { onClickSetSelectElementID(id); }}
          onTouchStart={() => { onClickSetSelectElementID(id); }}
     >
 
-      <Draggable defaultPosition={{ x, y }} position={{x, y}} disabled={pin} onStop={(e) => {setNewCord(e)}}>
+      <Draggable position={{x, y}} disabled={pin} onStop={(event) => {handleSetNewCord(id, event)}}>
         <div className="logic-gate-wrapper">
           <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`} style={style}>
             <div className="logic-gate-content">
@@ -54,7 +45,7 @@ LogicGate.propTypes = {
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
-  changeCord: PropTypes.func.isRequired
+  handleSetNewCord: PropTypes.func.isRequired
 };
 
 export default LogicGate;

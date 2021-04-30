@@ -7,7 +7,7 @@ import LogicLine from "../logic-line";
 import LayoutText from "../layout-text";
 
 function AppLayout(props) {
-  const { items, onClickSetSelectElementID, selectElementID, changeCord } = props;
+  const { items, onClickSetSelectElementID, selectElementID, handleSetNewCord } = props;
 
   const gridListGate = items.map((item) => {
     if(item.group === 'gate') {
@@ -25,7 +25,7 @@ function AppLayout(props) {
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={selectElementID}
             selectStatus={elementSelectStatus}
-            changeCord={changeCord}
+            handleSetNewCord={handleSetNewCord}
           />
         </div>
       );
@@ -50,7 +50,9 @@ function AppLayout(props) {
             pin={pin}
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={selectElementID}
-            selectStatus={elementSelectStatus}/>
+            selectStatus={elementSelectStatus}
+            handleSetNewCord={handleSetNewCord}
+          />
         </div>
       );
     }
@@ -72,6 +74,7 @@ function AppLayout(props) {
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={selectElementID}
             selectStatus={elementSelectStatus}
+            handleSetNewCord={handleSetNewCord}
           />
         </div>
       );
@@ -95,7 +98,7 @@ AppLayout.propTypes = {
   selectElementID: PropTypes.number.isRequired,
   items: PropTypes.array.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
-  changeCord: PropTypes.func.isRequired
+  handleSetNewCord: PropTypes.func.isRequired
 };
 
 export default AppLayout;

@@ -138,6 +138,17 @@ class App extends Component {
     this.setState({gridList: list})
   }
 
+  handleSetNewCord(id, event) {
+    let element = event.target
+
+    const cord = {
+      x: element.getBoundingClientRect().x - element.offsetLeft,
+      y: element.getBoundingClientRect().y - element.offsetTop,
+    }
+
+    this.changeCord(id, cord)
+  }
+
   handleAdd(item) {
     this.setState((state) => {
       return {gridList: [...state.gridList, item]};
@@ -262,7 +273,7 @@ class App extends Component {
           items={gridList}
           onClickSetSelectElementID={this.handleSetSelectElementID.bind(this)}
 
-          changeCord={this.changeCord.bind(this)}
+          handleSetNewCord={this.handleSetNewCord.bind(this)}
         />
 
         <AppInfo
