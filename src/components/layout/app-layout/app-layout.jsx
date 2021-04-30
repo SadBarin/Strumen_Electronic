@@ -7,7 +7,7 @@ import LogicLine from "../logic-line";
 import LayoutText from "../layout-text";
 
 function AppLayout(props) {
-  const { items, onClickSetSelectElementID, selectElementID } = props;
+  const { items, onClickSetSelectElementID, selectElementID, changeCord } = props;
 
   const gridListGate = items.map((item) => {
     if(item.group === 'gate') {
@@ -25,6 +25,7 @@ function AppLayout(props) {
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={selectElementID}
             selectStatus={elementSelectStatus}
+            changeCord={changeCord}
           />
         </div>
       );
@@ -93,7 +94,8 @@ function AppLayout(props) {
 AppLayout.propTypes = {
   selectElementID: PropTypes.number.isRequired,
   items: PropTypes.array.isRequired,
-  onClickSetSelectElementID: PropTypes.func.isRequired
+  onClickSetSelectElementID: PropTypes.func.isRequired,
+  changeCord: PropTypes.func.isRequired
 };
 
 export default AppLayout;
