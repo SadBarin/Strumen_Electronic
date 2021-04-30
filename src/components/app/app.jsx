@@ -226,23 +226,19 @@ class App extends Component {
 
         <PopupChangeGate hidden={hiddenPopupGate}
                          closePopup={() => this.handleToggle('hiddenPopupGate')}
-                         changeLogic={this.handleChangeElementValue.bind(this)}
-                         changeTurn={this.handleChangeElementValue.bind(this)}
+                         handleChangeElementValue={this.handleChangeElementValue.bind(this)}
                          currentElement={currentElement}
         />
 
         <PopupChangeLine hidden={hiddenPopupLine}
                          closePopup={() => this.handleToggle('hiddenPopupLine')}
-                         changeWidth={this.handleChangeElementValue.bind(this)}
-                         changeHeight={this.handleChangeElementValue.bind(this)}
-                         changeTurn={this.handleChangeElementValue.bind(this)}
-                         changeActive={this.handleChangeElementValue.bind(this)}
+                         handleChangeElementValue={this.handleChangeElementValue.bind(this)}
                          currentElement={currentElement}
         />
 
         <PopupChangeText hidden={hiddenPopupText}
                          closePopup={() => this.handleToggle('hiddenPopupText')}
-                         changeContent={this.handleChangeElementValue.bind(this)}
+                         handleChangeElementValue={this.handleChangeElementValue.bind(this)}
                          currentElement={currentElement}
         />
 
