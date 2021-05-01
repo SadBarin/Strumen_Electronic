@@ -28,13 +28,15 @@ class AppPanel extends Component {
       onClickChangeRemoveStatus,
       onClickChangePin,
       onClickCloneElement,
-      onClockHiddenDevStatus,
+      onClickHiddenDevStatus,
       onClickToggleHiddenListAdd,
+      onClickSave,
 
       onClickToggleHiddenPopupInfo,
       onClickToggleHiddenPopupGate,
       onClickToggleHiddenPopupLine,
       onClickToggleHiddenPopupText,
+      onClickToggleHiddenPopupUpload,
 
       onClickAddGate,
       onClickAddLine,
@@ -57,12 +59,14 @@ class AppPanel extends Component {
           onClickChangeRemoveStatus={onClickChangeRemoveStatus}
           onClickChangePin={onClickChangePin}
           onClickCloneElement={onClickCloneElement}
-          onClockHiddenDevStatus={onClockHiddenDevStatus}
+          onClickHiddenDevStatus={onClickHiddenDevStatus}
+          onClickSave={onClickSave}
 
           onClickToggleHiddenPopupInfo={onClickToggleHiddenPopupInfo}
           onClickToggleHiddenPopupGate={onClickToggleHiddenPopupGate}
           onClickToggleHiddenPopupLine={onClickToggleHiddenPopupLine}
           onClickToggleHiddenPopupText={onClickToggleHiddenPopupText}
+          onClickToggleHiddenPopupUpload={onClickToggleHiddenPopupUpload}
 
           onClickAddGate={onClickAddGate}
           onClickAddLine={onClickAddLine}
@@ -88,12 +92,14 @@ AppPanel.propTypes = {
   onClickToggleHiddenListAdd: PropTypes.func.isRequired,
   onClickChangePin: PropTypes.func.isRequired,
   onClickCloneElement: PropTypes.func.isRequired,
-  onClockHiddenDevStatus: PropTypes.func.isRequired,
+  onClickHiddenDevStatus: PropTypes.func.isRequired,
+  onClickSave: PropTypes.func.isRequired,
 
   onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
   onClickToggleHiddenPopupGate: PropTypes.func.isRequired,
   onClickToggleHiddenPopupLine: PropTypes.func.isRequired,
   onClickToggleHiddenPopupText: PropTypes.func.isRequired,
+  onClickToggleHiddenPopupUpload: PropTypes.func.isRequired,
 
   onClickAddGate: PropTypes.func.isRequired,
   onClickAddLine: PropTypes.func.isRequired,

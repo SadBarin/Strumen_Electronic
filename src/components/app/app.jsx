@@ -5,6 +5,7 @@ import PopupInfo from "../layout/popups/popup-info";
 import PopupChangeGate from '../layout/popups/popup-change-gate';
 import PopupChangeLine from "../layout/popups/popup-change-line";
 import PopupChangeText from "../layout/popups/popup-change-text";
+import PopupUpload from "../layout/popups/popup-upload";
 import AppPanel from '../panel/app-panel';
 import AppLayout from '../layout/app-layout';
 import AppInfo from "../app-info";
@@ -21,6 +22,7 @@ class App extends Component {
       hiddenPopupLine: true,
       hiddenPopupInfo: true,
       hiddenPopupText: true,
+      hiddenPopupUpload: true,
 
       hiddenDevInfo: true,
       hiddenListAdd: true,
@@ -135,8 +137,8 @@ class App extends Component {
     element.x = (cord.x > 0)? cord.x : 0
     element.y = (cord.y > 0)? cord.y : 0
 
-    if(element.x > window.innerWidth - 50) element.x = window.innerWidth - 100
-    if(element.y > window.innerHeight - 50) element.y = window.innerHeight - 50
+    // if(element.x > window.innerWidth - 50) element.x = window.innerWidth - 100
+    // if(element.y > window.innerHeight - 50) element.y = window.innerHeight - 50
 
     this.setState({gridList: list})
   }
@@ -203,6 +205,27 @@ class App extends Component {
   }
   handleAddText = () => this.handleAdd(this.createText(this.getRandomCoordinates()))
 
+  handleSave() {
+    let a = document.createElement("a");
+    let file = new Blob([JSON.stringify(this.state)], {type: 'application/json'});
+    let date = new Date().toLocaleString()
+
+    a.href = URL.createObjectURL(file);
+    a.download = `Strumen${date}.json`;
+    a.click();
+  }
+
+  setSaveFile(event) {
+    let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsText(file);
+
+    reader.onload = () => {
+      let saveData = JSON.parse(reader.result)
+      this.setState(saveData)
+    }
+  }
+
   render() {
     const {
       gridList,
@@ -218,6 +241,7 @@ class App extends Component {
       hiddenPopupInfo,
       hiddenPopupLine,
       hiddenPopupText,
+      hiddenPopupUpload
     } = this.state;
 
     const currentElement = this.getElementGridList(selectElementID)
@@ -246,17 +270,24 @@ class App extends Component {
                          currentElement={currentElement}
         />
 
+        <PopupUpload hidden={hiddenPopupUpload}
+                         closePopup={() => this.handleToggle('hiddenPopupUpload')}
+                         setSaveFile={this.setSaveFile.bind(this)}
+        />
+
         <AppPanel
           onClickChangeRemoveStatus={() => this.handleRemoveItem(selectElementID)}
           onClickChangePin={() => this.handleChangePin()}
           onClickCloneElement={() => this.handleCloneElement()}
           onClickToggleHiddenListAdd={() => this.handleToggle('hiddenListAdd')}
-          onClockHiddenDevStatus={() => this.handleToggle('hiddenDevInfo')}
+          onClickHiddenDevStatus={() => this.handleToggle('hiddenDevInfo')}
+          onClickSave={() => this.handleSave()}
 
           onClickToggleHiddenPopupInfo={() => this.handleToggle('hiddenPopupInfo')}
           onClickToggleHiddenPopupGate={() => this.handleToggle('hiddenPopupGate')}
           onClickToggleHiddenPopupLine={() => this.handleToggle('hiddenPopupLine')}
           onClickToggleHiddenPopupText={() => this.handleToggle('hiddenPopupText')}
+          onClickToggleHiddenPopupUpload={() => this.handleToggle('hiddenPopupUpload')}
 
           onClickAddGate={() => this.handleAddGate()}
           onClickAddLine={() => this.handleAddLine()}
