@@ -7,7 +7,7 @@ import LogicLine from "../logic-line";
 import LayoutText from "../layout-text";
 
 function AppLayout(props) {
-  const { items, onClickSetSelectElementID, selectElementID, handleSetNewCord } = props;
+  const { items, onClickSetSelectElementID, selectElementID, handleSetNewCord, widthLayout, heightLayout } = props;
 
   const gridListGate = items.map((item) => {
     if(item.group === 'gate') {
@@ -82,8 +82,13 @@ function AppLayout(props) {
     }
   })
 
+  const style = {
+    width: `${widthLayout}px`,
+    height: `${heightLayout}px`
+  }
+
   return (
-    <div className="app-layout">
+    <div className="app-layout" >
       <div className="background-layout"
            onClick={() => onClickSetSelectElementID(0)}
            onTouchStart={() => onClickSetSelectElementID(0)}
@@ -99,7 +104,10 @@ AppLayout.propTypes = {
   selectElementID: PropTypes.number.isRequired,
   items: PropTypes.array.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
-  handleSetNewCord: PropTypes.func.isRequired
+  handleSetNewCord: PropTypes.func.isRequired,
+
+  widthLayout: PropTypes.any.isRequired,
+  heightLayout: PropTypes.any.isRequired
 };
 
 export default AppLayout;

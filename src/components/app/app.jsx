@@ -15,6 +15,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      widthLayout: 2000,
+      heightLayout: 2000,
+
       gridList: [],
       selectElementID: 0,
 
@@ -134,8 +137,11 @@ class App extends Component {
     const list = this.state.gridList
     let element = list[this.getElementArrayPositionByID(list, id)]
 
-    element.x = (cord.x > 0)? cord.x : 0
-    element.y = (cord.y > 0)? cord.y : 0
+    // element.x = (cord.x > 0)? cord.x : 0
+    // element.y = (cord.y > 0)? cord.y : 0
+
+    element.x = cord.x
+    element.y = cord.y
 
     // if(element.x > window.innerWidth - 50) element.x = window.innerWidth - 100
     // if(element.y > window.innerHeight - 50) element.y = window.innerHeight - 50
@@ -145,6 +151,16 @@ class App extends Component {
 
   handleSetNewCord(id, event) {
     let element = event.target
+
+    // let element = event
+    //
+    // console.log(`X: ${element.target.getBoundingClientRect().x} |  Y: ${element.target.getBoundingClientRect().y}`)
+    // console.log(`X: ${element.pageX - 30} | Y: ${element.pageY - 30}`)
+    //
+    // const cord = {
+    //   x: element.pageX - element.target.offsetLeft,
+    //   y: element.pageY - element.target.offsetTop,
+    // }
 
     const cord = {
       x: element.getBoundingClientRect().x - element.offsetLeft,
@@ -228,6 +244,9 @@ class App extends Component {
 
   render() {
     const {
+      widthLayout,
+      heightLayout,
+
       gridList,
       selectElementID,
 
@@ -300,6 +319,9 @@ class App extends Component {
         />
 
         <AppLayout
+          widthLayout={widthLayout}
+          heightLayout={heightLayout}
+
           selectElementID={selectElementID}
           items={gridList}
           onClickSetSelectElementID={this.handleSetSelectElementID.bind(this)}

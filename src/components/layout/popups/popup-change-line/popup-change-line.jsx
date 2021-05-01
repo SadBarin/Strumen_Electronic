@@ -73,7 +73,7 @@ PopupChangeLine.propTypes = {
   closePopup: PropTypes.func.isRequired,
   currentElement: PropTypes.object.isRequired,
 
-  handleChangeElementValue: PropTypes.object.isRequired
+  handleChangeElementValue: PropTypes.func.isRequired
 };
 
 export default PopupChangeLine;

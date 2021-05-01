@@ -1,4 +1,6 @@
 .app-layout {
+  background: hsl(0, 0%, 98%);
+
   width: 100vw;
   height: 100vh;
 

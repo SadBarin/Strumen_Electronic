@@ -1,4 +1,8 @@
 .panel {
+  background: hsla(0, 0%, 98%, 0.5);
+  backdrop-filter: blur(7px);
+  border-radius: 7px;
+
   height: fit-content;
   padding: 1rem;
 
