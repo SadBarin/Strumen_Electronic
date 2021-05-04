@@ -88,7 +88,7 @@ function AppLayout(props) {
   }
 
   return (
-    <div className="app-layout" >
+    <div className="app-layout" style={style}>
       <div className="background-layout"
            onClick={() => onClickSetSelectElementID(0)}
            onTouchStart={() => onClickSetSelectElementID(0)}

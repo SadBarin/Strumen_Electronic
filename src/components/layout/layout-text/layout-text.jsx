@@ -24,7 +24,7 @@ function LayoutText(props) {
          onTouchStart={() => { onClickSetSelectElementID(id); }}
     >
 
-      <Draggable position={{ x, y }} disabled={pin} onStop={(event) => {handleSetNewCord(id, event)}}>
+      <Draggable position={{ x, y }} disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width: 10, height: 10})}}>
         <div className='layout-text-wrapper'>
           <div className={`layout-text${LogicElementSelect}${LogicElementPin}`} style={{transform: `rotate(${turn}deg)`}}>
             {content}

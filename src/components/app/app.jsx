@@ -15,8 +15,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      widthLayout: 2000,
-      heightLayout: 2000,
+      widthLayout: 1400,
+      heightLayout: 900,
 
       gridList: [],
       selectElementID: 0,
@@ -27,13 +27,17 @@ class App extends Component {
       hiddenPopupText: true,
       hiddenPopupUpload: true,
 
-      hiddenDevInfo: true,
+      hiddenDevInfo: false,
       hiddenListAdd: true,
       hiddenListGate: true,
       hiddenListLine: true,
       hiddenListText: true
     };
   }
+
+  // componentDidMount() {
+  //   this.setState({widthLayout: window.screen.availWidth, heightLayout: window.screen.availHeight});
+  // }
 
   getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
@@ -133,41 +137,34 @@ class App extends Component {
     this.setState({gridList: list})
   }
 
-  changeCord(id, cord) {
+  changeCord(id, cord, size) {
+    const balance = 10
+
+    const width = this.state.widthLayout - size.width - balance
+    const height = this.state.heightLayout - size.height - balance
+
     const list = this.state.gridList
     let element = list[this.getElementArrayPositionByID(list, id)]
 
-    // element.x = (cord.x > 0)? cord.x : 0
-    // element.y = (cord.y > 0)? cord.y : 0
 
-    element.x = cord.x
-    element.y = cord.y
+    element.x = (cord.x > width)? width : cord.x
+    element.y = (cord.y > height)? height : cord.y
 
-    // if(element.x > window.innerWidth - 50) element.x = window.innerWidth - 100
-    // if(element.y > window.innerHeight - 50) element.y = window.innerHeight - 50
+    element.x = (element.x < balance)? balance : element.x
+    element.y = (element.y < balance)? balance : element.y
 
     this.setState({gridList: list})
   }
 
-  handleSetNewCord(id, event) {
+  handleSetNewCord(id, event, size) {
     let element = event.target
 
-    // let element = event
-    //
-    // console.log(`X: ${element.target.getBoundingClientRect().x} |  Y: ${element.target.getBoundingClientRect().y}`)
-    // console.log(`X: ${element.pageX - 30} | Y: ${element.pageY - 30}`)
-    //
-    // const cord = {
-    //   x: element.pageX - element.target.offsetLeft,
-    //   y: element.pageY - element.target.offsetTop,
-    // }
-
     const cord = {
-      x: element.getBoundingClientRect().x - element.offsetLeft,
-      y: element.getBoundingClientRect().y - element.offsetTop,
+      x: element.getBoundingClientRect().left - element.offsetLeft + window.scrollX,
+      y: element.getBoundingClientRect().top - element.offsetTop + window.scrollY,
     }
 
-    this.changeCord(id, cord)
+    this.changeCord(id, cord, size)
   }
 
   handleAdd(item) {

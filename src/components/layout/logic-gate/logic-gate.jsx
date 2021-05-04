@@ -25,7 +25,7 @@ function LogicGate(props) {
          onTouchStart={() => { onClickSetSelectElementID(id); }}
     >
 
-      <Draggable position={{x, y}} disabled={pin} onStop={(event) => {handleSetNewCord(id, event)}}>
+      <Draggable position={{x, y}} disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width: 100, height: 60})}}>
         <div className="logic-gate-wrapper">
           <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`} style={style}>
             <div className="logic-gate-content">

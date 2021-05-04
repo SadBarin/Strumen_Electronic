@@ -19,7 +19,7 @@
 }
 
 .logic-line.pin{
-  filter: grayscale(50%);
+  background: hsl(20, 79%, 83%);
 
   z-index: 1;
 

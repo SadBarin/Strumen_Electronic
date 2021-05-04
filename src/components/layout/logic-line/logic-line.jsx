@@ -31,7 +31,7 @@ function LogicLine(props) {
          onTouchStart={() => { onClickSetSelectElementID(id); }}
     >
 
-      <Draggable position={{ x, y }} disabled={pin} onStop={(event) => {handleSetNewCord(id, event)}}>
+      <Draggable position={{ x, y }} disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width, height})}}>
         <div className='logic-line-wrapper'>
           <div className={`logic-line${LogicElementSelect}${LogicElementPin}${LogicElementActive}`} style={style} title={active}/>
         </div>

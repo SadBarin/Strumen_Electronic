@@ -1,12 +1,12 @@
 .app-layout {
+  border-radius: 7px;
   background: hsl(0, 0%, 98%);
-
-  width: 100vw;
-  height: 100vh;
 
   position: relative;
 
-  overflow: auto;
+  overflow: hidden;
+
+  box-sizing: content-box;
 }
 
 .background-layout {

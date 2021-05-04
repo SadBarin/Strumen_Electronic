@@ -21,8 +21,7 @@
 }
 
 .layout-text.pin{
-  background: hsl(20, 100%, 73%);
-  filter: grayscale(50%);
+  background: hsl(20, 79%, 83%);
   color: hsl(0, 0%, 98%);
   font-weight: bold;
 
