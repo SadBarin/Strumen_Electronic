@@ -1,22 +1,23 @@
 import React, {Component} from 'react';
-import './app.css';
+import './app-screen.css';
 
-import PopupInfo from "../layout/popups/popup-info";
-import PopupChangeGate from '../layout/popups/popup-change-gate';
-import PopupChangeLine from "../layout/popups/popup-change-line";
-import PopupChangeText from "../layout/popups/popup-change-text";
-import PopupUpload from "../layout/popups/popup-upload";
-import AppPanel from '../panel/app-panel';
-import AppLayout from '../layout/app-layout';
-import AppInfo from "../app-info";
+import PopupInfo from "./screen-elements/screen-grid/grid-elements/popups/popup-info";
+import PopupChangeGate from "./screen-elements/screen-grid/grid-elements/popups/popup-change-gate";
+import PopupChangeLine from "./screen-elements/screen-grid/grid-elements/popups/popup-change-line";
+import PopupChangeText from "./screen-elements/screen-grid/grid-elements/popups/popup-change-text";
+import PopupUpload from "./screen-elements/screen-grid/grid-elements/popups/popup-upload";
+
+import ScreenPanel from "./screen-elements/screen-panel/screen-panel";
+import ScreenGrid from "./screen-elements/screen-grid";
+import ScreenInfo from "./screen-elements/screen-info/screen-info";
 
 
-class App extends Component {
+class AppScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      widthLayout: 1400,
-      heightLayout: 900,
+      widthGrid: 2400,
+      heightGrid: 1900,
 
       gridList: [],
       selectElementID: 0,
@@ -35,16 +36,21 @@ class App extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.setState({widthLayout: window.screen.availWidth, heightLayout: window.screen.availHeight});
+  // componentDidUpdate() {
+  //   const [widthGrid, heightGrid] = this.state
+  //
+  //   console.log('hi')
+  //   console.log(widthGrid)
+  //
+  //   // this.document.style.height =
   // }
 
   getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
   getRandomCoordinates() {
     return {
-      x: this.getRandomNumber(100, window.innerWidth - 100),
-      y: this.getRandomNumber(100, window.innerHeight - 100),
+      x: this.getRandomNumber(100, this.state.widthGrid - 100),
+      y: this.getRandomNumber(100, this.state.heightGrid - 100),
     };
   }
 
@@ -140,8 +146,8 @@ class App extends Component {
   changeCord(id, cord, size) {
     const balance = 10
 
-    const width = this.state.widthLayout - size.width - balance
-    const height = this.state.heightLayout - size.height - balance
+    const width = this.state.widthGrid - size.width - balance
+    const height = this.state.heightGrid - size.height - balance
 
     const list = this.state.gridList
     let element = list[this.getElementArrayPositionByID(list, id)]
@@ -157,12 +163,17 @@ class App extends Component {
   }
 
   handleSetNewCord(id, event, size) {
-    let element = event.target
+    console.log(event)
+
+    const element = event.target
+    const screenGrid = document.querySelector('#screen-grid-wrapper')
 
     const cord = {
-      x: element.getBoundingClientRect().left - element.offsetLeft + window.scrollX,
-      y: element.getBoundingClientRect().top - element.offsetTop + window.scrollY,
+      x: (element.getBoundingClientRect().left - element.offsetLeft + screenGrid.scrollLeft) - 10,
+      y: (element.getBoundingClientRect().top - element.offsetTop + screenGrid.scrollTop) - 10,
     }
+
+    console.log(document.querySelector('#screen-grid').scrollTop)
 
     this.changeCord(id, cord, size)
   }
@@ -241,8 +252,8 @@ class App extends Component {
 
   render() {
     const {
-      widthLayout,
-      heightLayout,
+      widthGrid,
+      heightGrid,
 
       gridList,
       selectElementID,
@@ -263,35 +274,37 @@ class App extends Component {
     const currentElement = this.getElementGridList(selectElementID)
 
     return (
-      <main className="layout">
-        <PopupInfo hidden={hiddenPopupInfo}
-                   closePopup={() => this.handleToggle('hiddenPopupInfo')}
-        />
+      <main id="app-screen">
+        <section className="screen-popups-container">
+          <PopupInfo hidden={hiddenPopupInfo}
+                     closePopup={() => this.handleToggle('hiddenPopupInfo')}
+          />
 
-        <PopupChangeGate hidden={hiddenPopupGate}
-                         closePopup={() => this.handleToggle('hiddenPopupGate')}
-                         handleChangeElementValue={this.handleChangeElementValue.bind(this)}
-                         currentElement={currentElement}
-        />
+          <PopupChangeGate hidden={hiddenPopupGate}
+                           closePopup={() => this.handleToggle('hiddenPopupGate')}
+                           handleChangeElementValue={this.handleChangeElementValue.bind(this)}
+                           currentElement={currentElement}
+          />
 
-        <PopupChangeLine hidden={hiddenPopupLine}
-                         closePopup={() => this.handleToggle('hiddenPopupLine')}
-                         handleChangeElementValue={this.handleChangeElementValue.bind(this)}
-                         currentElement={currentElement}
-        />
+          <PopupChangeLine hidden={hiddenPopupLine}
+                           closePopup={() => this.handleToggle('hiddenPopupLine')}
+                           handleChangeElementValue={this.handleChangeElementValue.bind(this)}
+                           currentElement={currentElement}
+          />
 
-        <PopupChangeText hidden={hiddenPopupText}
-                         closePopup={() => this.handleToggle('hiddenPopupText')}
-                         handleChangeElementValue={this.handleChangeElementValue.bind(this)}
-                         currentElement={currentElement}
-        />
+          <PopupChangeText hidden={hiddenPopupText}
+                           closePopup={() => this.handleToggle('hiddenPopupText')}
+                           handleChangeElementValue={this.handleChangeElementValue.bind(this)}
+                           currentElement={currentElement}
+          />
 
-        <PopupUpload hidden={hiddenPopupUpload}
-                         closePopup={() => this.handleToggle('hiddenPopupUpload')}
-                         setSaveFile={this.setSaveFile.bind(this)}
-        />
+          <PopupUpload hidden={hiddenPopupUpload}
+                       closePopup={() => this.handleToggle('hiddenPopupUpload')}
+                       setSaveFile={this.setSaveFile.bind(this)}
+          />
+        </section>
 
-        <AppPanel
+        <ScreenPanel
           onClickChangeRemoveStatus={() => this.handleRemoveItem(selectElementID)}
           onClickChangePin={() => this.handleChangePin()}
           onClickCloneElement={() => this.handleCloneElement()}
@@ -315,9 +328,9 @@ class App extends Component {
           hiddenListText={hiddenListText}
         />
 
-        <AppLayout
-          widthLayout={widthLayout}
-          heightLayout={heightLayout}
+        <ScreenGrid
+          widthGrid={widthGrid}
+          heightGrid={heightGrid}
 
           selectElementID={selectElementID}
           items={gridList}
@@ -326,7 +339,7 @@ class App extends Component {
           handleSetNewCord={this.handleSetNewCord.bind(this)}
         />
 
-        <AppInfo
+        <ScreenInfo
           hiddenDevInfo={hiddenDevInfo}
 
           selectElementID={selectElementID}
@@ -337,4 +350,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default AppScreen;

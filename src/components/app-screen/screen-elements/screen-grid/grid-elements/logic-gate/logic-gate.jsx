@@ -17,17 +17,14 @@ function LogicGate(props) {
   const LogicElementSelect = (selectStatus) ? ' active' : '';
   const LogicElementPin = (pin) ? ' pin' : '';
 
-  const style = { transform: `rotate(${turn}deg)` }
-
   return (
     <div className="logic-gate-container" key={id}
          onClick={() => { onClickSetSelectElementID(id); }}
          onTouchStart={() => { onClickSetSelectElementID(id); }}
     >
-
       <Draggable position={{x, y}} disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width: 100, height: 60})}}>
         <div className="logic-gate-wrapper">
-          <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`} style={style}>
+          <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`}>
             <div className="logic-gate-content">
               <span>{logic}</span>
             </div>
@@ -35,7 +32,7 @@ function LogicGate(props) {
         </div>
       </Draggable>
     </div>
-  );
+  )
 }
 
 LogicGate.propTypes = {

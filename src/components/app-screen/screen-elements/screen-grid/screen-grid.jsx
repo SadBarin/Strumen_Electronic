@@ -1,21 +1,29 @@
-import React  from 'react';
-import './app-layout.css';
+import React, { useEffect } from 'react';
+import './screen-grid.css';
 import PropTypes from 'prop-types';
 
-import LogicGate from '../logic-gate';
-import LogicLine from "../logic-line";
-import LayoutText from "../layout-text";
+import LogicGate from "./grid-elements/logic-gate";
+import LogicLine from "./grid-elements/logic-line";
+import LayoutText from "./grid-elements/layout-text";
 
-function AppLayout(props) {
-  const { items, onClickSetSelectElementID, selectElementID, handleSetNewCord, widthLayout, heightLayout } = props;
+function ScreenGrid(props) {
+  const {items, onClickSetSelectElementID, selectElementID, handleSetNewCord, widthGrid, heightGrid} = props;
+
+  let wrapperWidth = window.innerWidth - 20;
+  let wrapperHeight = window.innerHeight - 20;
+
+  window.addEventListener(`resize`, event => {
+    wrapperWidth = window.innerWidth - 20;
+    wrapperHeight = window.innerHeight - 20;
+  }, false);
 
   const gridListGate = items.map((item) => {
-    if(item.group === 'gate') {
-      const { id, type, x, y, turn, pin } = item;
+    if (item.group === 'gate') {
+      const {id, type, x, y, turn, pin} = item;
       const elementSelectStatus = (selectElementID === id)
 
       return (
-        <div className="logic-gate-container" key={id}>
+        <div className="screen-grid-element" key={id}>
           <LogicGate
             id={id}
             logic={type}
@@ -38,7 +46,7 @@ function AppLayout(props) {
       const elementSelectStatus = (selectElementID === id)
 
       return (
-        <div className="logic-gate-container" key={id}>
+        <div className="screen-grid-element" key={id}>
           <LogicLine
             id={id}
             logic={type}
@@ -64,7 +72,7 @@ function AppLayout(props) {
       const elementSelectStatus = (selectElementID === id)
 
       return (
-        <div className="logic-gate-container" key={id}>
+        <div className="screen-grid-element" key={id}>
           <LayoutText
             id={id}
             logic={type}
@@ -83,31 +91,34 @@ function AppLayout(props) {
   })
 
   const style = {
-    width: `${widthLayout}px`,
-    height: `${heightLayout}px`
+    width: `${widthGrid}px`,
+    height: `${heightGrid}px`
   }
 
   return (
-    <div className="app-layout" style={style}>
-      <div className="background-layout"
-           onClick={() => onClickSetSelectElementID(0)}
-           onTouchStart={() => onClickSetSelectElementID(0)}
-      />
-      {gridListGate}
-      {gridListLine}
-      {gridLayoutText}
+    <div id="screen-grid-wrapper" style={{width: wrapperWidth, height: wrapperHeight}}>
+      <div id="screen-grid" style={style}>
+        <div id="grid-background"
+             onClick={() => onClickSetSelectElementID(0)}
+             onTouchStart={() => onClickSetSelectElementID(0)}
+        />
+
+        {gridListGate}
+        {gridListLine}
+        {gridLayoutText}
+      </div>
     </div>
   );
 }
 
-AppLayout.propTypes = {
+ScreenGrid.propTypes = {
   selectElementID: PropTypes.number.isRequired,
   items: PropTypes.array.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
   handleSetNewCord: PropTypes.func.isRequired,
 
-  widthLayout: PropTypes.any.isRequired,
-  heightLayout: PropTypes.any.isRequired
+  widthGrid: PropTypes.any.isRequired,
+  heightGrid: PropTypes.any.isRequired
 };
 
-export default AppLayout;
+export default ScreenGrid;

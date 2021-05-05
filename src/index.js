@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app';
+import AppScreen from './components/app-screen';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 ReactDOM.render(
-  <App />, document.getElementById('root'),
+  <AppScreen />,
+  document.getElementById('app'),
 );
 
 serviceWorkerRegistration.unregister();

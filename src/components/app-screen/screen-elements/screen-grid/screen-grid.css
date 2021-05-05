@@ -1,0 +1,34 @@
+@import '../../../../styleGuide.css';
+
+#screen-grid-wrapper {
+  border-radius: var(--borderRadius);
+
+  margin: var(--safeIndent);
+
+  width: 1000px;
+  height: 900px;
+
+  overflow: auto;
+}
+
+#screen-grid {
+  border-radius: var(--borderRadius);
+
+  position: relative;
+}
+
+#grid-background {
+  border-radius: var(--borderRadius);
+  background: var(--gridBackground);
+
+  width: 100%;
+  height: 100%;
+
+  z-index: var(--zIndexLevel4);
+
+  position: absolute;
+}
+
+.screen-grid-element {
+  position: absolute;
+}

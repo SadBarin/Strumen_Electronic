@@ -1,0 +1,16 @@
+@import '../../styleGuide.css';
+
+#app-screen {
+  background: var(--screenBackground);
+
+  position: relative;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+}
+
+.screen-popups-container {
+  z-index: var(--zIndexLevel1);
+}

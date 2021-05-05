@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './app-panel.css';
+import './screen-panel.css';
 
-import PanelList from '../panel-list';
-import IconButton from '../../button-icon';
+import PanelList from './panel-elements/panel-list';
+import IconButton from '../button-icon';
 
-class AppPanel extends Component {
+class ScreenPanel extends Component {
   constructor(props) {
     super(props);
 
@@ -49,7 +49,7 @@ class AppPanel extends Component {
     } = this.props;
 
     return (
-      <div className="panel">
+      <div id="screen-panel">
         <IconButton icon="bi-list" onClick={() => this.handleClickButton()}/>
 
         <PanelList
@@ -82,11 +82,11 @@ class AppPanel extends Component {
   }
 }
 
-AppPanel.defaultProps = {
+ScreenPanel.defaultProps = {
   selectElementID: 0,
 };
 
-AppPanel.propTypes = {
+ScreenPanel.propTypes = {
   selectElementID: PropTypes.number,
 
   onClickToggleHiddenListAdd: PropTypes.func.isRequired,
@@ -111,4 +111,4 @@ AppPanel.propTypes = {
   hiddenListText: PropTypes.bool.isRequired,
 };
 
-export default AppPanel;
+export default ScreenPanel;

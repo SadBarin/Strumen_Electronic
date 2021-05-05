@@ -1,12 +1,12 @@
 import React from 'react';
-import './app-info.css';
+import './screen-info.css';
 import PropTypes from "prop-types";
 
-import packageApp from '../../../package.json'
+import packageApp from '../../../../../package.json'
 
-function AppInfo({hiddenDevInfo, selectElementID, gridListLength}) {
+function ScreenInfo({hiddenDevInfo, selectElementID, gridListLength}) {
   return (
-    <div className={`info-element ${(hiddenDevInfo) ? "hidden" : ""}`}>
+    <div id="screen-info" className={`${(hiddenDevInfo) ? "hidden" : ""}`}>
       <p>{`ID: ${String(selectElementID)}`}</p>
       <p>{`Количество элементов: ${String(gridListLength)}`}</p>
       <p>{`Версия: ${String(packageApp.version)}`}</p>
@@ -16,10 +16,10 @@ function AppInfo({hiddenDevInfo, selectElementID, gridListLength}) {
   );
 }
 
-AppInfo.propTypes = {
+ScreenInfo.propTypes = {
   hiddenDevInfo: PropTypes.bool.isRequired,
   selectElementID: PropTypes.number.isRequired,
   gridListLength: PropTypes.number.isRequired,
 };
 
-export default AppInfo;
+export default ScreenInfo;

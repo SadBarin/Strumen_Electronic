@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './panel-list.css';
 
-import IconButton from '../../button-icon';
+import IconButton from '../../../button-icon';
 
 function PanelList({
  display,

@@ -1,0 +1,21 @@
+@import "../../../../styleGuide.css";
+
+#screen-panel {
+  background: var(--panelBackground);
+  backdrop-filter: blur(var(--blur));
+  border-radius: var(--borderRadius);
+
+  height: fit-content;
+  margin: var(--safeIndent);
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  position: fixed;
+
+  z-index: var(--zIndexLevel2);
+
+  overflow-y: auto;
+}
