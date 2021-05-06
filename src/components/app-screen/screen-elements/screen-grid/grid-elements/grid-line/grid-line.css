@@ -1,0 +1,25 @@
+@import url('../../../../../../styleGuide.css');
+
+.grid-line {
+  background: var(--lineBackground);
+  border-radius: var(--borderRadius);
+
+  z-index: var(--zIndexLevel4);
+  cursor: all-scroll;
+}
+
+.grid-line.pin{
+  background: var(--linePinBackground);
+
+  z-index: 1;
+
+  cursor: no-drop;
+}
+
+.grid-line.active{
+  filter: var(--lineActiveFilter);
+}
+
+.grid-line.on{
+  background: hsla(5, 63%, 56%, 0.8) !important;
+}

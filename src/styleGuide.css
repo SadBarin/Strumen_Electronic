@@ -5,11 +5,13 @@
   --mostlyWhiteOpacity5:      hsla(0, 0%, 98%, 0.5);
   --veryLightOrange:          hsl(18, 100%, 73%);
   --mostlyDesaturatedDarkRed: hsl(6, 15%, 58%);
+  --moderateRed:              hsla(5, 63%, 56%, 0.8);
 
   --borderRadius: 10px;
   --safeIndent:   10px;
   --blur:         7px;
   --transition:   0.5s;
+  --filter:       drop-shadow(6px 7px 8px var(--verySoftOrange)) sepia(40%) opacity(0.8);
 
   /*~~~Scroll~~~*/
   --scrollBarSize:       10px;
@@ -30,11 +32,16 @@
   /*~~~ScreenInfo~~~*/
   --infoBackground: var(--mostlyWhiteOpacity5);
 
-  /*~~~GatePin~~~*/
+  /*~~~GridGate~~~*/
   --gateInputBackground: var(--verySoftOrange);
-  --gateActiveFilter:    drop-shadow(6px 7px 8px var(--verySoftOrange)) sepia(40%) opacity(0.8);
-
+  --gateActiveFilter:    var(--filter);
   --gatePinBackground: var(--mostlyDesaturatedDarkRed);
+
+  /*~~~GridLine~~~*/
+  --lineBackground:      var(--veryLightOrange);
+  --lineActiveFilter:    var(--filter);
+  --linePinBackground:   var(--mostlyDesaturatedDarkRed);
+  --lineOnBackground:    var(--moderateRed);
 
   --zIndexLevel1: 10000;
   --zIndexLevel2: 1000;

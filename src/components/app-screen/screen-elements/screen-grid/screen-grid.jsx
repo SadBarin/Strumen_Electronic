@@ -3,7 +3,7 @@ import './screen-grid.css';
 import PropTypes from 'prop-types';
 
 import GridGate from "./grid-elements/grid-gate";
-import LogicLine from "./grid-elements/logic-line";
+import GridLine from "./grid-elements/grid-line";
 import LayoutText from "./grid-elements/layout-text";
 
 function ScreenGrid(props) {
@@ -38,20 +38,12 @@ function ScreenGrid(props) {
 
   const gridListLine = items.map((item) => {
     if (item.group === 'line') {
-      const {id, type, x, y, pin, width, height, turn, active} = item;
-      const elementSelectStatus = (selectElementID === id)
+      const elementSelectStatus = (selectElementID === item.id)
 
       return (
-        <div className="screen-grid-element" key={id}>
-          <LogicLine
-            id={id}
-            logic={type}
-            x={x} y={y}
-            width={width}
-            height={height}
-            turn={turn}
-            active={active}
-            pin={pin}
+        <div className="screen-grid-element" key={item.id}>
+          <GridLine
+            item={item}
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={selectElementID}
             selectStatus={elementSelectStatus}

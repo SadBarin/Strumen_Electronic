@@ -50,10 +50,7 @@
   filter: var(--gateActiveFilter);
 }
 
-.grid-gate.pin{
-  background: var(--gatePinBackground) !important;
-}
-
 .grid-gate.pin .grid-gate-content{
+  background: var(--gatePinBackground) !important;
   cursor: no-drop;
 }
