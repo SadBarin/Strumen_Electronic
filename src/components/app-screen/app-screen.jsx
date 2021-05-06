@@ -213,6 +213,7 @@ class AppScreen extends Component {
       x, y,
       group: 'text',
       content: 'Блок комментария',
+      textColor: 'hsl(0, 0%, 0%)',
       pin: false
     };
   }

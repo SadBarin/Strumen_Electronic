@@ -42,6 +42,12 @@
   --linePinBackground:   var(--mostlyDesaturatedDarkRed);
   --lineOnBackground:    var(--moderateRed);
 
+  /*~~~GridText~~~*/
+  --textBackground:      var(--mostlyWhiteOpacity5);
+  --textActiveFilter:    var(--filter);
+  --textPinBorder:       var(--mostlyDesaturatedDarkRed) 3px solid;
+  --textPinColor:        var(--mostlyWhite);
+
   --zIndexLevel1: 10000;
   --zIndexLevel2: 1000;
   --zIndexLevel3: 100;

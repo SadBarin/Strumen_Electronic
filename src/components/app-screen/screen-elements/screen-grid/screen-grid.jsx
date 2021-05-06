@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import GridGate from "./grid-elements/grid-gate";
 import GridLine from "./grid-elements/grid-line";
-import LayoutText from "./grid-elements/layout-text";
+import GridText from "./grid-elements/grid-text";
 
 function ScreenGrid(props) {
   const {items, onClickSetSelectElementID, selectElementID, handleSetNewCord, widthGrid, heightGrid} = props;
@@ -56,18 +56,12 @@ function ScreenGrid(props) {
 
   const gridLayoutText = items.map((item) => {
     if (item.group === 'text') {
-      const {id, type, x, y, pin, content, turn} = item;
-      const elementSelectStatus = (selectElementID === id)
+      const elementSelectStatus = (selectElementID === item.id)
 
       return (
-        <div className="screen-grid-element" key={id}>
-          <LayoutText
-            id={id}
-            logic={type}
-            x={x} y={y}
-            content={content}
-            pin={pin}
-            turn={turn}
+        <div className="screen-grid-element" key={item.id}>
+          <GridText
+            item={item}
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={selectElementID}
             selectStatus={elementSelectStatus}

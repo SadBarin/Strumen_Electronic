@@ -1,0 +1,29 @@
+@import url('../../../../../../styleGuide.css');
+
+.grid-text {
+  background: var(--textBackground);
+  backdrop-filter: var(--blur);
+  border-radius: var(--borderRadius);
+
+  max-width: 45vw;
+  width: fit-content;
+  height: fit-content;
+  padding: 1rem;
+  margin: 0;
+
+  cursor: all-scroll;
+}
+
+.grid-text > p {
+  margin: 0;
+}
+
+.grid-text.active{
+  filter: var(--textActiveFilter)
+}
+
+.grid-text.pin{
+  border: var(--textPinBorder);
+
+  cursor: no-drop;
+}

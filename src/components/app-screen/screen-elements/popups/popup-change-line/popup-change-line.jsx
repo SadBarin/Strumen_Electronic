@@ -46,6 +46,8 @@ function PopupChangeLine({ hidden, closePopup, handleChangeElementValue, current
             <option value="hsl(120, 100%, 73%)">Зелёный</option>
             <option value="hsl(40, 100%, 73%)">Жёлтый</option>
             <option value="hsl(20, 100%, 73%)">Ораньжевый</option>
+            <option value="hsl(252, 3%, 62%)">Серый</option>
+            <option value="hsl(0, 0%, 0%)">Чёрный</option>
           </select>
         </label>
 

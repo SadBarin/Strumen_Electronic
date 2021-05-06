@@ -15,6 +15,23 @@ function PopupChangeText({hidden, closePopup, handleChangeElementValue, currentE
                  value={currentElement.content}/>
         </label>
 
+        <label htmlFor="color" className="change-gate-select">
+          Цвет:
+          <select id="color"
+                  onChange={(e) => handleChangeElementValue(e, 'textColor')}
+                  value={currentElement.textColor}>
+            <option value="hsl(290, 100%, 73%)">Фуксия</option>
+            <option value="hsl(250, 100%, 73%)">Фиолетовый</option>
+            <option value="hsl(220, 100%, 73%)">Синий</option>
+            <option value="hsl(200, 100%, 73%)">Голубой</option>
+            <option value="hsl(120, 100%, 73%)">Зелёный</option>
+            <option value="hsl(40, 100%, 73%)">Жёлтый</option>
+            <option value="hsl(20, 100%, 73%)">Ораньжевый</option>
+            <option value="hsl(252, 3%, 62%)">Серый</option>
+            <option value="hsl(0, 0%, 0%)">Чёрный</option>
+          </select>
+        </label>
+
         {/*<label htmlFor="degree" className='change-line-number'>*/}
         {/*  Наклон:*/}
         {/*  <input type="number"*/}
