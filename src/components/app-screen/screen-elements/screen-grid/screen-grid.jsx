@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './screen-grid.css';
 import PropTypes from 'prop-types';
 
-import LogicGate from "./grid-elements/logic-gate";
+import GridGate from "./grid-elements/grid-gate";
 import LogicLine from "./grid-elements/logic-line";
 import LayoutText from "./grid-elements/layout-text";
 
@@ -19,18 +19,13 @@ function ScreenGrid(props) {
 
   const gridListGate = items.map((item) => {
     if (item.group === 'gate') {
-      const {id, type, x, y, width, height, pin} = item;
-      const elementSelectStatus = (selectElementID === id)
+      // const {id, type, x, y, width, height, pin} = item;
+      const elementSelectStatus = (selectElementID === item.id)
 
       return (
-        <div className="screen-grid-element" key={id}>
-          <LogicGate
-            id={id}
-            logic={type}
-            x={x} y={y}
-            width={width}
-            height={height}
-            pin={pin}
+        <div className="screen-grid-element" key={item.id}>
+          <GridGate
+            item={item}
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={selectElementID}
             selectStatus={elementSelectStatus}

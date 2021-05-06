@@ -1,18 +1,12 @@
 import React from 'react';
-import './logic-gate.css';
+import './grid-gate.css';
 import PropTypes from 'prop-types';
 
 import Draggable from 'react-draggable';
 
-function LogicGate(props) {
-  const {
-    id, logic,
-    x, y, pin,
-    width, height,
-    onClickSetSelectElementID,
-    selectStatus,
-    handleSetNewCord
-  } = props;
+function GridGate(props) {
+  const {item, onClickSetSelectElementID, selectStatus, handleSetNewCord} = props;
+  const {id, content, x, y, width, height, pin, backgroundColor, textColor} = item;
 
   const LogicElementSelect = (selectStatus) ? ' active' : '';
   const LogicElementPin = (pin) ? ' pin' : '';
@@ -22,17 +16,22 @@ function LogicGate(props) {
     height: height + 'px'
   }
 
+  const contentStyle = {
+    background: backgroundColor,
+    color: textColor,
+  }
+
   return (
-    <div className="logic-gate-container" key={id}
+    <div className="grid-gate-container" key={id}
          onClick={() => { onClickSetSelectElementID(id); }}
          onTouchStart={() => { onClickSetSelectElementID(id); }}
     >
       <Draggable position={{x, y}} disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width, height})}}>
-        <div className="logic-gate-wrapper">
-          <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`} style={style}>
-            <div className="logic-gate-content">
-              <span>{logic}</span>
-            </div>
+        <div className={`grid-gate${LogicElementSelect}${LogicElementPin}`} style={style}>
+          <div className="grid-gate-input"/>
+
+          <div className="grid-gate-content" style={contentStyle}>
+            <span>{content}</span>
           </div>
         </div>
       </Draggable>
@@ -40,16 +39,12 @@ function LogicGate(props) {
   )
 }
 
-LogicGate.propTypes = {
+GridGate.propTypes = {
+  item: PropTypes.object.isRequired,
+
   selectStatus: PropTypes.bool.isRequired,
-  id: PropTypes.number.isRequired,
-  logic: PropTypes.string.isRequired,
-  x: PropTypes.number.isRequired,
-  y: PropTypes.number.isRequired,
-  width: PropTypes.any.isRequired,
-  height: PropTypes.any.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
   handleSetNewCord: PropTypes.func.isRequired
 };
 
-export default LogicGate;
+export default GridGate;

@@ -36,15 +36,6 @@ class AppScreen extends Component {
     };
   }
 
-  // componentDidUpdate() {
-  //   const [widthGrid, heightGrid] = this.state
-  //
-  //   console.log('hi')
-  //   console.log(widthGrid)
-  //
-  //   // this.document.style.height =
-  // }
-
   getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
   getRandomCoordinates() {
@@ -185,14 +176,15 @@ class AppScreen extends Component {
 
     return {
       id: Date.now(),
+      x, y,
       group: 'gate',
-      type: 'AND',
+      content: 'AND',
       width: 90,
       height: 50,
-      x,
-      y,
-      turn: 0,
-      pin: false
+      pin: false,
+      active: false,
+      backgroundColor: 'hsl(20, 100%, 73%)',
+      textColor: 'hsl(0, 0%, 98%)',
     };
   }
   handleAddGate = () => this.handleAdd(this.createGate(this.getRandomCoordinates()))
@@ -202,11 +194,10 @@ class AppScreen extends Component {
 
     return {
       id: Date.now(),
-      group: 'line',
       x, y,
+      group: 'line',
       width: 150,
       height: 5,
-      turn: 0,
       active: 'false',
       pin: false
     };
@@ -218,10 +209,9 @@ class AppScreen extends Component {
 
     return {
       id: Date.now(),
-      group: 'text',
       x, y,
+      group: 'text',
       content: 'Блок комментария',
-      turn: 0,
       pin: false
     };
   }

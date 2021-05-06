@@ -3,12 +3,13 @@
   --verySoftOrange:           hsl(20, 79%, 83%);
   --mostlyWhite:              hsl(0, 0%, 98%);
   --mostlyWhiteOpacity5:      hsla(0, 0%, 98%, 0.5);
-  --mostlyDesaturatedDarkRed: hsl(6, 15%, 58%);
   --veryLightOrange:          hsl(18, 100%, 73%);
+  --mostlyDesaturatedDarkRed: hsl(6, 15%, 58%);
 
-  --borderRadius: 7px;
+  --borderRadius: 10px;
   --safeIndent:   10px;
   --blur:         7px;
+  --transition:   0.5s;
 
   /*~~~Scroll~~~*/
   --scrollBarSize:       10px;
@@ -29,8 +30,15 @@
   /*~~~ScreenInfo~~~*/
   --infoBackground: var(--mostlyWhiteOpacity5);
 
+  /*~~~GatePin~~~*/
+  --gateInputBackground: var(--verySoftOrange);
+  --gateActiveFilter:    drop-shadow(6px 7px 8px var(--verySoftOrange)) sepia(40%) opacity(0.8);
+
+  --gatePinBackground: var(--mostlyDesaturatedDarkRed);
+
   --zIndexLevel1: 10000;
   --zIndexLevel2: 1000;
   --zIndexLevel3: 100;
-  --zIndexLevel4: 0;
+  --zIndexLevel4: 10;
+  --zIndexLevel5: 0;
 }

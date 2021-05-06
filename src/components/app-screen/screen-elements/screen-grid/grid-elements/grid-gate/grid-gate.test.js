@@ -1,9 +1,9 @@
-import LogicGate from "./index";
+import GridGate from "./index";
 
 const gateProp = {id: 1, logic: "AND", x: 0, y: 0};
 
 describe("Transfer props check for LogicGate", () => {
-  const element = (props) => mount(<LogicGate {...props} />);
+  const element = (props) => mount(<GridGate {...props} />);
   let logicGate;
 
   beforeEach(() => {
@@ -20,7 +20,7 @@ describe("Transfer props check for LogicGate", () => {
 })
 
 it("LogicGate snapshot check", () => {
-  const logicElementTree = (props) => render(<LogicGate {...props} />);
+  const logicElementTree = (props) => render(<GridGate {...props} />);
 
   expect(toJson(logicElementTree(gateProp))).toMatchSnapshot();
 });
