@@ -2,7 +2,7 @@
 
 .grid-text {
   background: var(--textBackground);
-  backdrop-filter: var(--blur);
+  backdrop-filter: blur(var(--blur));
   border-radius: var(--borderRadius);
 
   max-width: 45vw;
