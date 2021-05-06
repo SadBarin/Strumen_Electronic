@@ -17,6 +17,11 @@ function LogicGate(props) {
   const LogicElementSelect = (selectStatus) ? ' active' : '';
   const LogicElementPin = (pin) ? ' pin' : '';
 
+  const style = {
+    width: width + 'px',
+    height: height + 'px'
+  }
+
   return (
     <div className="logic-gate-container" key={id}
          onClick={() => { onClickSetSelectElementID(id); }}
@@ -24,7 +29,7 @@ function LogicGate(props) {
     >
       <Draggable position={{x, y}} disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width, height})}}>
         <div className="logic-gate-wrapper">
-          <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`} style={{width, height}}>
+          <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`} style={style}>
             <div className="logic-gate-content">
               <span>{logic}</span>
             </div>

@@ -25,6 +25,22 @@ function PopupChangeGate({hidden, closePopup, currentElement, handleChangeElemen
           </select>
         </label>
 
+        <label htmlFor="width" className='change-line-number'>
+          Длина:
+          <input type="number"
+                 id="width"
+                 value={currentElement.width}
+                 onChange={(e) => handleChangeElementValue(e, 'width')}/>
+        </label>
+
+        <label htmlFor="height" className='change-line-number'>
+          Толщина:
+          <input type="number"
+                 id="height"
+                 value={currentElement.height}
+                 onChange={(e) => handleChangeElementValue(e, 'height')}/>
+        </label>
+
         {/*<label htmlFor="degree" className='change-gate-number'>*/}
         {/*  Наклон:*/}
         {/*  <input type="number" id="degree"*/}

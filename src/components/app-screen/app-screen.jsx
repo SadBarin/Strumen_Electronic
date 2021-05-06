@@ -163,8 +163,6 @@ class AppScreen extends Component {
   }
 
   handleSetNewCord(id, event, size) {
-    console.log(event)
-
     const element = event.target
     const screenGrid = document.querySelector('#screen-grid-wrapper')
 
@@ -172,8 +170,6 @@ class AppScreen extends Component {
       x: (element.getBoundingClientRect().left - element.offsetLeft + screenGrid.scrollLeft) - 10,
       y: (element.getBoundingClientRect().top - element.offsetTop + screenGrid.scrollTop) - 10,
     }
-
-    console.log(document.querySelector('#screen-grid').scrollTop)
 
     this.changeCord(id, cord, size)
   }
