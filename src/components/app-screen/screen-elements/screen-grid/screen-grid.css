@@ -1,4 +1,4 @@
-@import '../../../../styleGuide.css';
+@import url("../../../../styleGuide.css");
 
 #screen-grid-wrapper {
   border-radius: var(--borderRadius);

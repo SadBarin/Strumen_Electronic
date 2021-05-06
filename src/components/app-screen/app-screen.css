@@ -1,4 +1,4 @@
-@import '../../styleGuide.css';
+@import url("../../styleGuide.css");
 
 #app-screen {
   background: var(--screenBackground);

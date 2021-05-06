@@ -1,0 +1,27 @@
+:root {
+  /*~~~Colors~~~*/
+  --verySoftOrange:      hsl(20, 79%, 83%);
+  --mostlyWhite:         hsl(0, 0%, 98%);
+  --mostlyWhiteOpacity5: hsla(0, 0%, 98%, 0.5);
+
+  --borderRadius: 7px;
+  --safeIndent:   10px;
+  --blur:         7px;
+
+  /*~~~AppScreen~~~*/
+  --screenBackground: var(--verySoftOrange);
+
+  /*~~~ScreenGrid~~~*/
+  --gridBackground: var(--mostlyWhite);
+
+  /*~~~ScreenPanel~~~*/
+  --panelBackground: var(--mostlyWhiteOpacity5);
+
+  /*~~~ScreenInfo~~~*/
+  --infoBackground: var(--mostlyWhiteOpacity5);
+
+  --zIndexLevel1: 10000;
+  --zIndexLevel2: 1000;
+  --zIndexLevel3: 100;
+  --zIndexLevel4: 0;
+}

@@ -1,4 +1,4 @@
-@import "../../../../styleGuide.css";
+@import url("../../../../styleGuide.css");
 
 #screen-panel {
   background: var(--panelBackground);
