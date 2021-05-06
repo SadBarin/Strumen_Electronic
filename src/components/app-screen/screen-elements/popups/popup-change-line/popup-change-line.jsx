@@ -34,6 +34,21 @@ function PopupChangeLine({ hidden, closePopup, handleChangeElementValue, current
                  onChange={(e) => handleChangeElementValue(e, 'height')}/>
         </label>
 
+        <label htmlFor="color" className="change-gate-select">
+          Цвет:
+          <select id="color"
+                  onChange={(e) => handleChangeElementValue(e, 'backgroundColor')}
+                  value={currentElement.backgroundColor}>
+            <option value="hsl(290, 100%, 73%)">Фуксия</option>
+            <option value="hsl(250, 100%, 73%)">Фиолетовый</option>
+            <option value="hsl(220, 100%, 73%)">Синий</option>
+            <option value="hsl(200, 100%, 73%)">Голубой</option>
+            <option value="hsl(120, 100%, 73%)">Зелёный</option>
+            <option value="hsl(40, 100%, 73%)">Жёлтый</option>
+            <option value="hsl(20, 100%, 73%)">Ораньжевый</option>
+          </select>
+        </label>
+
         {/*<label htmlFor="degree" className='change-line-number'>*/}
         {/*  Наклон:*/}
         {/*  <input type="number"*/}

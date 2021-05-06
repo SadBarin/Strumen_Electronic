@@ -199,6 +199,7 @@ class AppScreen extends Component {
       width: 150,
       height: 5,
       active: 'false',
+      backgroundColor: 'hsl(20, 100%, 73%)',
       pin: false
     };
   }

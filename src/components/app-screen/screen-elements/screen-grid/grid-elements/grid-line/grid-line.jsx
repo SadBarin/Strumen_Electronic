@@ -12,13 +12,15 @@ function GridLine(props) {
     handleSetNewCord
   } = props;
 
-  const {id, x, y, pin, width, height, active} = item;
+  const {id, x, y, pin, width, height, active, backgroundColor} = item;
 
   const LogicElementSelect = (selectStatus) ? ' active' : '';
   const LogicElementPin = (pin) ? ' pin' : '';
   const LogicElementActive = (active === 'true') ? ' on' : '';
 
   const style = {
+    background: backgroundColor,
+
     width: width + 'px',
     height: height + 'px'
   }

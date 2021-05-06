@@ -1,7 +1,6 @@
 @import url('../../../../../../styleGuide.css');
 
 .grid-line {
-  background: var(--lineBackground);
   border-radius: var(--borderRadius);
 
   z-index: var(--zIndexLevel4);
