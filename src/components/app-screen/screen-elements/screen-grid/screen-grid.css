@@ -1,6 +1,7 @@
 @import url("../../../../styleGuide.css");
 
 #screen-grid-wrapper {
+  background: var(--gridWrapperBackground);
   border-radius: var(--borderRadius);
 
   margin: var(--safeIndent);
@@ -9,6 +10,23 @@
   height: 900px;
 
   overflow: auto;
+}
+
+#screen-grid-wrapper::-webkit-scrollbar {
+  background-color: var(--scrollBarBackground);
+
+  width: var(--scrollBarSize);
+  height: var(--scrollBarSize);
+}
+
+#screen-grid-wrapper::-webkit-scrollbar-thumb {
+  border-radius: var(--borderRadius);
+  background-color: var(--thumbBackground);
+}
+
+#screen-grid-wrapper::-webkit-scrollbar-track {
+  border-radius: var(--borderRadius);
+  background-color: var(--trackBackground);
 }
 
 #screen-grid {

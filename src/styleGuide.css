@@ -1,18 +1,27 @@
 :root {
   /*~~~Colors~~~*/
-  --verySoftOrange:      hsl(20, 79%, 83%);
-  --mostlyWhite:         hsl(0, 0%, 98%);
-  --mostlyWhiteOpacity5: hsla(0, 0%, 98%, 0.5);
+  --verySoftOrange:           hsl(20, 79%, 83%);
+  --mostlyWhite:              hsl(0, 0%, 98%);
+  --mostlyWhiteOpacity5:      hsla(0, 0%, 98%, 0.5);
+  --mostlyDesaturatedDarkRed: hsl(6, 15%, 58%);
+  --veryLightOrange:          hsl(18, 100%, 73%);
 
   --borderRadius: 7px;
   --safeIndent:   10px;
   --blur:         7px;
 
+  /*~~~Scroll~~~*/
+  --scrollBarSize:       10px;
+  --scrollBarBackground: var(--verySoftOrange);
+  --thumbBackground:     var(--mostlyDesaturatedDarkRed);
+  --trackBackground:     var(--verySoftOrange);
+
   /*~~~AppScreen~~~*/
   --screenBackground: var(--verySoftOrange);
 
   /*~~~ScreenGrid~~~*/
-  --gridBackground: var(--mostlyWhite);
+  --gridBackground:        var(--mostlyWhite);
+  --gridWrapperBackground: var(--verySoftOrange);
 
   /*~~~ScreenPanel~~~*/
   --panelBackground: var(--mostlyWhiteOpacity5);

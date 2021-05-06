@@ -6,7 +6,7 @@
   border-radius: var(--borderRadius);
 
   padding: 1rem;
-  margin: var(--safeIndent);
+  margin: calc(var(--safeIndent) + var(--scrollBarSize));
 
   position: fixed;
   bottom: 0;
