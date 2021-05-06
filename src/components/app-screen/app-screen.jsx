@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import './app-screen.css';
 
-import PopupInfo from "./screen-elements/screen-grid/grid-elements/popups/popup-info";
-import PopupChangeGate from "./screen-elements/screen-grid/grid-elements/popups/popup-change-gate";
-import PopupChangeLine from "./screen-elements/screen-grid/grid-elements/popups/popup-change-line";
-import PopupChangeText from "./screen-elements/screen-grid/grid-elements/popups/popup-change-text";
-import PopupUpload from "./screen-elements/screen-grid/grid-elements/popups/popup-upload";
+import PopupInfo from "./screen-elements/popups/popup-info";
+import PopupChangeGate from "./screen-elements/popups/popup-change-gate";
+import PopupChangeLine from "./screen-elements/popups/popup-change-line";
+import PopupChangeText from "./screen-elements/popups/popup-change-text";
+import PopupUpload from "./screen-elements/popups/popup-upload";
 
 import ScreenPanel from "./screen-elements/screen-panel/screen-panel";
 import ScreenGrid from "./screen-elements/screen-grid";
@@ -16,8 +16,8 @@ class AppScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      widthGrid: 2400,
-      heightGrid: 1900,
+      widthGrid: 2000,
+      heightGrid: 1000,
 
       gridList: [],
       selectElementID: 0,
@@ -191,6 +191,8 @@ class AppScreen extends Component {
       id: Date.now(),
       group: 'gate',
       type: 'AND',
+      width: 90,
+      height: 50,
       x,
       y,
       turn: 0,

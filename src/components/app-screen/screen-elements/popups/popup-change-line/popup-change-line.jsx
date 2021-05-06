@@ -8,6 +8,16 @@ function PopupChangeLine({ hidden, closePopup, handleChangeElementValue, current
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки линии">
       <div className="change-line-container">
+        <label htmlFor="active" className="change-line-select">
+          Активен:
+          <select id="active"
+                  onChange={(e) => handleChangeElementValue(e, 'active')}
+                  value={currentElement.active}>
+            <option value={true}>Да</option>
+            <option value={false}>Нет</option>
+          </select>
+        </label>
+
         <label htmlFor="width" className='change-line-number'>
           Длина:
           <input type="number"
@@ -24,31 +34,21 @@ function PopupChangeLine({ hidden, closePopup, handleChangeElementValue, current
                  onChange={(e) => handleChangeElementValue(e, 'height')}/>
         </label>
 
-        <label htmlFor="degree" className='change-line-number'>
-          Наклон:
-          <input type="number"
-                 id="degree"
-                 value={currentElement.turn}
-                 onChange={(e) => handleChangeElementValue(e, 'turn')}
-          />
-        </label>
+        {/*<label htmlFor="degree" className='change-line-number'>*/}
+        {/*  Наклон:*/}
+        {/*  <input type="number"*/}
+        {/*         id="degree"*/}
+        {/*         value={currentElement.turn}*/}
+        {/*         onChange={(e) => handleChangeElementValue(e, 'turn')}*/}
+        {/*  />*/}
+        {/*</label>*/}
 
-        <div className="degree-preset-container">
-          <button className="button-preset" value={0} onClick={(e) => handleChangeElementValue(e, 'turn')}>0  — </button>
-          <button className="button-preset" value={45} onClick={(e) => handleChangeElementValue(e, 'turn')}>45  \ </button>
-          <button className="button-preset" value={90} onClick={(e) => handleChangeElementValue(e, 'turn')}>90  | </button>
-          <button className="button-preset" value={135} onClick={(e) => handleChangeElementValue(e, 'turn')}>135 / </button>
-        </div>
-
-        <label htmlFor="active" className="change-line-select">
-          Активен:
-          <select id="active"
-                  onChange={(e) => handleChangeElementValue(e, 'active')}
-                  value={currentElement.active}>
-            <option value={true}>Да</option>
-            <option value={false}>Нет</option>
-          </select>
-        </label>
+        {/*<div className="degree-preset-container">*/}
+        {/*  <button className="button-preset" value={0} onClick={(e) => handleChangeElementValue(e, 'turn')}>0  — </button>*/}
+        {/*  <button className="button-preset" value={45} onClick={(e) => handleChangeElementValue(e, 'turn')}>45  \ </button>*/}
+        {/*  <button className="button-preset" value={90} onClick={(e) => handleChangeElementValue(e, 'turn')}>90  | </button>*/}
+        {/*  <button className="button-preset" value={135} onClick={(e) => handleChangeElementValue(e, 'turn')}>135 / </button>*/}
+        {/*</div>*/}
 
         <label htmlFor="cordX" className='change-gate-number'>
           Коорд. X:

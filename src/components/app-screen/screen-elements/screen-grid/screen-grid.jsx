@@ -19,7 +19,7 @@ function ScreenGrid(props) {
 
   const gridListGate = items.map((item) => {
     if (item.group === 'gate') {
-      const {id, type, x, y, turn, pin} = item;
+      const {id, type, x, y, width, height, pin} = item;
       const elementSelectStatus = (selectElementID === id)
 
       return (
@@ -28,7 +28,8 @@ function ScreenGrid(props) {
             id={id}
             logic={type}
             x={x} y={y}
-            turn={turn}
+            width={width}
+            height={height}
             pin={pin}
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={selectElementID}

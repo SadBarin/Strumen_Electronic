@@ -8,7 +8,7 @@ function LogicGate(props) {
   const {
     id, logic,
     x, y, pin,
-    turn,
+    width, height,
     onClickSetSelectElementID,
     selectStatus,
     handleSetNewCord
@@ -22,9 +22,9 @@ function LogicGate(props) {
          onClick={() => { onClickSetSelectElementID(id); }}
          onTouchStart={() => { onClickSetSelectElementID(id); }}
     >
-      <Draggable position={{x, y}} disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width: 100, height: 60})}}>
+      <Draggable position={{x, y}} disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width, height})}}>
         <div className="logic-gate-wrapper">
-          <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`}>
+          <div className={`logic-gate${LogicElementSelect}${LogicElementPin}`} style={{width, height}}>
             <div className="logic-gate-content">
               <span>{logic}</span>
             </div>
@@ -41,6 +41,8 @@ LogicGate.propTypes = {
   logic: PropTypes.string.isRequired,
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
+  width: PropTypes.any.isRequired,
+  height: PropTypes.any.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
   handleSetNewCord: PropTypes.func.isRequired
 };

@@ -1,6 +1,6 @@
 {
   "name": "strumen_electric",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
