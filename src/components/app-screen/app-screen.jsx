@@ -19,6 +19,10 @@ class AppScreen extends Component {
       widthGrid: 2000,
       heightGrid: 1000,
 
+      emergenceCordX: 200,
+      emergenceCordY: 200,
+      emergenceBalancer: 35,
+
       gridList: [],
       selectElementID: 0,
 
@@ -38,10 +42,12 @@ class AppScreen extends Component {
 
   getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
-  getRandomCoordinates() {
+  getOffsetCoordinates = () => this.getRandomNumber(0, this.state.emergenceBalancer)
+
+  getCoordinates() {
     return {
-      x: this.getRandomNumber(100, this.state.widthGrid - 100),
-      y: this.getRandomNumber(100, this.state.heightGrid - 100),
+      x: this.state.emergenceCordX + this.getOffsetCoordinates(),
+      y: this.state.emergenceCordY + this.getOffsetCoordinates(),
     };
   }
 
@@ -120,6 +126,9 @@ class AppScreen extends Component {
     let element = this.getElementGridList(id)
     element.id = Date.now()
 
+    element.x += this.getOffsetCoordinates()
+    element.y += this.getOffsetCoordinates()
+
     list.push(element)
     this.setState({gridList: list})
     this.setState({selectElementID: element.id})
@@ -187,7 +196,7 @@ class AppScreen extends Component {
       textColor: 'hsl(0, 0%, 98%)',
     };
   }
-  handleAddGate = () => this.handleAdd(this.createGate(this.getRandomCoordinates()))
+  handleAddGate = () => this.handleAdd(this.createGate(this.getCoordinates()))
 
   createLine = (obj) => {
     const {x, y} = obj;
@@ -203,7 +212,7 @@ class AppScreen extends Component {
       pin: false
     };
   }
-  handleAddLine = () => this.handleAdd(this.createLine(this.getRandomCoordinates()))
+  handleAddLine = () => this.handleAdd(this.createLine(this.getCoordinates()))
 
   createText = (obj) => {
     const {x, y} = obj;
@@ -217,7 +226,7 @@ class AppScreen extends Component {
       pin: false
     };
   }
-  handleAddText = () => this.handleAdd(this.createText(this.getRandomCoordinates()))
+  handleAddText = () => this.handleAdd(this.createText(this.getCoordinates()))
 
   handleSave() {
     let a = document.createElement("a");

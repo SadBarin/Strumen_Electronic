@@ -11,8 +11,8 @@ function PopupChangeGate({hidden, closePopup, currentElement, handleChangeElemen
         <label htmlFor="logic" className="change-gate-select">
           Логика:
           <select id="logic"
-                  onChange={(e) => handleChangeElementValue(e, 'type')}
-                  value={currentElement.type}>
+                  onChange={(e) => handleChangeElementValue(e, 'content')}
+                  value={currentElement.content}>
             <option value="1">1</option>
             <option value="0">0</option>
             <option value="NOT">NOT</option>
@@ -52,7 +52,7 @@ function PopupChangeGate({hidden, closePopup, currentElement, handleChangeElemen
             <option value="hsl(200, 100%, 73%)">Голубой</option>
             <option value="hsl(120, 100%, 73%)">Зелёный</option>
             <option value="hsl(40, 100%, 73%)">Жёлтый</option>
-            <option value="hsl(20, 100%, 73%)">Ораньжевый</option>
+            <option value="hsl(20, 100%, 73%)">Оранжевый</option>
             <option value="hsl(252, 3%, 62%)">Серый</option>
             <option value="hsl(0, 0%, 0%)">Чёрный</option>
           </select>

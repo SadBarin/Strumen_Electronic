@@ -26,7 +26,7 @@ function PopupChangeText({hidden, closePopup, handleChangeElementValue, currentE
             <option value="hsl(200, 100%, 73%)">Голубой</option>
             <option value="hsl(120, 100%, 73%)">Зелёный</option>
             <option value="hsl(40, 100%, 73%)">Жёлтый</option>
-            <option value="hsl(20, 100%, 73%)">Ораньжевый</option>
+            <option value="hsl(20, 100%, 73%)">Оранжевый</option>
             <option value="hsl(252, 3%, 62%)">Серый</option>
             <option value="hsl(0, 0%, 0%)">Чёрный</option>
           </select>

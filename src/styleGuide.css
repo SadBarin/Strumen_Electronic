@@ -17,7 +17,7 @@
   --scrollBarSize:       10px;
   --scrollBarBackground: var(--verySoftOrange);
   --thumbBackground:     var(--mostlyDesaturatedDarkRed);
-  --trackBackground:     var(--verySoftOrange);
+  --trackBackground:     var(--mostlyWhite);
 
   /*~~~AppScreen~~~*/
   --screenBackground: var(--verySoftOrange);

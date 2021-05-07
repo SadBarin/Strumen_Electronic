@@ -2,7 +2,6 @@
 
 #screen-grid-wrapper {
   background: var(--gridWrapperBackground);
-  border-radius: var(--borderRadius);
 
   margin: var(--safeIndent);
 
@@ -25,18 +24,16 @@
 }
 
 #screen-grid-wrapper::-webkit-scrollbar-track {
-  border-radius: var(--borderRadius);
   background-color: var(--trackBackground);
 }
 
 #screen-grid {
-  border-radius: var(--borderRadius);
-
   position: relative;
+
+  overflow: hidden;
 }
 
 #grid-background {
-  border-radius: var(--borderRadius);
   background: var(--gridBackground);
 
   width: 100%;
