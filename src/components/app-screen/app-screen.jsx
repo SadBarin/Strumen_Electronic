@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './app-screen.css';
 
+import PopupGridSettings from "./screen-elements/popups/popup-grid-settings";
 import PopupInfo from "./screen-elements/popups/popup-info";
 import PopupChangeGate from "./screen-elements/popups/popup-change-gate";
 import PopupChangeLine from "./screen-elements/popups/popup-change-line";
@@ -16,6 +17,12 @@ class AppScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: 'Струмень_' + (
+        new Date().toLocaleDateString().replace(/\//gi, '-')
+        + '_' +
+        new Date().toLocaleTimeString().replace(/:/gi, '-'))
+          .replace(/\s/gi, '_'),
+
       widthGrid: 2000,
       heightGrid: 1000,
 
@@ -26,6 +33,7 @@ class AppScreen extends Component {
       gridList: [],
       selectElementID: 0,
 
+      hiddenPopupGridSettings: false,
       hiddenPopupGate: true,
       hiddenPopupLine: true,
       hiddenPopupInfo: true,
@@ -143,6 +151,13 @@ class AppScreen extends Component {
     this.setState({gridList: list})
   }
 
+  handleChangeStateValue(value, key) {
+    const localState = this.state
+
+    localState[key] = value
+    this.setState({localState})
+  }
+
   changeCord(id, cord, size) {
     const balance = 10
 
@@ -231,10 +246,9 @@ class AppScreen extends Component {
   handleSave() {
     let a = document.createElement("a");
     let file = new Blob([JSON.stringify(this.state)], {type: 'application/json'});
-    let date = new Date().toLocaleString()
 
     a.href = URL.createObjectURL(file);
-    a.download = `Strumen${date}.json`;
+    a.download = `${this.state.name}.json`;
     a.click();
   }
 
@@ -251,8 +265,11 @@ class AppScreen extends Component {
 
   render() {
     const {
+      name,
       widthGrid,
       heightGrid,
+      emergenceCordX,
+      emergenceCordY,
 
       gridList,
       selectElementID,
@@ -263,6 +280,7 @@ class AppScreen extends Component {
       hiddenListLine,
       hiddenListText,
 
+      hiddenPopupGridSettings,
       hiddenPopupGate,
       hiddenPopupInfo,
       hiddenPopupLine,
@@ -275,6 +293,17 @@ class AppScreen extends Component {
     return (
       <main id="app-screen">
         <section className="screen-popups-container">
+          <PopupGridSettings hidden={hiddenPopupGridSettings}
+                           name={name}
+                           widthGrid={widthGrid}
+                           heightGrid={heightGrid}
+                           emergenceCordX={emergenceCordX}
+                           emergenceCordY={emergenceCordY}
+
+                           closePopup={() => this.handleToggle('hiddenPopupGridSettings')}
+                           handleChangeStateValue={this.handleChangeStateValue.bind(this)}
+          />
+
           <PopupInfo hidden={hiddenPopupInfo}
                      closePopup={() => this.handleToggle('hiddenPopupInfo')}
           />
@@ -311,6 +340,7 @@ class AppScreen extends Component {
           onClickHiddenDevStatus={() => this.handleToggle('hiddenDevInfo')}
           onClickSave={() => this.handleSave()}
 
+          onClickToggleHiddenPopupGridSettings={() => this.handleToggle('hiddenPopupGridSettings')}
           onClickToggleHiddenPopupInfo={() => this.handleToggle('hiddenPopupInfo')}
           onClickToggleHiddenPopupGate={() => this.handleToggle('hiddenPopupGate')}
           onClickToggleHiddenPopupLine={() => this.handleToggle('hiddenPopupLine')}

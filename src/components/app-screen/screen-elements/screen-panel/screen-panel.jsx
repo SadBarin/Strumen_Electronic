@@ -37,6 +37,7 @@ class ScreenPanel extends Component {
       onClickToggleHiddenPopupLine,
       onClickToggleHiddenPopupText,
       onClickToggleHiddenPopupUpload,
+      onClickToggleHiddenPopupGridSettings,
 
       onClickAddGate,
       onClickAddLine,
@@ -67,6 +68,7 @@ class ScreenPanel extends Component {
           onClickToggleHiddenPopupLine={onClickToggleHiddenPopupLine}
           onClickToggleHiddenPopupText={onClickToggleHiddenPopupText}
           onClickToggleHiddenPopupUpload={onClickToggleHiddenPopupUpload}
+          onClickToggleHiddenPopupGridSettings={onClickToggleHiddenPopupGridSettings}
 
           onClickAddGate={onClickAddGate}
           onClickAddLine={onClickAddLine}
@@ -100,6 +102,7 @@ ScreenPanel.propTypes = {
   onClickToggleHiddenPopupLine: PropTypes.func.isRequired,
   onClickToggleHiddenPopupText: PropTypes.func.isRequired,
   onClickToggleHiddenPopupUpload: PropTypes.func.isRequired,
+  onClickToggleHiddenPopupGridSettings: PropTypes.func.isRequired,
 
   onClickAddGate: PropTypes.func.isRequired,
   onClickAddLine: PropTypes.func.isRequired,

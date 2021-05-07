@@ -14,6 +14,7 @@ function PanelList({
  onClickToggleHiddenListAdd,
  onClickSave,
 
+ onClickToggleHiddenPopupGridSettings,
  onClickToggleHiddenPopupInfo,
  onClickToggleHiddenPopupGate,
  onClickToggleHiddenPopupLine,
@@ -33,10 +34,11 @@ function PanelList({
     <div className={`panel-list ${display}`}>
       <div className="list-main list">
         <IconButton icon="bi-plus-circle" onClick={onClickToggleHiddenListAdd}/>
-        <IconButton icon="bi-flag" onClick={onClickHiddenDevStatus}/>
+        <IconButton icon="bi-gear" onClick={onClickToggleHiddenPopupGridSettings}/>
         <IconButton icon="bi-save" onClick={onClickSave}/>
         <IconButton icon="bi-upload" onClick={onClickToggleHiddenPopupUpload}/>
         <IconButton icon="bi-arrow-counterclockwise" onClick={() => window.location.reload()}/>
+        <IconButton icon="bi-flag" onClick={onClickHiddenDevStatus}/>
         <IconButton icon="bi-info-circle" onClick={onClickToggleHiddenPopupInfo}/>
       </div>
 
@@ -86,6 +88,7 @@ PanelList.propTypes = {
   onClickHiddenDevStatus: PropTypes.func.isRequired,
   onClickSave: PropTypes.func.isRequired,
 
+  onClickToggleHiddenPopupGridSettings: PropTypes.func.isRequired,
   onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
   onClickToggleHiddenPopupGate: PropTypes.func.isRequired,
   onClickToggleHiddenPopupLine: PropTypes.func.isRequired,
