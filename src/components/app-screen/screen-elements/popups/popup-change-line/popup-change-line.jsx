@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupChangeLine({ hidden, closePopup, handleChangeElementValue, currentElement }) {
+function PopupChangeLine({ hidden, closePopup, handleChangeElementValue, currentElement, widthGrid, heightGrid }) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки линии">
-      <div className="change-line-container">
-        <label htmlFor="active" className="change-line-select">
+      <div className="popup-content-container">
+        <label htmlFor="active">
           Активен:
           <select id="active"
                   onChange={(e) => handleChangeElementValue(e, 'active')}
@@ -18,23 +18,27 @@ function PopupChangeLine({ hidden, closePopup, handleChangeElementValue, current
           </select>
         </label>
 
-        <label htmlFor="width" className='change-line-number'>
-          Длина:
-          <input type="number"
+        <label htmlFor="width" className="label-range">
+          Ширина: {currentElement.width}
+          <input type="range"
+                 min={5}
+                 max={300}
                  id="width"
                  value={currentElement.width}
                  onChange={(e) => handleChangeElementValue(e, 'width')}/>
         </label>
 
-        <label htmlFor="height" className='change-line-number'>
-          Толщина:
-          <input type="number"
+        <label htmlFor="height" className="label-range">
+          Высота: {currentElement.height}
+          <input type="range"
+                 min={5}
+                 max={300}
                  id="height"
                  value={currentElement.height}
                  onChange={(e) => handleChangeElementValue(e, 'height')}/>
         </label>
 
-        <label htmlFor="color" className="change-gate-select">
+        <label htmlFor="color">
           Цвет:
           <select id="color"
                   onChange={(e) => handleChangeElementValue(e, 'backgroundColor')}
@@ -51,32 +55,22 @@ function PopupChangeLine({ hidden, closePopup, handleChangeElementValue, current
           </select>
         </label>
 
-        {/*<label htmlFor="degree" className='change-line-number'>*/}
-        {/*  Наклон:*/}
-        {/*  <input type="number"*/}
-        {/*         id="degree"*/}
-        {/*         value={currentElement.turn}*/}
-        {/*         onChange={(e) => handleChangeElementValue(e, 'turn')}*/}
-        {/*  />*/}
-        {/*</label>*/}
-
-        {/*<div className="degree-preset-container">*/}
-        {/*  <button className="button-preset" value={0} onClick={(e) => handleChangeElementValue(e, 'turn')}>0  — </button>*/}
-        {/*  <button className="button-preset" value={45} onClick={(e) => handleChangeElementValue(e, 'turn')}>45  \ </button>*/}
-        {/*  <button className="button-preset" value={90} onClick={(e) => handleChangeElementValue(e, 'turn')}>90  | </button>*/}
-        {/*  <button className="button-preset" value={135} onClick={(e) => handleChangeElementValue(e, 'turn')}>135 / </button>*/}
-        {/*</div>*/}
-
-        <label htmlFor="cordX" className='change-gate-number'>
-          Коорд. X:
-          <input type="number" id="cordX"
+        <label htmlFor="cordX" className="label-range">
+          Коорд. X: {currentElement.x}
+          <input type="range"
+                 id="cordX"
+                 min={100}
+                 max={widthGrid - 100}
                  onChange={(e) => handleChangeElementValue(e, 'x')}
                  value={currentElement.x}/>
         </label>
 
-        <label htmlFor="cordY" className='change-gate-number'>
-          Коорд. Y:
-          <input type="number" id="cordY"
+        <label htmlFor="cordY" className="label-range">
+          Коорд. Y: {currentElement.y}
+          <input type="range"
+                 id="cordY"
+                 min={100}
+                 max={heightGrid - 100}
                  onChange={(e) => handleChangeElementValue(e, 'y')}
                  value={currentElement.y}/>
         </label>
@@ -86,6 +80,8 @@ function PopupChangeLine({ hidden, closePopup, handleChangeElementValue, current
 }
 
 PopupChangeLine.propTypes = {
+  heightGrid: PropTypes.number.isRequired,
+  widthGrid: PropTypes.number.isRequired,
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
   currentElement: PropTypes.object.isRequired,

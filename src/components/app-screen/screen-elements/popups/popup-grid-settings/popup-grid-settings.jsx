@@ -7,8 +7,8 @@ import PopupWrapper from '../popup-wrapper';
 function PopupGridSettings({hidden, closePopup, handleChangeStateValue, name, widthGrid, heightGrid, emergenceCordX, emergenceCordY}) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки проекта">
-      <div className="grid-settings-container">
-        <label htmlFor="name" className='change-line-number'>
+      <div className="popup-content-container">
+        <label htmlFor="name">
           Имя проекта:
           <input type="text"
                  id="name"
@@ -16,34 +16,42 @@ function PopupGridSettings({hidden, closePopup, handleChangeStateValue, name, wi
                  onChange={(event) => handleChangeStateValue(event.target.value, 'name')}/>
         </label>
 
-        <label htmlFor="width" className='change-line-number'>
-          Ширина:
-          <input type="number"
+        <label htmlFor="width" className='label-range'>
+          Ширина: {widthGrid}
+          <input type="range"
                  id="width"
+                 min={500}
+                 max={3000}
                  value={widthGrid}
                  onChange={(event) => handleChangeStateValue(event.target.value, 'widthGrid')}/>
         </label>
 
-        <label htmlFor="height" className='change-line-number'>
-          Высота:
-          <input type="number"
+        <label htmlFor="height" className='label-range'>
+          Высота: {heightGrid}
+          <input type="range"
                  id="height"
+                 min={500}
+                 max={3000}
                  value={heightGrid}
                  onChange={(event) => handleChangeStateValue(event.target.value, 'heightGrid')}/>
         </label>
 
-        <label htmlFor="cordX" className='change-line-number'>
-          Корд. появл. X:
-          <input type="number"
+        <label htmlFor="cordX" className='label-range'>
+          Корд. появл. X: {emergenceCordX}
+          <input type="range"
                  id="cordX"
+                 min={100}
+                 max={widthGrid - 100}
                  value={emergenceCordX}
                  onChange={(event) => handleChangeStateValue(Number(event.target.value), 'emergenceCordX')}/>
         </label>
 
-        <label htmlFor="cordY" className='change-line-number'>
-          Корд. появл. Y:
-          <input type="cordY"
-                 id="height"
+        <label htmlFor="cordY" className='label-range'>
+          Корд. появл. Y: {emergenceCordY}
+          <input type="range"
+                 id="cordY"
+                 min={100}
+                 max={heightGrid - 100}
                  value={emergenceCordY}
                  onChange={(event) => handleChangeStateValue(Number(event.target.value), 'emergenceCordY')}/>
         </label>

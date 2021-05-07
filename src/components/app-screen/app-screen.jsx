@@ -220,8 +220,8 @@ class AppScreen extends Component {
       id: Date.now(),
       x, y,
       group: 'line',
-      width: 150,
-      height: 5,
+      width: 170,
+      height: 7,
       active: 'false',
       backgroundColor: 'hsl(20, 100%, 73%)',
       pin: false
@@ -309,18 +309,24 @@ class AppScreen extends Component {
           />
 
           <PopupChangeGate hidden={hiddenPopupGate}
+                           widthGrid={widthGrid}
+                           heightGrid={heightGrid}
                            closePopup={() => this.handleToggle('hiddenPopupGate')}
                            handleChangeElementValue={this.handleChangeElementValue.bind(this)}
                            currentElement={currentElement}
           />
 
           <PopupChangeLine hidden={hiddenPopupLine}
+                           widthGrid={widthGrid}
+                           heightGrid={heightGrid}
                            closePopup={() => this.handleToggle('hiddenPopupLine')}
                            handleChangeElementValue={this.handleChangeElementValue.bind(this)}
                            currentElement={currentElement}
           />
 
           <PopupChangeText hidden={hiddenPopupText}
+                           widthGrid={widthGrid}
+                           heightGrid={heightGrid}
                            closePopup={() => this.handleToggle('hiddenPopupText')}
                            handleChangeElementValue={this.handleChangeElementValue.bind(this)}
                            currentElement={currentElement}

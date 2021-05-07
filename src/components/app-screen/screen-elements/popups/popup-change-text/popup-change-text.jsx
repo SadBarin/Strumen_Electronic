@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupChangeText({hidden, closePopup, handleChangeElementValue, currentElement}) {
+function PopupChangeText({hidden, closePopup, handleChangeElementValue, currentElement, widthGrid, heightGrid}) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки комментария">
-      <div className="change-text-container">
-        <label htmlFor="content" className='change-text'>
+      <div className="popup-content-container">
+        <label htmlFor="content">
           Текст:
           <input type="text" id="content"
                  onChange={(e) => handleChangeElementValue(e, 'content')}
                  value={currentElement.content}/>
         </label>
 
-        <label htmlFor="color" className="change-gate-select">
+        <label htmlFor="color">
           Цвет:
           <select id="color"
                   onChange={(e) => handleChangeElementValue(e, 'textColor')}
@@ -32,32 +32,22 @@ function PopupChangeText({hidden, closePopup, handleChangeElementValue, currentE
           </select>
         </label>
 
-        {/*<label htmlFor="degree" className='change-line-number'>*/}
-        {/*  Наклон:*/}
-        {/*  <input type="number"*/}
-        {/*         id="degree"*/}
-        {/*         value={currentElement.turn}*/}
-        {/*         onChange={(e) => handleChangeElementValue(e, 'turn')}*/}
-        {/*  />*/}
-        {/*</label>*/}
-
-        {/*<div className="degree-preset-container">*/}
-        {/*  <button className="button-preset" value={0} onClick={(e) => handleChangeElementValue(e, 'turn')}>0  — </button>*/}
-        {/*  <button className="button-preset" value={45} onClick={(e) => handleChangeElementValue(e, 'turn')}>45  \ </button>*/}
-        {/*  <button className="button-preset" value={90} onClick={(e) => handleChangeElementValue(e, 'turn')}>90  | </button>*/}
-        {/*  <button className="button-preset" value={135} onClick={(e) => handleChangeElementValue(e, 'turn')}>135 / </button>*/}
-        {/*</div>*/}
-
-        <label htmlFor="cordX" className='change-gate-number'>
-          Коорд. X:
-          <input type="number" id="cordX"
+        <label htmlFor="cordX" className="label-range">
+          Коорд. X: {currentElement.x}
+          <input type="range"
+                 id="cordX"
+                 min={100}
+                 max={widthGrid - 100}
                  onChange={(e) => handleChangeElementValue(e, 'x')}
                  value={currentElement.x}/>
         </label>
 
-        <label htmlFor="cordY" className='change-gate-number'>
-          Коорд. Y:
-          <input type="number" id="cordY"
+        <label htmlFor="cordY" className="label-range">
+          Коорд. Y: {currentElement.y}
+          <input type="range"
+                 id="cordY"
+                 min={100}
+                 max={heightGrid - 100}
                  onChange={(e) => handleChangeElementValue(e, 'y')}
                  value={currentElement.y}/>
         </label>
@@ -67,6 +57,8 @@ function PopupChangeText({hidden, closePopup, handleChangeElementValue, currentE
 }
 
 PopupChangeText.propTypes = {
+  heightGrid: PropTypes.number.isRequired,
+  widthGrid: PropTypes.number.isRequired,
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
   currentElement: PropTypes.object.isRequired,

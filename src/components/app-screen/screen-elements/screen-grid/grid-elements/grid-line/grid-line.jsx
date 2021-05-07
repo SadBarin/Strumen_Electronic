@@ -31,7 +31,7 @@ function GridLine(props) {
          onTouchStart={() => { onClickSetSelectElementID(id); }}
     >
 
-      <Draggable position={{ x, y }}
+      <Draggable position={{ x: Number(x), y: Number(y) }}
                  disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width, height})}}>
         <div className="grid-line-wrapper">
           <div className={`grid-line${LogicElementSelect}${LogicElementPin}${LogicElementActive}`}

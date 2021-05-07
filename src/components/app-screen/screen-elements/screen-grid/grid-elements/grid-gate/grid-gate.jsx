@@ -26,7 +26,7 @@ function GridGate(props) {
          onClick={() => { onClickSetSelectElementID(id); }}
          onTouchStart={() => { onClickSetSelectElementID(id); }}
     >
-      <Draggable position={{x, y}} disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width, height})}}>
+      <Draggable position={{x: Number(x), y: Number(y)}} disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width, height})}}>
         <div className={`grid-gate${LogicElementSelect}${LogicElementPin}`} style={style}>
           <div className="grid-gate-input"/>
 

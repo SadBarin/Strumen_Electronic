@@ -1,5 +1,6 @@
 :root {
   /*~~~Colors~~~*/
+  --softOrange:               hsl(17, 59%, 66%);
   --verySoftOrange:           hsl(20, 79%, 83%);
   --mostlyWhite:              hsl(0, 0%, 98%);
   --mostlyWhiteOpacity5:      hsla(0, 0%, 98%, 0.5);
@@ -12,6 +13,14 @@
   --blur:         7px;
   --transition:   0.5s;
   --filter:       drop-shadow(6px 7px 8px var(--verySoftOrange)) sepia(40%) opacity(0.8);
+
+  /*~~~Popup~~~*/
+  --popupOverlayBackground: var(--mostlyWhiteOpacity5);
+  --popupWrapperBackground: var(--veryLightOrange);
+  --popupHeaderBackground:  var(--mostlyDesaturatedDarkRed);
+  --popupFontColor:         var(--mostlyWhite);
+  --popupInputBackground:   var(--softOrange);
+  --popupInputBoxShadow:    0 0 0 0.20rem var(--mostlyDesaturatedDarkRed);
 
   /*~~~Scroll~~~*/
   --scrollBarSize:       10px;
@@ -59,6 +68,7 @@
   --textPinBorder:       var(--mostlyDesaturatedDarkRed) 3px solid;
   --textPinColor:        var(--mostlyWhite);
 
+  --zIndexLevel0: 100000;
   --zIndexLevel1: 10000;
   --zIndexLevel2: 1000;
   --zIndexLevel3: 100;
