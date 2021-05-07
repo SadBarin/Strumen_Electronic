@@ -1,15 +1,17 @@
+@import url('../../../../styleGuide.css');
+
 .icon-button {
-  background: hsl(9, 13%, 47%);
+  background: var(--mostlyDesaturatedDarkRed);
   border: none;
-  border-radius: 7px;
-  font-size: 1.4rem;
+  border-radius: var(--borderRadius);
+  font-size: var(--buttonFontSize);
 
-  color: hsl(0, 0%, 100%);
+  color: var(--buttonFontColor);
 
-  width: 2.8rem;
-  height: 2.8rem;
+  width: var(--buttonWidth);
+  height: var(--buttonHeigth);
 
-  z-index: 1000;
+  z-index: var(--zIndexLevel2);
 
   cursor: pointer;
 }
@@ -28,7 +30,8 @@
 
 .icon-button:focus,
 .icon-button:hover {
-  box-shadow: 0 0 0 0.20rem rgba(137, 110, 105, 0.5);
+  /*box-shadow: 0 0 0 0.20rem rgba(137, 110, 105, 0.5);*/
+  filter: var(--filter)
 }
 
 .icon-button:active {

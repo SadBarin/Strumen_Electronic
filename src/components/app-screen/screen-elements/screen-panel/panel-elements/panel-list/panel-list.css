@@ -1,9 +1,10 @@
+@import url('../../../../../../styleGuide.css');
+
 .panel-list {
-  border-radius: 7px;
-  opacity: 0.8;
+  border-radius: var(--borderRadius);
+  opacity: var(--listOpacity);
 
   text-align: center;
-  color: hsl(0, 0%, 100%);
 
   width: inherit;
   height: fit-content;
@@ -20,7 +21,7 @@
 }
 
 .list-additional {
-  opacity: 0.8;
+  opacity: var(--listAdditinalOpacity);
 }
 
 .panel-list .list > * {

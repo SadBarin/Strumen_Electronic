@@ -33,10 +33,10 @@ function PanelList({
     <div className={`panel-list ${display}`}>
       <div className="list-main list">
         <IconButton icon="bi-plus-circle" onClick={onClickToggleHiddenListAdd}/>
-        <IconButton icon="bi-arrow-counterclockwise" onClick={() => window.location.reload()}/>
         <IconButton icon="bi-flag" onClick={onClickHiddenDevStatus}/>
         <IconButton icon="bi-save" onClick={onClickSave}/>
         <IconButton icon="bi-upload" onClick={onClickToggleHiddenPopupUpload}/>
+        <IconButton icon="bi-arrow-counterclockwise" onClick={() => window.location.reload()}/>
         <IconButton icon="bi-info-circle" onClick={onClickToggleHiddenPopupInfo}/>
       </div>
 

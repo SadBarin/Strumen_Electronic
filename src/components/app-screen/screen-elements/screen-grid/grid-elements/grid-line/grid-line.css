@@ -1,10 +1,14 @@
 @import url('../../../../../../styleGuide.css');
 
+.grid-line-wrapper {
+  padding: 0.5rem;
+  cursor: all-scroll;
+}
+
 .grid-line {
   border-radius: var(--borderRadius);
 
   z-index: var(--zIndexLevel4);
-  cursor: all-scroll;
 }
 
 .grid-line.pin{

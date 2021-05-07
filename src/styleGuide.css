@@ -7,7 +7,7 @@
   --mostlyDesaturatedDarkRed: hsl(6, 15%, 58%);
   --moderateRed:              hsla(5, 63%, 56%, 0.8);
 
-  --borderRadius: 10px;
+  --borderRadius: 12px;
   --safeIndent:   10px;
   --blur:         7px;
   --transition:   0.5s;
@@ -22,12 +22,23 @@
   /*~~~AppScreen~~~*/
   --screenBackground: var(--verySoftOrange);
 
+  /*~~~ButtonIcon~~~*/
+  --buttonBackground: var(--mostlyDesaturatedDarkRed);
+  --buttonFontSize:   1.4rem;
+  --buttonFontColor:  var(--mostlyWhite);
+  --buttonWidth:      2.8rem;
+  --buttonHeigth:     2.8rem;
+
   /*~~~ScreenGrid~~~*/
   --gridBackground:        var(--mostlyWhite);
   --gridWrapperBackground: var(--verySoftOrange);
 
   /*~~~ScreenPanel~~~*/
   --panelBackground: var(--mostlyWhiteOpacity5);
+
+  /*~~~PanelList~~~*/
+  --listOpacity: 0.9;
+  --listAdditinalOpacity: 0.8;
 
   /*~~~ScreenInfo~~~*/
   --infoBackground: var(--mostlyWhiteOpacity5);

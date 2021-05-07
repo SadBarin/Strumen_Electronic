@@ -33,9 +33,11 @@ function GridLine(props) {
 
       <Draggable position={{ x, y }}
                  disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width, height})}}>
-        <div className={`grid-line${LogicElementSelect}${LogicElementPin}${LogicElementActive}`}
-             style={style}
-             title={active}/>
+        <div className="grid-line-wrapper">
+          <div className={`grid-line${LogicElementSelect}${LogicElementPin}${LogicElementActive}`}
+               style={style}
+               title={active}/>
+        </div>
       </Draggable>
     </div>
   );
