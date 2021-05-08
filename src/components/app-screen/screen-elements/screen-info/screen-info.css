@@ -5,7 +5,7 @@
   backdrop-filter: blur(var(--blur));
   border-radius: var(--borderRadius);
 
-  padding: 1rem;
+  padding: 0.2rem 0.2rem 0.4rem 0.4rem;
   margin: calc(var(--safeIndent));
   margin-bottom: calc(var(--safeIndent) + var(--scrollBarSize));
 
@@ -19,6 +19,7 @@
 #screen-info > p {
   color: var(--infoColor);
   font-size: 0.8rem;
+  line-height: 0.8rem;
 
   margin: 0;
 }
