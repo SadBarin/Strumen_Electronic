@@ -46,11 +46,12 @@
   cursor: all-scroll;
 }
 
-.grid-gate.active{
+.grid-gate.active,
+.grid-gate:hover {
   filter: var(--gateActiveFilter);
 }
 
-.grid-gate.pin .grid-gate-content{
+.grid-gate.pin .grid-gate-content {
   background: var(--gatePinBackground) !important;
   cursor: no-drop;
 }

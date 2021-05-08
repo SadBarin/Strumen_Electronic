@@ -9,12 +9,12 @@ import GridText from "./grid-elements/grid-text";
 function ScreenGrid(props) {
   const {items, onClickSetSelectElementID, selectElementID, handleSetNewCord, widthGrid, heightGrid, backgroundGrid} = props;
 
-  let wrapperWidth = window.innerWidth - 20;
-  let wrapperHeight = window.innerHeight - 20;
+  let wrapperWidth = window.innerWidth - 16;
+  let wrapperHeight = window.innerHeight - 16;
 
   window.addEventListener(`resize`, event => {
-    wrapperWidth = window.innerWidth - 20;
-    wrapperHeight = window.innerHeight - 20;
+    wrapperWidth = window.innerWidth - 16;
+    wrapperHeight = window.innerHeight - 16;
   }, false);
 
   const gridListGate = items.map((item) => {

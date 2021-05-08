@@ -187,8 +187,8 @@ class AppScreen extends Component {
     const screenGrid = document.querySelector('#screen-grid-wrapper')
 
     const cord = {
-      x: (element.getBoundingClientRect().left - element.offsetLeft + screenGrid.scrollLeft) - 10,
-      y: (element.getBoundingClientRect().top - element.offsetTop + screenGrid.scrollTop) - 10,
+      x: (element.getBoundingClientRect().left - element.offsetLeft + screenGrid.scrollLeft) - 5,
+      y: (element.getBoundingClientRect().top - element.offsetTop + screenGrid.scrollTop) - 5,
     }
 
     this.changeCord(id, cord, size)
@@ -226,7 +226,7 @@ class AppScreen extends Component {
       x, y,
       group: 'line',
       width: 170,
-      height: 7,
+      height: 8,
       active: 'false',
       backgroundColor: 'hsl(20, 100%, 73%)',
       pin: false

@@ -9,8 +9,8 @@
   --moderateRed:              hsla(5, 63%, 56%, 0.8);
 
   --borderRadius: 12px;
-  --safeIndent:   10px;
-  --blur:         7px;
+  --safeIndent:   8px;
+  --blur:         8px;
   --transition:   0.5s;
   --filter:       drop-shadow(6px 7px 8px var(--verySoftOrange)) sepia(40%) opacity(0.8);
 
@@ -23,7 +23,7 @@
   --popupInputBoxShadow:    0 0 0 0.20rem var(--mostlyDesaturatedDarkRed);
 
   /*~~~Scroll~~~*/
-  --scrollBarSize:       10px;
+  --scrollBarSize:       8px;
   --scrollBarBackground: var(--verySoftOrange);
   --thumbBackground:     var(--mostlyDesaturatedDarkRed);
   --trackBackground:     var(--mostlyWhite);
@@ -33,10 +33,10 @@
 
   /*~~~ButtonIcon~~~*/
   --buttonBackground: var(--mostlyDesaturatedDarkRed);
-  --buttonFontSize:   1.4rem;
+  --buttonFontSize:   1.3rem;
   --buttonFontColor:  var(--mostlyWhite);
-  --buttonWidth:      2.8rem;
-  --buttonHeigth:     2.8rem;
+  --buttonWidth:      2.3rem;
+  --buttonHeigth:     2.3rem;
 
   /*~~~ScreenGrid~~~*/
   --gridBackground:        var(--mostlyWhite);

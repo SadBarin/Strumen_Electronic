@@ -7,10 +7,27 @@
 
   width: 100vw;
   height: 100vh;
+  padding: 0;
 
   overflow: hidden;
 }
 
 .screen-popups-container {
   z-index: var(--zIndexLevel1);
+}
+
+*::-webkit-scrollbar {
+  background-color: var(--scrollBarBackground);
+
+  width: var(--scrollBarSize);
+  height: var(--scrollBarSize);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: var(--borderRadius);
+  background-color: var(--thumbBackground);
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--trackBackground);
 }

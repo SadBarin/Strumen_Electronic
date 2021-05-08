@@ -18,11 +18,12 @@
   margin: 0;
 }
 
-.grid-text.active{
+.grid-text.active,
+.grid-text.hover {
   filter: var(--textActiveFilter)
 }
 
-.grid-text.pin{
+.grid-text.pin {
   border: var(--textPinBorder);
 
   cursor: no-drop;

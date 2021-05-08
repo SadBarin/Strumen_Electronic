@@ -6,8 +6,8 @@
   border-radius: var(--borderRadius);
 
   padding: 1rem;
-  margin: calc(var(--safeIndent) + var(--scrollBarSize));
-  margin-bottom: calc(var(--safeIndent) + var(--scrollBarSize) + 10px);
+  margin: calc(var(--safeIndent));
+  margin-bottom: calc(var(--safeIndent) + var(--scrollBarSize));
 
   position: fixed;
   bottom: 0;
@@ -17,6 +17,8 @@
 }
 
 #screen-info > p {
+  font-size: 0.8rem;
+
   margin: 0;
 }
 
