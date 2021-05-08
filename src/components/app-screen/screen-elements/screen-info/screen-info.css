@@ -17,6 +17,7 @@
 }
 
 #screen-info > p {
+  color: var(--infoColor);
   font-size: 0.8rem;
 
   margin: 0;

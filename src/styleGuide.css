@@ -19,24 +19,24 @@
   --popupWrapperBackground: var(--veryLightOrange);
   --popupHeaderBackground:  var(--mostlyDesaturatedDarkRed);
   --popupFontColor:         var(--mostlyWhite);
+  --popupOpacity:           0.8;
   --popupInputBackground:   var(--softOrange);
   --popupInputBoxShadow:    0 0 0 0.20rem var(--mostlyDesaturatedDarkRed);
 
   /*~~~Scroll~~~*/
   --scrollBarSize:       8px;
-  --scrollBarBackground: var(--verySoftOrange);
+  --scrollBarBackground: var(--mostlyWhite);
   --thumbBackground:     var(--mostlyDesaturatedDarkRed);
   --trackBackground:     var(--mostlyWhite);
 
   /*~~~AppScreen~~~*/
-  --screenBackground: var(--verySoftOrange);
+  --screenBackground: var(--mostlyWhite);
 
   /*~~~ButtonIcon~~~*/
-  --buttonBackground: var(--mostlyDesaturatedDarkRed);
   --buttonFontSize:   1.3rem;
-  --buttonFontColor:  var(--mostlyWhite);
-  --buttonWidth:      2.3rem;
-  --buttonHeigth:     2.3rem;
+  --buttonFontColor:  var(--mostlyDesaturatedDarkRed);
+  --buttonWidth:      2.2rem;
+  --buttonHeigth:     2.2rem;
 
   /*~~~ScreenGrid~~~*/
   --gridBackground:        var(--mostlyWhite);
@@ -50,6 +50,7 @@
   --listAdditinalOpacity: 0.8;
 
   /*~~~ScreenInfo~~~*/
+  --infoColor:      var(--mostlyDesaturatedDarkRed);
   --infoBackground: var(--mostlyWhiteOpacity5);
 
   /*~~~GridGate~~~*/

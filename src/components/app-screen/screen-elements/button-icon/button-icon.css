@@ -1,7 +1,7 @@
 @import url('../../../../styleGuide.css');
 
 .icon-button {
-  background: var(--mostlyDesaturatedDarkRed);
+  background: transparent;
   border: none;
   border-radius: var(--borderRadius);
   font-size: var(--buttonFontSize);

@@ -2,7 +2,6 @@
 
 #app-screen {
   background: var(--screenBackground);
-
   position: relative;
 
   width: 100vw;

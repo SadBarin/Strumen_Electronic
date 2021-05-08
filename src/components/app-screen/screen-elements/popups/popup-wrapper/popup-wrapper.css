@@ -35,6 +35,7 @@
   max-height: 90%;
 
   overflow: auto;
+  opacity: var(--popupOpacity);
 
   position: absolute;
 
