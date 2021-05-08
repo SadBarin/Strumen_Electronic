@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import AppScreen from './components/app-screen';
 
-import './registerServiceWorker'
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
+serviceWorkerRegistration.register();
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
