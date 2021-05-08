@@ -1,6 +1,6 @@
 {
   "name": "strumen_electric",
-  "version": "0.11.4",
+  "version": "0.11.5",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -17,7 +17,8 @@
     "react-dom": "^17.0.1",
     "react-draggable": "^4.4.3",
     "react-scripts": "4.0.3",
-    "react-test-renderer": "^17.0.2"
+    "react-test-renderer": "^17.0.2",
+    "register-service-worker": "^1.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
