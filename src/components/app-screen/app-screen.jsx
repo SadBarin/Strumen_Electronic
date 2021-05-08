@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './app-screen.css';
 
+import packageApp from '../../../package.json'
+
 import PopupGridSettings from "./screen-elements/popups/popup-grid-settings";
 import PopupInfo from "./screen-elements/popups/popup-info";
 import PopupChangeGate from "./screen-elements/popups/popup-change-gate";
@@ -23,8 +25,11 @@ class AppScreen extends Component {
         new Date().toLocaleTimeString().replace(/:/gi, '-'))
           .replace(/\s/gi, '_'),
 
+
+      version: packageApp.version,
       widthGrid: 2000,
       heightGrid: 1000,
+      backgroundGrid: 'hsl(0, 0%, 98%)',
 
       emergenceCordX: 200,
       emergenceCordY: 200,
@@ -40,7 +45,7 @@ class AppScreen extends Component {
       hiddenPopupText: true,
       hiddenPopupUpload: true,
 
-      hiddenDevInfo: false,
+      hiddenDevInfo: true,
       hiddenListAdd: true,
       hiddenListGate: true,
       hiddenListLine: true,
@@ -266,10 +271,12 @@ class AppScreen extends Component {
   render() {
     const {
       name,
+      backgroundGrid,
       widthGrid,
       heightGrid,
       emergenceCordX,
       emergenceCordY,
+      emergenceBalancer,
 
       gridList,
       selectElementID,
@@ -297,8 +304,10 @@ class AppScreen extends Component {
                            name={name}
                            widthGrid={widthGrid}
                            heightGrid={heightGrid}
+                           backgroundGrid={backgroundGrid}
                            emergenceCordX={emergenceCordX}
                            emergenceCordY={emergenceCordY}
+                           emergenceBalancer={emergenceBalancer}
 
                            closePopup={() => this.handleToggle('hiddenPopupGridSettings')}
                            handleChangeStateValue={this.handleChangeStateValue.bind(this)}
@@ -366,6 +375,7 @@ class AppScreen extends Component {
         <ScreenGrid
           widthGrid={widthGrid}
           heightGrid={heightGrid}
+          backgroundGrid={backgroundGrid}
 
           selectElementID={selectElementID}
           items={gridList}

@@ -7,7 +7,7 @@ import GridLine from "./grid-elements/grid-line";
 import GridText from "./grid-elements/grid-text";
 
 function ScreenGrid(props) {
-  const {items, onClickSetSelectElementID, selectElementID, handleSetNewCord, widthGrid, heightGrid} = props;
+  const {items, onClickSetSelectElementID, selectElementID, handleSetNewCord, widthGrid, heightGrid, backgroundGrid} = props;
 
   let wrapperWidth = window.innerWidth - 20;
   let wrapperHeight = window.innerHeight - 20;
@@ -73,6 +73,7 @@ function ScreenGrid(props) {
   })
 
   const style = {
+    background: backgroundGrid,
     width: `${widthGrid}px`,
     height: `${heightGrid}px`
   }
@@ -80,7 +81,7 @@ function ScreenGrid(props) {
   return (
     <div id="screen-grid-wrapper" style={{width: wrapperWidth, height: wrapperHeight}}>
       <div id="screen-grid" style={style}>
-        <div id="grid-background"
+        <div id="grid-background" style={{background: backgroundGrid}}
              onClick={() => onClickSetSelectElementID(0)}
              onTouchStart={() => onClickSetSelectElementID(0)}
         />
@@ -100,7 +101,8 @@ ScreenGrid.propTypes = {
   handleSetNewCord: PropTypes.func.isRequired,
 
   widthGrid: PropTypes.any.isRequired,
-  heightGrid: PropTypes.any.isRequired
+  heightGrid: PropTypes.any.isRequired,
+  backgroundGrid: PropTypes.any.isRequired
 };
 
 export default ScreenGrid;

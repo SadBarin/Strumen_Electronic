@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupGridSettings({hidden, closePopup, handleChangeStateValue, name, widthGrid, heightGrid, emergenceCordX, emergenceCordY}) {
+function PopupGridSettings({hidden, closePopup, handleChangeStateValue, name, widthGrid, heightGrid, emergenceCordX, emergenceCordY, emergenceBalancer}) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки проекта">
       <div className="popup-content-container">
@@ -55,6 +55,16 @@ function PopupGridSettings({hidden, closePopup, handleChangeStateValue, name, wi
                  value={emergenceCordY}
                  onChange={(event) => handleChangeStateValue(Number(event.target.value), 'emergenceCordY')}/>
         </label>
+
+        <label htmlFor="balancer" className='label-range'>
+          Число смещен: {emergenceBalancer}
+          <input type="range"
+                 id="balancer"
+                 min={0}
+                 max={100}
+                 value={emergenceBalancer}
+                 onChange={(event) => handleChangeStateValue(Number(event.target.value), 'emergenceBalancer')}/>
+        </label>
       </div>
     </PopupWrapper>
   );
@@ -66,6 +76,7 @@ PopupGridSettings.propTypes = {
   heightGrid: PropTypes.any.isRequired,
   emergenceCordX: PropTypes.any.isRequired,
   emergenceCordY: PropTypes.any.isRequired,
+  emergenceBalancer: PropTypes.any.isRequired,
 
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,

@@ -1,7 +1,7 @@
 @import url("../../../../styleGuide.css");
 
 #screen-grid-wrapper {
-  background: var(--gridWrapperBackground);
+  /*background: var(--gridWrapperBackground);*/
 
   margin: var(--safeIndent);
 
@@ -34,7 +34,7 @@
 }
 
 #grid-background {
-  background: var(--gridBackground);
+  /*background: var(--gridBackground);*/
 
   width: 100%;
   height: 100%;

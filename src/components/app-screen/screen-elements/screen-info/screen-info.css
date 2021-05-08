@@ -7,6 +7,7 @@
 
   padding: 1rem;
   margin: calc(var(--safeIndent) + var(--scrollBarSize));
+  margin-bottom: calc(var(--safeIndent) + var(--scrollBarSize) + 10px);
 
   position: fixed;
   bottom: 0;
