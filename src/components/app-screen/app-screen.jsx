@@ -366,6 +366,9 @@ class AppScreen extends Component {
           onClickAddLine={() => this.handleAddLine()}
           onClickAddText={() => this.handleAddText()}
 
+          selectElement={this.getElementGridList(selectElementID)}
+
+          hiddenDevInfo={hiddenDevInfo}
           hiddenListAdd={hiddenListAdd}
           hiddenListGate={hiddenListGate}
           hiddenListLine={hiddenListLine}

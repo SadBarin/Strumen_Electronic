@@ -3,7 +3,7 @@
   --softOrange:               hsl(17, 59%, 66%);
   --verySoftOrange:           hsl(20, 79%, 83%);
   --mostlyWhite:              hsl(0, 0%, 98%);
-  --mostlyWhiteOpacity5:      hsla(0, 0%, 98%, 0.5);
+  --mostlyWhiteOpacity7:      hsla(0, 0%, 98%, 0.7);
   --veryLightOrange:          hsl(18, 100%, 73%);
   --mostlyDesaturatedDarkRed: hsl(6, 15%, 58%);
   --moderateRed:              hsla(5, 63%, 56%, 0.8);
@@ -15,7 +15,7 @@
   --filter:       drop-shadow(6px 7px 8px var(--verySoftOrange)) sepia(40%) opacity(0.8);
 
   /*~~~Popup~~~*/
-  --popupOverlayBackground: var(--mostlyWhiteOpacity5);
+  --popupOverlayBackground: var(--mostlyWhiteOpacity7);
   --popupWrapperBackground: var(--veryLightOrange);
   --popupHeaderBackground:  var(--mostlyDesaturatedDarkRed);
   --popupFontColor:         var(--mostlyWhite);
@@ -33,17 +33,18 @@
   --screenBackground: var(--mostlyWhite);
 
   /*~~~ButtonIcon~~~*/
-  --buttonFontSize:   1.3rem;
-  --buttonFontColor:  var(--mostlyDesaturatedDarkRed);
-  --buttonWidth:      2.2rem;
-  --buttonHeigth:     2.2rem;
+  --buttonFontSize:        1.2rem;
+  --buttonFontColor:       var(--mostlyDesaturatedDarkRed);
+  --buttonActiveFontColor: var(--veryLightOrange);
+  --buttonWidth:           2.2rem;
+  --buttonHeigth:          2.2rem;
 
   /*~~~ScreenGrid~~~*/
   --gridBackground:        var(--mostlyWhite);
   --gridWrapperBackground: var(--verySoftOrange);
 
   /*~~~ScreenPanel~~~*/
-  --panelBackground: var(--mostlyWhiteOpacity5);
+  --panelBackground: var(--mostlyWhiteOpacity7);
 
   /*~~~PanelList~~~*/
   --listOpacity: 0.9;
@@ -51,7 +52,7 @@
 
   /*~~~ScreenInfo~~~*/
   --infoColor:      var(--mostlyDesaturatedDarkRed);
-  --infoBackground: var(--mostlyWhiteOpacity5);
+  --infoBackground: var(--mostlyWhiteOpacity7);
 
   /*~~~GridGate~~~*/
   --gateInputBackground: var(--verySoftOrange);
@@ -64,7 +65,7 @@
   --lineOnBackground:    var(--moderateRed);
 
   /*~~~GridText~~~*/
-  --textBackground:      var(--mostlyWhiteOpacity5);
+  --textBackground:      var(--mostlyWhiteOpacity7);
   --textActiveFilter:    var(--filter);
   --textPinBorder:       var(--mostlyDesaturatedDarkRed) 3px solid;
   --textPinColor:        var(--mostlyWhite);

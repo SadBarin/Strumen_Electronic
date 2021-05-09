@@ -31,6 +31,7 @@ class ScreenPanel extends Component {
       onClickHiddenDevStatus,
       onClickToggleHiddenListAdd,
       onClickSave,
+      selectElement,
 
       onClickToggleHiddenPopupInfo,
       onClickToggleHiddenPopupGate,
@@ -43,6 +44,7 @@ class ScreenPanel extends Component {
       onClickAddLine,
       onClickAddText,
 
+      hiddenDevInfo,
       hiddenListAdd,
       hiddenListGate,
       hiddenListLine,
@@ -51,10 +53,11 @@ class ScreenPanel extends Component {
 
     return (
       <div id="screen-panel">
-        <IconButton icon="bi-list" onClick={() => this.handleClickButton()}/>
+        <IconButton icon="bi-list" active={panelVisible} onClick={() => this.handleClickButton()}/>
 
         <PanelList
           display={panelVisible ? '' : ' panel-hidden'}
+          selectElement={selectElement}
 
           onClickToggleHiddenListAdd={onClickToggleHiddenListAdd}
           onClickChangeRemoveStatus={onClickChangeRemoveStatus}
@@ -74,6 +77,7 @@ class ScreenPanel extends Component {
           onClickAddLine={onClickAddLine}
           onClickAddText={onClickAddText}
 
+          hiddenDevInfo={hiddenDevInfo}
           hiddenListAdd={hiddenListAdd}
           hiddenListGate={hiddenListGate}
           hiddenListLine={hiddenListLine}
@@ -90,6 +94,7 @@ ScreenPanel.defaultProps = {
 
 ScreenPanel.propTypes = {
   selectElementID: PropTypes.number,
+  selectElement: PropTypes.any.isRequired,
 
   onClickToggleHiddenListAdd: PropTypes.func.isRequired,
   onClickChangePin: PropTypes.func.isRequired,
@@ -108,6 +113,7 @@ ScreenPanel.propTypes = {
   onClickAddLine: PropTypes.func.isRequired,
   onClickAddText: PropTypes.func.isRequired,
 
+  hiddenDevInfo: PropTypes.bool.isRequired,
   hiddenListAdd: PropTypes.bool.isRequired,
   hiddenListGate: PropTypes.bool.isRequired,
   hiddenListLine: PropTypes.bool.isRequired,

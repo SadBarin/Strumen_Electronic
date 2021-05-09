@@ -6,6 +6,7 @@ import IconButton from '../../../button-icon';
 
 function PanelList({
  display,
+ selectElement,
 
  onClickChangeRemoveStatus,
  onClickChangePin,
@@ -25,6 +26,7 @@ function PanelList({
  onClickAddLine,
  onClickAddText,
 
+ hiddenDevInfo,
  hiddenListAdd,
  hiddenListGate,
  hiddenListLine,
@@ -33,13 +35,16 @@ function PanelList({
   return (
     <div className={`panel-list ${display}`}>
       <div className="list-main list">
-        <IconButton icon="bi-plus-circle" onClick={onClickToggleHiddenListAdd}/>
+        <IconButton icon="bi-plus-circle" active={!hiddenListAdd} onClick={onClickToggleHiddenListAdd}/>
         <IconButton icon="bi-gear" onClick={onClickToggleHiddenPopupGridSettings}/>
         <IconButton icon="bi-save" onClick={onClickSave}/>
         <IconButton icon="bi-upload" onClick={onClickToggleHiddenPopupUpload}/>
-        <IconButton icon="bi-arrow-counterclockwise" onClick={() => window.location.reload()}/>
-        <IconButton icon="bi-flag" onClick={onClickHiddenDevStatus}/>
-        <IconButton icon="bi-info-circle" onClick={onClickToggleHiddenPopupInfo}/>
+        <IconButton icon="bi-flag" active={!hiddenDevInfo} onClick={onClickHiddenDevStatus}/>
+
+        <div className={`list-flag list list-additional ${(hiddenDevInfo)? 'hidden' : ''}`}>
+          <IconButton icon="bi-arrow-counterclockwise" onClick={() => window.location.reload()}/>
+          <IconButton icon="bi-info-circle" onClick={onClickToggleHiddenPopupInfo}/>
+        </div>
       </div>
 
       <div className={`list-add list list-additional ${(hiddenListAdd)? 'hidden' : ''}`}>
@@ -52,21 +57,21 @@ function PanelList({
         <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
         <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
         <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupGate}/>
-        <IconButton icon="bi-pin" onClick={onClickChangePin}/>
+        <IconButton icon="bi-pin" active={selectElement.pin} onClick={onClickChangePin}/>
       </div>
 
       <div className={`list-logic-line list list-additional ${(hiddenListLine)? 'hidden' : ''}`}>
         <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
         <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
         <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupLine}/>
-        <IconButton icon="bi-pin" onClick={onClickChangePin}/>
+        <IconButton icon="bi-pin" active={selectElement.pin} onClick={onClickChangePin}/>
       </div>
 
       <div className={`list-logic-text list list-additional ${(hiddenListText)? 'hidden' : ''}`}>
         <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
         <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
         <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupText}/>
-        <IconButton icon="bi-pin" onClick={onClickChangePin}/>
+        <IconButton icon="bi-pin" active={selectElement.pin} onClick={onClickChangePin}/>
       </div>
     </div>
   );
@@ -80,6 +85,7 @@ PanelList.defaultProps = {
 
 PanelList.propTypes = {
   display: PropTypes.string.isRequired,
+  selectElement: PropTypes.any.isRequired,
 
   onClickToggleHiddenListAdd: PropTypes.func.isRequired,
   onClickChangeRemoveStatus: PropTypes.func,
@@ -99,6 +105,7 @@ PanelList.propTypes = {
   onClickAddLine: PropTypes.func,
   onClickAddText: PropTypes.func,
 
+  hiddenDevInfo: PropTypes.bool.isRequired,
   hiddenListAdd: PropTypes.bool.isRequired,
   hiddenListGate: PropTypes.bool.isRequired,
   hiddenListLine: PropTypes.bool.isRequired,

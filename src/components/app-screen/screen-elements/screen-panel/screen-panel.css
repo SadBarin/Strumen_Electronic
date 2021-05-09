@@ -9,7 +9,6 @@
   width: fit-content;
   height: fit-content;
   margin: var(--safeIndent);
-  padding: 0.4rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

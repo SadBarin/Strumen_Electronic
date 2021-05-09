@@ -24,6 +24,10 @@
   opacity: 0.5;
 }
 
+.icon-button.active{
+  color: var(--buttonActiveFontColor)
+}
+
 .icon-button.bg-transparent {
   background: transparent;
 }
