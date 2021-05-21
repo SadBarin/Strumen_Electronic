@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import GridGate from "./grid-elements/grid-gate";
 import GridLine from "./grid-elements/grid-line";
 import GridText from "./grid-elements/grid-text";
+import GridBox from "./grid-elements/grid-box";
 
 function ScreenGrid(props) {
   const {items, onClickSetSelectElementID, selectElementID, handleSetNewCord, widthGrid, heightGrid, backgroundGrid} = props;
@@ -72,6 +73,24 @@ function ScreenGrid(props) {
     }
   })
 
+  const gridLayoutBox = items.map((item) => {
+    if (item.group === 'box') {
+      const elementSelectStatus = (selectElementID === item.id)
+
+      return (
+        <div className="screen-grid-element" key={item.id}>
+          <GridBox
+            item={item}
+            onClickSetSelectElementID={onClickSetSelectElementID}
+            selectElementID={selectElementID}
+            selectStatus={elementSelectStatus}
+            handleSetNewCord={handleSetNewCord}
+          />
+        </div>
+      );
+    }
+  })
+
   const style = {
     background: backgroundGrid,
     width: `${widthGrid}px`,
@@ -89,6 +108,7 @@ function ScreenGrid(props) {
         {gridListGate}
         {gridListLine}
         {gridLayoutText}
+        {gridLayoutBox}
       </div>
     </div>
   );

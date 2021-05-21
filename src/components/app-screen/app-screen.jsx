@@ -49,7 +49,8 @@ class AppScreen extends Component {
       hiddenListAdd: true,
       hiddenListGate: true,
       hiddenListLine: true,
-      hiddenListText: true
+      hiddenListText: true,
+      hiddenListBox: true
     };
   }
 
@@ -58,9 +59,17 @@ class AppScreen extends Component {
   getOffsetCoordinates = () => this.getRandomNumber(0, this.state.emergenceBalancer)
 
   getCoordinates() {
+    let x = this.state.emergenceCordX + this.getOffsetCoordinates()
+    let y = this.state.emergenceCordY + this.getOffsetCoordinates()
+    let width = this.state.widthGrid - 100
+    let height = this.state.heightGrid - 100
+
+    if (x > width) x = width
+    if (y > height) y = height
+
     return {
-      x: this.state.emergenceCordX + this.getOffsetCoordinates(),
-      y: this.state.emergenceCordY + this.getOffsetCoordinates(),
+      x,
+      y
     };
   }
 
@@ -103,14 +112,16 @@ class AppScreen extends Component {
       const element = this.getElementGridList(id)
 
       if (element.group === 'gate' && id !== 0) {
-        this.setState({hiddenListGate: false, hiddenListLine: true, hiddenListText: true});
+        this.setState({hiddenListGate: false, hiddenListLine: true, hiddenListText: true, hiddenListBox: true});
       }else if (element.group === 'line' && id !== 0){
-        this.setState({hiddenListLine: false, hiddenListGate: true, hiddenListText: true});
+        this.setState({hiddenListLine: false, hiddenListGate: true, hiddenListText: true, hiddenListBox: true});
       }else if (element.group === 'text' && id !== 0){
-        this.setState({hiddenListLine: true, hiddenListGate: true, hiddenListText: false});
+        this.setState({hiddenListLine: true, hiddenListGate: true, hiddenListText: false, hiddenListBox: true});
+      }else if (element.group === 'box' && id !== 0){
+        this.setState({hiddenListLine: true, hiddenListGate: true, hiddenListText: true, hiddenListBox: false});
       }
     } else {
-      this.setState({hiddenListGate: true, hiddenListLine: true, hiddenListText: true})
+      this.setState({hiddenListGate: true, hiddenListLine: true, hiddenListText: true, hiddenListBox: true})
     }
   }
 
@@ -139,8 +150,16 @@ class AppScreen extends Component {
     let element = this.getElementGridList(id)
     element.id = Date.now()
 
-    element.x += this.getOffsetCoordinates()
-    element.y += this.getOffsetCoordinates()
+    let x = this.getOffsetCoordinates()
+    let y = this.getOffsetCoordinates()
+    let width = this.state.widthGrid - 80
+    let height = this.state.heightGrid - 60
+
+    element.x += x
+    element.y += y
+
+    if (element.x > width) element.x = width
+    if (element.y > height) element.y = height
 
     list.push(element)
     this.setState({gridList: list})
@@ -216,6 +235,7 @@ class AppScreen extends Component {
       textColor: 'hsl(0, 0%, 98%)',
     };
   }
+
   handleAddGate = () => this.handleAdd(this.createGate(this.getCoordinates()))
 
   createLine = (obj) => {
@@ -232,6 +252,7 @@ class AppScreen extends Component {
       pin: false
     };
   }
+
   handleAddLine = () => this.handleAdd(this.createLine(this.getCoordinates()))
 
   createText = (obj) => {
@@ -247,6 +268,23 @@ class AppScreen extends Component {
     };
   }
   handleAddText = () => this.handleAdd(this.createText(this.getCoordinates()))
+
+  createBox = (obj) => {
+    const {x, y} = obj;
+
+    return {
+      id: Date.now(),
+      x, y,
+      group: 'box',
+      width: 100,
+      height: 100,
+      active: 'false',
+      backgroundColor: 'hsl(20, 100%, 73%)',
+      pin: false
+    };
+  }
+
+  handleAddBox = () => this.handleAdd(this.createBox(this.getCoordinates()))
 
   handleSave() {
     let a = document.createElement("a");
@@ -268,6 +306,24 @@ class AppScreen extends Component {
     }
   }
 
+  onClickIsCollide() {
+    let element1 = this.getElementGridList(this.state.selectElementID)
+    let list = this.state.gridList
+    
+    list.map((element2) => {
+      if(element2.group !== 'box') {
+        if (element1.x < element2.x + element2.width &&
+          element1.x + element1.width > element2.x &&
+          element1.y < element2.y + element2.height &&
+          element1.height + element1.y > element2.y) {
+          list[this.getElementArrayPositionByID(list, element2.id)].pin = true
+        }
+      }
+    })
+
+    this.setState({gridList: list})
+  }
+
   render() {
     const {
       name,
@@ -286,6 +342,7 @@ class AppScreen extends Component {
       hiddenListGate,
       hiddenListLine,
       hiddenListText,
+      hiddenListBox,
 
       hiddenPopupGridSettings,
       hiddenPopupGate,
@@ -365,6 +422,7 @@ class AppScreen extends Component {
           onClickAddGate={() => this.handleAddGate()}
           onClickAddLine={() => this.handleAddLine()}
           onClickAddText={() => this.handleAddText()}
+          onClickAddBox={() => this.handleAddBox()}
 
           selectElement={this.getElementGridList(selectElementID)}
 
@@ -373,6 +431,9 @@ class AppScreen extends Component {
           hiddenListGate={hiddenListGate}
           hiddenListLine={hiddenListLine}
           hiddenListText={hiddenListText}
+          hiddenListBox={hiddenListBox}
+
+          onClickIsCollide={() => this.onClickIsCollide()}
         />
 
         <ScreenGrid

@@ -25,12 +25,16 @@ function PanelList({
  onClickAddGate,
  onClickAddLine,
  onClickAddText,
+ onClickAddBox,
 
  hiddenDevInfo,
  hiddenListAdd,
  hiddenListGate,
  hiddenListLine,
- hiddenListText
+ hiddenListText,
+ hiddenListBox,
+
+ onClickIsCollide
 }) {
   return (
     <div className={`panel-list ${display}`}>
@@ -51,6 +55,7 @@ function PanelList({
         <IconButton icon="bi-file-binary" onClick={onClickAddGate}/>
         <IconButton icon="bi-bezier2" onClick={onClickAddLine}/>
         <IconButton icon="bi-chat-square-text" onClick={onClickAddText}/>
+        <IconButton icon="bi-archive" onClick={onClickAddBox}/>
       </div>
 
       <div className={`list-logic-gates list list-additional ${(hiddenListGate)? 'hidden' : ''}`}>
@@ -72,6 +77,14 @@ function PanelList({
         <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
         <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupText}/>
         <IconButton icon="bi-pin" active={selectElement.pin} onClick={onClickChangePin}/>
+      </div>
+
+      <div className={`list-logic-text list list-additional ${(hiddenListBox)? 'hidden' : ''}`}>
+        <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
+        <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
+        {/*<IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupText}/>*/}
+        <IconButton icon="bi-pin" active={selectElement.pin} onClick={onClickChangePin}/>
+        <IconButton icon="bi-subtract" onClick={onClickIsCollide}/>
       </div>
     </div>
   );
@@ -104,12 +117,16 @@ PanelList.propTypes = {
   onClickAddGate: PropTypes.func,
   onClickAddLine: PropTypes.func,
   onClickAddText: PropTypes.func,
+  onClickAddBox: PropTypes.func,
 
   hiddenDevInfo: PropTypes.bool.isRequired,
   hiddenListAdd: PropTypes.bool.isRequired,
   hiddenListGate: PropTypes.bool.isRequired,
   hiddenListLine: PropTypes.bool.isRequired,
-  hiddenListText: PropTypes.bool.isRequired
+  hiddenListText: PropTypes.bool.isRequired,
+  hiddenListBox: PropTypes.bool.isRequired,
+
+  onClickIsCollide: PropTypes.func.isRequired
 };
 
 export default PanelList;

@@ -1,0 +1,29 @@
+@import url('../../../../../../styleGuide.css');
+
+.grid-box-wrapper {
+  padding: 0.5rem;
+  cursor: all-scroll;
+}
+
+.grid-box {
+  border-radius: var(--borderRadius);
+
+  z-index: var(--zIndexLevel4);
+}
+
+.grid-box.pin {
+  background: var(--linePinBackground) !important;
+
+  z-index: 1;
+
+  cursor: no-drop;
+}
+
+.grid-box.active,
+.grid-box.hover {
+  filter: var(--lineActiveFilter);
+}
+
+.grid-box.on {
+  background: hsla(5, 63%, 56%, 0.8) !important;
+}

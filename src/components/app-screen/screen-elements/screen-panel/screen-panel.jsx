@@ -43,12 +43,16 @@ class ScreenPanel extends Component {
       onClickAddGate,
       onClickAddLine,
       onClickAddText,
+      onClickAddBox,
 
       hiddenDevInfo,
       hiddenListAdd,
       hiddenListGate,
       hiddenListLine,
-      hiddenListText
+      hiddenListText,
+      hiddenListBox,
+
+      onClickIsCollide
     } = this.props;
 
     return (
@@ -76,12 +80,16 @@ class ScreenPanel extends Component {
           onClickAddGate={onClickAddGate}
           onClickAddLine={onClickAddLine}
           onClickAddText={onClickAddText}
+          onClickAddBox={onClickAddBox}
 
           hiddenDevInfo={hiddenDevInfo}
           hiddenListAdd={hiddenListAdd}
           hiddenListGate={hiddenListGate}
           hiddenListLine={hiddenListLine}
           hiddenListText={hiddenListText}
+          hiddenListBox={hiddenListBox}
+
+          onClickIsCollide={onClickIsCollide}
         />
       </div>
     );
@@ -112,12 +120,16 @@ ScreenPanel.propTypes = {
   onClickAddGate: PropTypes.func.isRequired,
   onClickAddLine: PropTypes.func.isRequired,
   onClickAddText: PropTypes.func.isRequired,
+  onClickAddBox: PropTypes.func.isRequired,
 
   hiddenDevInfo: PropTypes.bool.isRequired,
   hiddenListAdd: PropTypes.bool.isRequired,
   hiddenListGate: PropTypes.bool.isRequired,
   hiddenListLine: PropTypes.bool.isRequired,
   hiddenListText: PropTypes.bool.isRequired,
+  hiddenListBox: PropTypes.bool.isRequired,
+
+  onClickIsCollide: PropTypes.func.isRequired
 };
 
 export default ScreenPanel;
