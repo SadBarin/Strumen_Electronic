@@ -55,7 +55,8 @@
   --infoBackground: var(--mostlyWhiteOpacity7);
 
   /*~~~GridGate~~~*/
-  --gateInputBackground: var(--verySoftOrange);
+  --gateOutputActiveBackground: var(--moderateRed);
+  --gateOutputBackground: var(--verySoftOrange);
   --gateActiveFilter:    var(--filter);
   --gatePinBackground: var(--mostlyDesaturatedDarkRed);
 

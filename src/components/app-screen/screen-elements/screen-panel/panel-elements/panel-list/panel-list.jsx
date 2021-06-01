@@ -55,7 +55,7 @@ function PanelList({
         <IconButton icon="bi-file-binary" onClick={onClickAddGate}/>
         <IconButton icon="bi-bezier2" onClick={onClickAddLine}/>
         <IconButton icon="bi-chat-square-text" onClick={onClickAddText}/>
-        <IconButton icon="bi-archive" onClick={onClickAddBox}/>
+        {/*<IconButton icon="bi-archive" onClick={onClickAddBox}/>*/}
       </div>
 
       <div className={`list-logic-gates list list-additional ${(hiddenListGate)? 'hidden' : ''}`}>
@@ -69,6 +69,7 @@ function PanelList({
         <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
         <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
         <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupLine}/>
+        {/*<IconButton icon="bi-subtract" onClick={onClickIsCollide}/>*/}
         <IconButton icon="bi-pin" active={selectElement.pin} onClick={onClickChangePin}/>
       </div>
 

@@ -9,10 +9,11 @@ function GridLine(props) {
     item,
     selectStatus,
     onClickSetSelectElementID,
-    handleSetNewCord
+    handleSetNewCord,
+    onClickIsCollide
   } = props;
 
-  const {id, x, y, pin, width, height, active, backgroundColor} = item;
+  const {id, x, y, pin, width, height, active, backgroundColor, status} = item;
 
   const LogicElementSelect = (selectStatus) ? ' active' : '';
   const LogicElementPin = (pin) ? ' pin' : '';
@@ -25,6 +26,11 @@ function GridLine(props) {
     height: height + 'px'
   }
 
+  function changeCordAndStatus(event) {
+    handleSetNewCord(id, event, {width, height})
+    onClickIsCollide(item)
+  }
+
   return (
     <div className="grid-line-container" key={id}
          onClick={() => { onClickSetSelectElementID(id); }}
@@ -32,9 +38,9 @@ function GridLine(props) {
     >
 
       <Draggable position={{ x: Number(x), y: Number(y) }}
-                 disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width, height})}}>
+                 disabled={pin} onStop={(event) => {changeCordAndStatus(event)}}>
         <div className="grid-line-wrapper">
-          <div className={`grid-line${LogicElementSelect}${LogicElementPin}${LogicElementActive}`}
+          <div className={`grid-line${LogicElementSelect}${LogicElementPin}${LogicElementActive} ${(status)? "on" : ""}`}
                style={style}
                title={active}/>
         </div>
@@ -46,7 +52,8 @@ function GridLine(props) {
 GridLine.propTypes = {
   item: PropTypes.object.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
-  handleSetNewCord: PropTypes.func.isRequired
+  handleSetNewCord: PropTypes.func.isRequired,
+  onClickIsCollide: PropTypes.func.isRequired
 };
 
 export default GridLine;

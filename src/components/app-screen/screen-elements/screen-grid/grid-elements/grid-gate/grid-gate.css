@@ -23,12 +23,16 @@
   transition: filter var(--transition);
 }
 
-.grid-gate-input {
-  background: var(--gateInputBackground);
+.grid-gate-output {
+  background: var(--gateOutputBackground);
   border-radius: var(--borderRadius);
 
   width: 30%;
   height: 100%;
+}
+
+.grid-gate-output.active {
+  background: var(--gateOutputActiveBackground);
 }
 
 .grid-gate-content {

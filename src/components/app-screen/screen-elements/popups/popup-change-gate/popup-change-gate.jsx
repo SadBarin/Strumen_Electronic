@@ -4,24 +4,29 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupChangeGate({hidden, closePopup, currentElement, handleChangeElementValue, heightGrid, widthGrid}) {
+function PopupChangeGate({hidden, closePopup, currentElement, handleChangeElementValue, heightGrid, widthGrid, gateProcessor}) {
+  function changeLogicGate(event) {
+    handleChangeElementValue(event, 'content');
+    gateProcessor(currentElement.id)
+  }
+
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки вентеля">
       <div className="popup-content-container">
         <label htmlFor="logic">
           Логика:
           <select id="logic"
-                  onChange={(e) => handleChangeElementValue(e, 'content')}
+                  onChange={(e) => changeLogicGate(e)}
                   value={currentElement.content}>
             <option value="1">1</option>
             <option value="0">0</option>
-            <option value="NOT">NOT</option>
-            <option value="AND">AND</option>
-            <option value="NAND">NAND</option>
-            <option value="OR">OR</option>
-            <option value="NOR">NOR</option>
-            <option value="XOR">XOR</option>
-            <option value="XNOR">XNOR</option>
+            {/*<option value="NOT">NOT</option>*/}
+            {/*<option value="AND">AND</option>*/}
+            {/*<option value="NAND">NAND</option>*/}
+            {/*<option value="OR">OR</option>*/}
+            {/*<option value="NOR">NOR</option>*/}
+            {/*<option value="XOR">XOR</option>*/}
+            {/*<option value="XNOR">XNOR</option>*/}
           </select>
         </label>
 
@@ -92,7 +97,8 @@ PopupChangeGate.propTypes = {
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
   currentElement: PropTypes.object.isRequired,
-  handleChangeElementValue: PropTypes.func.isRequired
+  handleChangeElementValue: PropTypes.func.isRequired,
+  gateProcessor: PropTypes.func.isRequired
 };
 
 export default PopupChangeGate;

@@ -206,8 +206,8 @@ class AppScreen extends Component {
     const screenGrid = document.querySelector('#screen-grid-wrapper')
 
     const cord = {
-      x: (element.getBoundingClientRect().left - element.offsetLeft + screenGrid.scrollLeft) - 5,
-      y: (element.getBoundingClientRect().top - element.offsetTop + screenGrid.scrollTop) - 5,
+      x: (element.getBoundingClientRect().left - element.offsetLeft + screenGrid.scrollLeft) - 8,
+      y: (element.getBoundingClientRect().top - element.offsetTop + screenGrid.scrollTop) - 8,
     }
 
     this.changeCord(id, cord, size)
@@ -215,76 +215,66 @@ class AppScreen extends Component {
 
   handleAdd(item) {
     this.setState((state) => {
-      return {gridList: [...state.gridList, item]};
-    });
+      return {gridList: [...state.gridList, item]}
+    })
   }
 
-  createGate = (obj) => {
-    const {x, y} = obj;
+  createObjectGrid = (cord, group) => {
+    const {x, y} = cord
 
     return {
       id: Date.now(),
       x, y,
-      group: 'gate',
-      content: 'AND',
-      width: 90,
-      height: 50,
+      group,
       pin: false,
       active: false,
-      backgroundColor: 'hsl(20, 100%, 73%)',
-      textColor: 'hsl(0, 0%, 98%)',
     };
   }
+  handleAddObjectGrid = (constructor) => this.handleAdd(constructor(this.getCoordinates()))
 
-  handleAddGate = () => this.handleAdd(this.createGate(this.getCoordinates()))
+  createGate = (cord) => {
+    let gate = this.createObjectGrid(cord,  'gate')
 
-  createLine = (obj) => {
-    const {x, y} = obj;
+    gate.width = 90
+    gate.height = 50
+    gate.content = '1'
+    gate.status = true
+    gate.backgroundColor = 'hsl(20, 100%, 73%)'
+    gate.textColor = 'hsl(0, 0%, 98%)'
 
-    return {
-      id: Date.now(),
-      x, y,
-      group: 'line',
-      width: 170,
-      height: 8,
-      active: 'false',
-      backgroundColor: 'hsl(20, 100%, 73%)',
-      pin: false
-    };
+    return gate
   }
 
-  handleAddLine = () => this.handleAdd(this.createLine(this.getCoordinates()))
+  createLine = (cord) => {
+    let line = this.createObjectGrid(cord, 'line')
 
-  createText = (obj) => {
-    const {x, y} = obj;
+    line.width = 170
+    line.height = 8
+    line.status = false
+    line.backgroundColor = 'hsl(20, 100%, 73%)'
 
-    return {
-      id: Date.now(),
-      x, y,
-      group: 'text',
-      content: 'Блок комментария',
-      textColor: 'hsl(0, 0%, 0%)',
-      pin: false
-    };
-  }
-  handleAddText = () => this.handleAdd(this.createText(this.getCoordinates()))
-
-  createBox = (obj) => {
-    const {x, y} = obj;
-
-    return {
-      id: Date.now(),
-      x, y,
-      group: 'box',
-      width: 100,
-      height: 100,
-      active: 'false',
-      backgroundColor: 'hsl(20, 100%, 73%)',
-      pin: false
-    };
+    return line
   }
 
-  handleAddBox = () => this.handleAdd(this.createBox(this.getCoordinates()))
+  createText = (cord) => {
+    let text = this.createObjectGrid(cord,  'text')
+
+    text.textColor = 'hsl(0, 0%, 0%)'
+    text.content = 'Блок комментария'
+
+    return text
+  }
+
+  // createBox = (cord) => {
+  //   let box = this.createObjectGrid(cord, 'box')
+  //
+  //   box.width = 200
+  //   box.height = 200
+  //   box.backgroundColor = 'hsl(20, 100%, 73%)'
+  //   box.content = {}
+  //
+  //   return box
+  // }
 
   handleSave() {
     let a = document.createElement("a");
@@ -306,22 +296,55 @@ class AppScreen extends Component {
     }
   }
 
-  onClickIsCollide() {
-    let element1 = this.getElementGridList(this.state.selectElementID)
+  onClickIsCollide(element1, arrayOldest = []) {
+    // let element1 = this.getElementGridList(this.state.selectElementID)
     let list = this.state.gridList
-    
+
     list.map((element2) => {
       if(element2.group !== 'box') {
         if (element1.x < element2.x + element2.width &&
           element1.x + element1.width > element2.x &&
           element1.y < element2.y + element2.height &&
           element1.height + element1.y > element2.y) {
-          list[this.getElementArrayPositionByID(list, element2.id)].pin = true
+            const element1Pos = this.getElementArrayPositionByID(list, element1.id)
+            const element2Pos = this.getElementArrayPositionByID(list, element2.id)
+
+            if (arrayOldest.indexOf(element1.id) === -1 &&
+            arrayOldest.indexOf(element2.id) === -1) {
+              if (element1.group === 'line' && element2.group === 'line') {
+                list[element1Pos].status = element2.status
+                arrayOldest.push(element1.id)
+                arrayOldest.push(element2.id)
+                this.onClickIsCollide(element2, arrayOldest)
+              } else if (element1.group === 'line') {
+                list[element1Pos].status = element2.status
+                arrayOldest.push(element1.id)
+                this.onClickIsCollide(element2, arrayOldest)
+              } else if (element2.group === 'line') {
+                list[element2Pos].status = element1.status
+                arrayOldest.push(element1.id)
+                this.onClickIsCollide(element1, arrayOldest)
+              }
+            }
         }
       }
     })
 
     this.setState({gridList: list})
+  }
+
+  gateProcessor(id) {
+    const list = this.state.gridList
+    const pos = this.getElementArrayPositionByID(list, id)
+    const gate = list[pos]
+
+    if (gate.content === '1') gate.status = true
+    if (gate.content === '0') gate.status = false
+
+    list[pos] = gate
+
+    this.setState({gridList: list})
+    this.onClickIsCollide(gate)
   }
 
   render() {
@@ -380,6 +403,7 @@ class AppScreen extends Component {
                            closePopup={() => this.handleToggle('hiddenPopupGate')}
                            handleChangeElementValue={this.handleChangeElementValue.bind(this)}
                            currentElement={currentElement}
+                           gateProcessor={this.gateProcessor.bind(this)}
           />
 
           <PopupChangeLine hidden={hiddenPopupLine}
@@ -419,10 +443,10 @@ class AppScreen extends Component {
           onClickToggleHiddenPopupText={() => this.handleToggle('hiddenPopupText')}
           onClickToggleHiddenPopupUpload={() => this.handleToggle('hiddenPopupUpload')}
 
-          onClickAddGate={() => this.handleAddGate()}
-          onClickAddLine={() => this.handleAddLine()}
-          onClickAddText={() => this.handleAddText()}
-          onClickAddBox={() => this.handleAddBox()}
+          onClickAddGate={() => this.handleAddObjectGrid(this.createGate)}
+          onClickAddLine={() => this.handleAddObjectGrid(this.createLine)}
+          onClickAddText={() => this.handleAddObjectGrid(this.createText)}
+          onClickAddBox={() => this.handleAddObjectGrid(this.createBox)}
 
           selectElement={this.getElementGridList(selectElementID)}
 
@@ -444,6 +468,7 @@ class AppScreen extends Component {
           selectElementID={selectElementID}
           items={gridList}
           onClickSetSelectElementID={this.handleSetSelectElementID.bind(this)}
+          onClickIsCollide={this.onClickIsCollide.bind(this)}
 
           handleSetNewCord={this.handleSetNewCord.bind(this)}
         />
