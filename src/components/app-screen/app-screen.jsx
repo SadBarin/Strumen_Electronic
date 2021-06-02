@@ -296,37 +296,43 @@ class AppScreen extends Component {
     }
   }
 
-  onClickIsCollide(element1, arrayOldest = []) {
-    // let element1 = this.getElementGridList(this.state.selectElementID)
+  checkCollide(activeElement, passiveElement) {
+    return activeElement.x < passiveElement.x + passiveElement.width &&
+           activeElement.x + activeElement.width > passiveElement.x &&
+           activeElement.y < passiveElement.y + passiveElement.height &&
+           activeElement.height + activeElement.y > passiveElement.y;
+  }
+
+  objectBehaviorForCollide(activeElement) {
     let list = this.state.gridList
 
-    list.map((element2) => {
-      if(element2.group !== 'box') {
-        if (element1.x < element2.x + element2.width &&
-          element1.x + element1.width > element2.x &&
-          element1.y < element2.y + element2.height &&
-          element1.height + element1.y > element2.y) {
-            const element1Pos = this.getElementArrayPositionByID(list, element1.id)
-            const element2Pos = this.getElementArrayPositionByID(list, element2.id)
+    list.map((passiveElement) => {
+      const activeElementPos = this.getElementArrayPositionByID(list, activeElement.id)
+      const passiveElementPos = this.getElementArrayPositionByID(list, passiveElement.id)
 
-            if (arrayOldest.indexOf(element1.id) === -1 &&
-            arrayOldest.indexOf(element2.id) === -1) {
-              if (element1.group === 'line' && element2.group === 'line') {
-                list[element1Pos].status = element2.status
-                arrayOldest.push(element1.id)
-                arrayOldest.push(element2.id)
-                this.onClickIsCollide(element2, arrayOldest)
-              } else if (element1.group === 'line') {
-                list[element1Pos].status = element2.status
-                arrayOldest.push(element1.id)
-                this.onClickIsCollide(element2, arrayOldest)
-              } else if (element2.group === 'line') {
-                list[element2Pos].status = element1.status
-                arrayOldest.push(element1.id)
-                this.onClickIsCollide(element1, arrayOldest)
-              }
-            }
+      if (this.checkCollide(activeElement, passiveElement) && activeElement.id !== passiveElement.id) {
+        console.log('Act: ' , activeElement)
+        console.log('Pas: ' , passiveElement)
+        console.log(' ')
+
+        if (activeElement.group === 'line' && passiveElement.group === 'gate') {
+          list[activeElementPos].status = passiveElement.status
+        } else if (passiveElement.group === 'line' && activeElement.group === 'gate') {
+          list[passiveElementPos].status = activeElement.status
+        } else if (activeElement.group === 'line' && passiveElement.group === 'line') {
+          (passiveElement.status) ?
+            list[activeElementPos].status = true :
+            list[activeElementPos].status = false
         }
+      } else if (
+        this.checkCollide(activeElement, passiveElement) && activeElement.group === 'line' && passiveElement.group !== 'gate' ||
+        this.checkCollide(activeElement, passiveElement) && passiveElement.group === 'line' && activeElement.group !== 'gate'
+      ) {
+        console.log('Act: ' , activeElement)
+        console.log('Pas: ' , passiveElement)
+        console.log(' ')
+
+        list[activeElementPos].status = false
       }
     })
 
@@ -344,7 +350,7 @@ class AppScreen extends Component {
     list[pos] = gate
 
     this.setState({gridList: list})
-    this.onClickIsCollide(gate)
+    this.objectBehaviorForCollide(gate)
   }
 
   render() {
@@ -457,7 +463,7 @@ class AppScreen extends Component {
           hiddenListText={hiddenListText}
           hiddenListBox={hiddenListBox}
 
-          onClickIsCollide={() => this.onClickIsCollide()}
+          objectBehaviorForCollide={() => this.objectBehaviorForCollide()}
         />
 
         <ScreenGrid
@@ -468,7 +474,7 @@ class AppScreen extends Component {
           selectElementID={selectElementID}
           items={gridList}
           onClickSetSelectElementID={this.handleSetSelectElementID.bind(this)}
-          onClickIsCollide={this.onClickIsCollide.bind(this)}
+          objectBehaviorForCollide={this.objectBehaviorForCollide.bind(this)}
 
           handleSetNewCord={this.handleSetNewCord.bind(this)}
         />

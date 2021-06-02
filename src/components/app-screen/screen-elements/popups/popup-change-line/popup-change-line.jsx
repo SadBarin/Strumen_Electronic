@@ -8,15 +8,15 @@ function PopupChangeLine({ hidden, closePopup, handleChangeElementValue, current
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки линии">
       <div className="popup-content-container">
-        <label htmlFor="active">
-          Активен:
-          <select id="active"
-                  onChange={(e) => handleChangeElementValue(e, 'active')}
-                  value={currentElement.active}>
-            <option value={true}>Да</option>
-            <option value={false}>Нет</option>
-          </select>
-        </label>
+        {/*<label htmlFor="active">*/}
+        {/*  Активен:*/}
+        {/*  <select id="active"*/}
+        {/*          onChange={(e) => handleChangeElementValue(e, 'active')}*/}
+        {/*          value={currentElement.status}>*/}
+        {/*    <option value={true}>Да</option>*/}
+        {/*    <option value={false}>Нет</option>*/}
+        {/*  </select>*/}
+        {/*</label>*/}
 
         <label htmlFor="width" className="label-range">
           Ширина: {currentElement.width}

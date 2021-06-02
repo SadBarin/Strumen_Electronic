@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
 
 function GridGate(props) {
-  const {item, onClickSetSelectElementID, selectStatus, handleSetNewCord, onClickIsCollide} = props;
+  const {item, onClickSetSelectElementID, selectStatus, handleSetNewCord, objectBehaviorForCollide} = props;
   const {id, content, x, y, width, height, pin, backgroundColor, textColor, status} = item;
 
   const LogicElementSelect = (selectStatus) ? ' active' : '';
@@ -23,7 +23,7 @@ function GridGate(props) {
 
   function changeCordAndStatus(event) {
     handleSetNewCord(id, event, {width, height})
-    onClickIsCollide(item)
+    objectBehaviorForCollide(item)
   }
 
   return (
@@ -50,7 +50,7 @@ GridGate.propTypes = {
   selectStatus: PropTypes.bool.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
   handleSetNewCord: PropTypes.func.isRequired,
-  onClickIsCollide: PropTypes.func.isRequired
+  objectBehaviorForCollide: PropTypes.func.isRequired
 };
 
 export default GridGate;

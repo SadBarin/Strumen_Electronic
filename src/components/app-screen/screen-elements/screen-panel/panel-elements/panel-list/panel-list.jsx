@@ -34,7 +34,7 @@ function PanelList({
  hiddenListText,
  hiddenListBox,
 
- onClickIsCollide
+ objectBehaviorForCollide
 }) {
   return (
     <div className={`panel-list ${display}`}>
@@ -69,7 +69,7 @@ function PanelList({
         <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
         <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
         <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupLine}/>
-        {/*<IconButton icon="bi-subtract" onClick={onClickIsCollide}/>*/}
+        {/*<IconButton icon="bi-subtract" onClick={objectBehaviorForCollide}/>*/}
         <IconButton icon="bi-pin" active={selectElement.pin} onClick={onClickChangePin}/>
       </div>
 
@@ -85,7 +85,7 @@ function PanelList({
         <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
         {/*<IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupText}/>*/}
         <IconButton icon="bi-pin" active={selectElement.pin} onClick={onClickChangePin}/>
-        <IconButton icon="bi-subtract" onClick={onClickIsCollide}/>
+        <IconButton icon="bi-subtract" onClick={objectBehaviorForCollide}/>
       </div>
     </div>
   );
@@ -127,7 +127,7 @@ PanelList.propTypes = {
   hiddenListText: PropTypes.bool.isRequired,
   hiddenListBox: PropTypes.bool.isRequired,
 
-  onClickIsCollide: PropTypes.func.isRequired
+  objectBehaviorForCollide: PropTypes.func.isRequired
 };
 
 export default PanelList;

@@ -10,7 +10,7 @@ function GridLine(props) {
     selectStatus,
     onClickSetSelectElementID,
     handleSetNewCord,
-    onClickIsCollide
+    objectBehaviorForCollide
   } = props;
 
   const {id, x, y, pin, width, height, active, backgroundColor, status} = item;
@@ -28,7 +28,7 @@ function GridLine(props) {
 
   function changeCordAndStatus(event) {
     handleSetNewCord(id, event, {width, height})
-    onClickIsCollide(item)
+    objectBehaviorForCollide(item)
   }
 
   return (
@@ -53,7 +53,7 @@ GridLine.propTypes = {
   item: PropTypes.object.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
   handleSetNewCord: PropTypes.func.isRequired,
-  onClickIsCollide: PropTypes.func.isRequired
+  objectBehaviorForCollide: PropTypes.func.isRequired
 };
 
 export default GridLine;

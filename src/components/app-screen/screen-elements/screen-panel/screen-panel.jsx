@@ -52,7 +52,7 @@ class ScreenPanel extends Component {
       hiddenListText,
       hiddenListBox,
 
-      onClickIsCollide
+      objectBehaviorForCollide
     } = this.props;
 
     return (
@@ -89,7 +89,7 @@ class ScreenPanel extends Component {
           hiddenListText={hiddenListText}
           hiddenListBox={hiddenListBox}
 
-          onClickIsCollide={onClickIsCollide}
+          objectBehaviorForCollide={objectBehaviorForCollide}
         />
       </div>
     );
@@ -129,7 +129,7 @@ ScreenPanel.propTypes = {
   hiddenListText: PropTypes.bool.isRequired,
   hiddenListBox: PropTypes.bool.isRequired,
 
-  onClickIsCollide: PropTypes.func.isRequired
+  objectBehaviorForCollide: PropTypes.func.isRequired
 };
 
 export default ScreenPanel;
