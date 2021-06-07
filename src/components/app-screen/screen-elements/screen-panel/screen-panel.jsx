@@ -28,31 +28,16 @@ class ScreenPanel extends Component {
       onClickChangeRemoveStatus,
       onClickChangePin,
       onClickCloneElement,
-      onClickHiddenDevStatus,
-      onClickToggleHiddenListAdd,
       onClickSave,
       selectElement,
-
-      onClickToggleHiddenPopupInfo,
-      onClickToggleHiddenPopupGate,
-      onClickToggleHiddenPopupLine,
-      onClickToggleHiddenPopupText,
-      onClickToggleHiddenPopupUpload,
-      onClickToggleHiddenPopupGridSettings,
 
       onClickAddGate,
       onClickAddLine,
       onClickAddText,
-      onClickAddBox,
 
-      hiddenDevInfo,
-      hiddenListAdd,
-      hiddenListGate,
-      hiddenListLine,
-      hiddenListText,
-      hiddenListBox,
-
-      objectBehaviorForCollide
+      panelListStatuses,
+      doublePropertyToggle,
+      propertyToggle
     } = this.props;
 
     return (
@@ -63,33 +48,19 @@ class ScreenPanel extends Component {
           display={panelVisible ? '' : ' panel-hidden'}
           selectElement={selectElement}
 
-          onClickToggleHiddenListAdd={onClickToggleHiddenListAdd}
           onClickChangeRemoveStatus={onClickChangeRemoveStatus}
           onClickChangePin={onClickChangePin}
           onClickCloneElement={onClickCloneElement}
-          onClickHiddenDevStatus={onClickHiddenDevStatus}
           onClickSave={onClickSave}
-
-          onClickToggleHiddenPopupInfo={onClickToggleHiddenPopupInfo}
-          onClickToggleHiddenPopupGate={onClickToggleHiddenPopupGate}
-          onClickToggleHiddenPopupLine={onClickToggleHiddenPopupLine}
-          onClickToggleHiddenPopupText={onClickToggleHiddenPopupText}
-          onClickToggleHiddenPopupUpload={onClickToggleHiddenPopupUpload}
-          onClickToggleHiddenPopupGridSettings={onClickToggleHiddenPopupGridSettings}
 
           onClickAddGate={onClickAddGate}
           onClickAddLine={onClickAddLine}
           onClickAddText={onClickAddText}
-          onClickAddBox={onClickAddBox}
 
-          hiddenDevInfo={hiddenDevInfo}
-          hiddenListAdd={hiddenListAdd}
-          hiddenListGate={hiddenListGate}
-          hiddenListLine={hiddenListLine}
-          hiddenListText={hiddenListText}
-          hiddenListBox={hiddenListBox}
+          panelListStatuses={panelListStatuses}
 
-          objectBehaviorForCollide={objectBehaviorForCollide}
+          doublePropertyToggle={doublePropertyToggle}
+          propertyToggle={propertyToggle}
         />
       </div>
     );
@@ -104,32 +75,17 @@ ScreenPanel.propTypes = {
   selectElementID: PropTypes.number,
   selectElement: PropTypes.any.isRequired,
 
-  onClickToggleHiddenListAdd: PropTypes.func.isRequired,
   onClickChangePin: PropTypes.func.isRequired,
   onClickCloneElement: PropTypes.func.isRequired,
-  onClickHiddenDevStatus: PropTypes.func.isRequired,
   onClickSave: PropTypes.func.isRequired,
-
-  onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
-  onClickToggleHiddenPopupGate: PropTypes.func.isRequired,
-  onClickToggleHiddenPopupLine: PropTypes.func.isRequired,
-  onClickToggleHiddenPopupText: PropTypes.func.isRequired,
-  onClickToggleHiddenPopupUpload: PropTypes.func.isRequired,
-  onClickToggleHiddenPopupGridSettings: PropTypes.func.isRequired,
 
   onClickAddGate: PropTypes.func.isRequired,
   onClickAddLine: PropTypes.func.isRequired,
   onClickAddText: PropTypes.func.isRequired,
-  onClickAddBox: PropTypes.func.isRequired,
 
-  hiddenDevInfo: PropTypes.bool.isRequired,
-  hiddenListAdd: PropTypes.bool.isRequired,
-  hiddenListGate: PropTypes.bool.isRequired,
-  hiddenListLine: PropTypes.bool.isRequired,
-  hiddenListText: PropTypes.bool.isRequired,
-  hiddenListBox: PropTypes.bool.isRequired,
-
-  objectBehaviorForCollide: PropTypes.func.isRequired
+  panelListStatuses: PropTypes.object.isRequired,
+  doublePropertyToggle: PropTypes.func.isRequired,
+  propertyToggle: PropTypes.func.isRequired
 };
 
 export default ScreenPanel;

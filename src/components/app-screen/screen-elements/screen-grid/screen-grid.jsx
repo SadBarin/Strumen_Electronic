@@ -8,7 +8,7 @@ import GridText from "./grid-elements/grid-text";
 import GridBox from "./grid-elements/grid-box";
 
 function ScreenGrid(props) {
-  const {items, onClickSetSelectElementID, selectElementID, handleSetNewCord, widthGrid, heightGrid, backgroundGrid, objectBehaviorForCollide} = props;
+  const {items, onClickSetSelectElementID, selectElementID, handleSetNewCord, widthGrid, heightGrid, backgroundGrid} = props;
 
   let wrapperWidth = window.innerWidth - 16;
   let wrapperHeight = window.innerHeight - 16;
@@ -31,7 +31,6 @@ function ScreenGrid(props) {
             selectElementID={selectElementID}
             selectStatus={elementSelectStatus}
             handleSetNewCord={handleSetNewCord}
-            objectBehaviorForCollide={objectBehaviorForCollide}
           />
         </div>
       );
@@ -50,7 +49,6 @@ function ScreenGrid(props) {
             selectElementID={selectElementID}
             selectStatus={elementSelectStatus}
             handleSetNewCord={handleSetNewCord}
-            objectBehaviorForCollide={objectBehaviorForCollide}
           />
         </div>
       );
@@ -121,7 +119,6 @@ ScreenGrid.propTypes = {
   items: PropTypes.array.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
   handleSetNewCord: PropTypes.func.isRequired,
-  objectBehaviorForCollide: PropTypes.func.isRequired,
 
   widthGrid: PropTypes.any.isRequired,
   heightGrid: PropTypes.any.isRequired,

@@ -4,19 +4,14 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupChangeGate({hidden, closePopup, currentElement, handleChangeElementValue, heightGrid, widthGrid, gateProcessor}) {
-  function changeLogicGate(event) {
-    handleChangeElementValue(event, 'content');
-    gateProcessor(currentElement.id)
-  }
-
+function PopupChangeGate({hidden, closePopup, currentElement, handleChangeElementValue, heightGrid, widthGrid}) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки вентеля">
       <div className="popup-content-container">
         <label htmlFor="logic">
           Логика:
           <select id="logic"
-                  onChange={(e) => changeLogicGate(e)}
+                  onChange={(event) => handleChangeElementValue(event, 'content')}
                   value={currentElement.content}>
             <option value="1">1</option>
             <option value="0">0</option>
@@ -97,8 +92,7 @@ PopupChangeGate.propTypes = {
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
   currentElement: PropTypes.object.isRequired,
-  handleChangeElementValue: PropTypes.func.isRequired,
-  gateProcessor: PropTypes.func.isRequired
+  handleChangeElementValue: PropTypes.func.isRequired
 };
 
 export default PopupChangeGate;

@@ -45,6 +45,14 @@ class AppScreen extends Component {
       hiddenPopupText: true,
       hiddenPopupUpload: true,
 
+      panelListStatuses: {
+        devInfo: true,
+        add: true,
+        gate: true,
+        line: true,
+        text: true
+      },
+
       hiddenDevInfo: true,
       hiddenListAdd: true,
       hiddenListGate: true,
@@ -98,10 +106,15 @@ class AppScreen extends Component {
     }
   }
 
-  handleToggle(key) {
+  propertyToggle(key) {
     let buffer = {}
     buffer[key] = !this.state[key]
+    this.setState(buffer);
+  }
 
+  doublePropertyToggle(object, key) {
+    let buffer = this.state[object]
+    buffer[key] = !this.state[object][key]
     this.setState(buffer);
   }
 
@@ -230,7 +243,8 @@ class AppScreen extends Component {
       active: false,
     };
   }
-  handleAddObjectGrid = (constructor) => this.handleAdd(constructor(this.getCoordinates()))
+
+  addObjectGrid = (constructor) => this.handleAdd(constructor(this.getCoordinates()))
 
   createGate = (cord) => {
     let gate = this.createObjectGrid(cord,  'gate')
@@ -265,17 +279,6 @@ class AppScreen extends Component {
     return text
   }
 
-  // createBox = (cord) => {
-  //   let box = this.createObjectGrid(cord, 'box')
-  //
-  //   box.width = 200
-  //   box.height = 200
-  //   box.backgroundColor = 'hsl(20, 100%, 73%)'
-  //   box.content = {}
-  //
-  //   return box
-  // }
-
   handleSave() {
     let a = document.createElement("a");
     let file = new Blob([JSON.stringify(this.state)], {type: 'application/json'});
@@ -303,56 +306,6 @@ class AppScreen extends Component {
            activeElement.height + activeElement.y > passiveElement.y;
   }
 
-  objectBehaviorForCollide(activeElement) {
-    let list = this.state.gridList
-
-    list.map((passiveElement) => {
-      const activeElementPos = this.getElementArrayPositionByID(list, activeElement.id)
-      const passiveElementPos = this.getElementArrayPositionByID(list, passiveElement.id)
-
-      if (this.checkCollide(activeElement, passiveElement) && activeElement.id !== passiveElement.id) {
-        console.log('Act: ' , activeElement)
-        console.log('Pas: ' , passiveElement)
-        console.log(' ')
-
-        if (activeElement.group === 'line' && passiveElement.group === 'gate') {
-          list[activeElementPos].status = passiveElement.status
-        } else if (passiveElement.group === 'line' && activeElement.group === 'gate') {
-          list[passiveElementPos].status = activeElement.status
-        } else if (activeElement.group === 'line' && passiveElement.group === 'line') {
-          (passiveElement.status) ?
-            list[activeElementPos].status = true :
-            list[activeElementPos].status = false
-        }
-      } else if (
-        this.checkCollide(activeElement, passiveElement) && activeElement.group === 'line' && passiveElement.group !== 'gate' ||
-        this.checkCollide(activeElement, passiveElement) && passiveElement.group === 'line' && activeElement.group !== 'gate'
-      ) {
-        console.log('Act: ' , activeElement)
-        console.log('Pas: ' , passiveElement)
-        console.log(' ')
-
-        list[activeElementPos].status = false
-      }
-    })
-
-    this.setState({gridList: list})
-  }
-
-  gateProcessor(id) {
-    const list = this.state.gridList
-    const pos = this.getElementArrayPositionByID(list, id)
-    const gate = list[pos]
-
-    if (gate.content === '1') gate.status = true
-    if (gate.content === '0') gate.status = false
-
-    list[pos] = gate
-
-    this.setState({gridList: list})
-    this.objectBehaviorForCollide(gate)
-  }
-
   render() {
     const {
       name,
@@ -366,19 +319,14 @@ class AppScreen extends Component {
       gridList,
       selectElementID,
 
-      hiddenDevInfo,
-      hiddenListAdd,
-      hiddenListGate,
-      hiddenListLine,
-      hiddenListText,
-      hiddenListBox,
-
       hiddenPopupGridSettings,
       hiddenPopupGate,
       hiddenPopupInfo,
       hiddenPopupLine,
       hiddenPopupText,
-      hiddenPopupUpload
+      hiddenPopupUpload,
+
+      panelListStatuses
     } = this.state;
 
     const currentElement = this.getElementGridList(selectElementID)
@@ -395,27 +343,26 @@ class AppScreen extends Component {
                            emergenceCordY={emergenceCordY}
                            emergenceBalancer={emergenceBalancer}
 
-                           closePopup={() => this.handleToggle('hiddenPopupGridSettings')}
+                           closePopup={() => this.propertyToggle('hiddenPopupGridSettings')}
                            handleChangeStateValue={this.handleChangeStateValue.bind(this)}
           />
 
           <PopupInfo hidden={hiddenPopupInfo}
-                     closePopup={() => this.handleToggle('hiddenPopupInfo')}
+                     closePopup={() => this.propertyToggle('hiddenPopupInfo')}
           />
 
           <PopupChangeGate hidden={hiddenPopupGate}
                            widthGrid={widthGrid}
                            heightGrid={heightGrid}
-                           closePopup={() => this.handleToggle('hiddenPopupGate')}
+                           closePopup={() => this.propertyToggle('hiddenPopupGate')}
                            handleChangeElementValue={this.handleChangeElementValue.bind(this)}
                            currentElement={currentElement}
-                           gateProcessor={this.gateProcessor.bind(this)}
           />
 
           <PopupChangeLine hidden={hiddenPopupLine}
                            widthGrid={widthGrid}
                            heightGrid={heightGrid}
-                           closePopup={() => this.handleToggle('hiddenPopupLine')}
+                           closePopup={() => this.propertyToggle('hiddenPopupLine')}
                            handleChangeElementValue={this.handleChangeElementValue.bind(this)}
                            currentElement={currentElement}
           />
@@ -423,13 +370,13 @@ class AppScreen extends Component {
           <PopupChangeText hidden={hiddenPopupText}
                            widthGrid={widthGrid}
                            heightGrid={heightGrid}
-                           closePopup={() => this.handleToggle('hiddenPopupText')}
+                           closePopup={() => this.propertyToggle('hiddenPopupText')}
                            handleChangeElementValue={this.handleChangeElementValue.bind(this)}
                            currentElement={currentElement}
           />
 
           <PopupUpload hidden={hiddenPopupUpload}
-                       closePopup={() => this.handleToggle('hiddenPopupUpload')}
+                       closePopup={() => this.propertyToggle('hiddenPopupUpload')}
                        setSaveFile={this.setSaveFile.bind(this)}
           />
         </section>
@@ -438,32 +385,18 @@ class AppScreen extends Component {
           onClickChangeRemoveStatus={() => this.handleRemoveItem(selectElementID)}
           onClickChangePin={() => this.handleChangePin()}
           onClickCloneElement={() => this.handleCloneElement()}
-          onClickToggleHiddenListAdd={() => this.handleToggle('hiddenListAdd')}
-          onClickHiddenDevStatus={() => this.handleToggle('hiddenDevInfo')}
           onClickSave={() => this.handleSave()}
 
-          onClickToggleHiddenPopupGridSettings={() => this.handleToggle('hiddenPopupGridSettings')}
-          onClickToggleHiddenPopupInfo={() => this.handleToggle('hiddenPopupInfo')}
-          onClickToggleHiddenPopupGate={() => this.handleToggle('hiddenPopupGate')}
-          onClickToggleHiddenPopupLine={() => this.handleToggle('hiddenPopupLine')}
-          onClickToggleHiddenPopupText={() => this.handleToggle('hiddenPopupText')}
-          onClickToggleHiddenPopupUpload={() => this.handleToggle('hiddenPopupUpload')}
+          propertyToggle={this.propertyToggle.bind(this)}
+          doublePropertyToggle={this.doublePropertyToggle.bind(this)}
 
-          onClickAddGate={() => this.handleAddObjectGrid(this.createGate)}
-          onClickAddLine={() => this.handleAddObjectGrid(this.createLine)}
-          onClickAddText={() => this.handleAddObjectGrid(this.createText)}
-          onClickAddBox={() => this.handleAddObjectGrid(this.createBox)}
+          onClickAddGate={() => this.addObjectGrid(this.createGate)}
+          onClickAddLine={() => this.addObjectGrid(this.createLine)}
+          onClickAddText={() => this.addObjectGrid(this.createText)}
 
           selectElement={this.getElementGridList(selectElementID)}
 
-          hiddenDevInfo={hiddenDevInfo}
-          hiddenListAdd={hiddenListAdd}
-          hiddenListGate={hiddenListGate}
-          hiddenListLine={hiddenListLine}
-          hiddenListText={hiddenListText}
-          hiddenListBox={hiddenListBox}
-
-          objectBehaviorForCollide={() => this.objectBehaviorForCollide()}
+          panelListStatuses={panelListStatuses}
         />
 
         <ScreenGrid
@@ -474,13 +407,12 @@ class AppScreen extends Component {
           selectElementID={selectElementID}
           items={gridList}
           onClickSetSelectElementID={this.handleSetSelectElementID.bind(this)}
-          objectBehaviorForCollide={this.objectBehaviorForCollide.bind(this)}
 
           handleSetNewCord={this.handleSetNewCord.bind(this)}
         />
 
         <ScreenInfo
-          hiddenDevInfo={hiddenDevInfo}
+          hiddenDevInfo={panelListStatuses.devInfo}
 
           selectElementID={selectElementID}
           gridListLength={gridList.length}

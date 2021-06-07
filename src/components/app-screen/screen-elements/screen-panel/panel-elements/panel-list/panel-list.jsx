@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './panel-list.css';
 
 import IconButton from '../../../button-icon';
+import AdditionalList from "./additional-list";
 
 function PanelList({
  display,
@@ -11,82 +12,70 @@ function PanelList({
  onClickChangeRemoveStatus,
  onClickChangePin,
  onClickCloneElement,
- onClickHiddenDevStatus,
- onClickToggleHiddenListAdd,
  onClickSave,
-
- onClickToggleHiddenPopupGridSettings,
- onClickToggleHiddenPopupInfo,
- onClickToggleHiddenPopupGate,
- onClickToggleHiddenPopupLine,
- onClickToggleHiddenPopupText,
- onClickToggleHiddenPopupUpload,
 
  onClickAddGate,
  onClickAddLine,
  onClickAddText,
- onClickAddBox,
 
- hiddenDevInfo,
- hiddenListAdd,
- hiddenListGate,
- hiddenListLine,
- hiddenListText,
- hiddenListBox,
-
- objectBehaviorForCollide
+ panelListStatuses,
+ doublePropertyToggle,
+ propertyToggle
 }) {
+  function toggleStatus(key) {
+    doublePropertyToggle('panelListStatuses', key)
+  }
+
   return (
     <div className={`panel-list ${display}`}>
       <div className="list-main list">
-        <IconButton icon="bi-plus-circle" active={!hiddenListAdd} onClick={onClickToggleHiddenListAdd}/>
-        <IconButton icon="bi-gear" onClick={onClickToggleHiddenPopupGridSettings}/>
+        <IconButton icon="bi-plus-circle" active={!panelListStatuses.add} onClick={() => toggleStatus('add')}/>
+        <IconButton icon="bi-gear" onClick={() => propertyToggle('hiddenPopupGridSettings')}/>
         <IconButton icon="bi-save" onClick={onClickSave}/>
-        <IconButton icon="bi-upload" onClick={onClickToggleHiddenPopupUpload}/>
-        <IconButton icon="bi-flag" active={!hiddenDevInfo} onClick={onClickHiddenDevStatus}/>
+        <IconButton icon="bi-upload" onClick={() => propertyToggle('hiddenPopupUpload')}/>
+        <IconButton icon="bi-flag" active={!panelListStatuses.devInfo} onClick={() => toggleStatus('devInfo')}/>
 
-        <div className={`list-flag list list-additional ${(hiddenDevInfo)? 'hidden' : ''}`}>
+        <div className={`list-flag list list-additional ${(panelListStatuses.devInfo)? 'hidden' : ''}`}>
           <IconButton icon="bi-arrow-counterclockwise" onClick={() => window.location.reload()}/>
-          <IconButton icon="bi-info-circle" onClick={onClickToggleHiddenPopupInfo}/>
+          <IconButton icon="bi-info-circle" onClick={() => propertyToggle('hiddenPopupInfo')}/>
         </div>
       </div>
 
-      <div className={`list-add list list-additional ${(hiddenListAdd)? 'hidden' : ''}`}>
+      <div className={`list-add list list-additional ${(panelListStatuses.add)? 'hidden' : ''}`}>
         <IconButton icon="bi-file-binary" onClick={onClickAddGate}/>
         <IconButton icon="bi-bezier2" onClick={onClickAddLine}/>
         <IconButton icon="bi-chat-square-text" onClick={onClickAddText}/>
-        {/*<IconButton icon="bi-archive" onClick={onClickAddBox}/>*/}
       </div>
 
-      <div className={`list-logic-gates list list-additional ${(hiddenListGate)? 'hidden' : ''}`}>
-        <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
-        <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
-        <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupGate}/>
-        <IconButton icon="bi-pin" active={selectElement.pin} onClick={onClickChangePin}/>
-      </div>
+      <AdditionalList
+        listClass={'gate'}
+        display={panelListStatuses.gate}
+        onClickClone={onClickCloneElement}
+        onClickRemove={onClickChangeRemoveStatus}
+        pinStatus={selectElement.pin}
+        onClickPin={onClickChangePin}
+        onClickSettings={() => propertyToggle('hiddenPopupGate')}
+      />
 
-      <div className={`list-logic-line list list-additional ${(hiddenListLine)? 'hidden' : ''}`}>
-        <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
-        <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
-        <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupLine}/>
-        {/*<IconButton icon="bi-subtract" onClick={objectBehaviorForCollide}/>*/}
-        <IconButton icon="bi-pin" active={selectElement.pin} onClick={onClickChangePin}/>
-      </div>
+      <AdditionalList
+        listClass={'line'}
+        display={panelListStatuses.line}
+        onClickClone={onClickCloneElement}
+        onClickRemove={onClickChangeRemoveStatus}
+        pinStatus={selectElement.pin}
+        onClickPin={onClickChangePin}
+        onClickSettings={() => propertyToggle('hiddenPopupLine')}
+      />
 
-      <div className={`list-logic-text list list-additional ${(hiddenListText)? 'hidden' : ''}`}>
-        <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
-        <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
-        <IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupText}/>
-        <IconButton icon="bi-pin" active={selectElement.pin} onClick={onClickChangePin}/>
-      </div>
-
-      <div className={`list-logic-text list list-additional ${(hiddenListBox)? 'hidden' : ''}`}>
-        <IconButton icon="bi-trash2" onClick={onClickChangeRemoveStatus}/>
-        <IconButton icon="bi-layers" onClick={onClickCloneElement}/>
-        {/*<IconButton icon="bi-wrench" onClick={onClickToggleHiddenPopupText}/>*/}
-        <IconButton icon="bi-pin" active={selectElement.pin} onClick={onClickChangePin}/>
-        <IconButton icon="bi-subtract" onClick={objectBehaviorForCollide}/>
-      </div>
+      <AdditionalList
+        listClass={'text'}
+        display={panelListStatuses.text}
+        onClickClone={onClickCloneElement}
+        onClickRemove={onClickChangeRemoveStatus}
+        pinStatus={selectElement.pin}
+        onClickPin={onClickChangePin}
+        onClickSettings={() => propertyToggle('hiddenPopupText')}
+      />
     </div>
   );
 }
@@ -101,33 +90,18 @@ PanelList.propTypes = {
   display: PropTypes.string.isRequired,
   selectElement: PropTypes.any.isRequired,
 
-  onClickToggleHiddenListAdd: PropTypes.func.isRequired,
   onClickChangeRemoveStatus: PropTypes.func,
   onClickChangePin: PropTypes.func.isRequired,
-  onClickCloneElement: PropTypes.func.isRequired,
-  onClickHiddenDevStatus: PropTypes.func.isRequired,
   onClickSave: PropTypes.func.isRequired,
-
-  onClickToggleHiddenPopupGridSettings: PropTypes.func.isRequired,
-  onClickToggleHiddenPopupInfo: PropTypes.func.isRequired,
-  onClickToggleHiddenPopupGate: PropTypes.func.isRequired,
-  onClickToggleHiddenPopupLine: PropTypes.func.isRequired,
-  onClickToggleHiddenPopupText: PropTypes.func.isRequired,
-  onClickToggleHiddenPopupUpload: PropTypes.func.isRequired,
 
   onClickAddGate: PropTypes.func,
   onClickAddLine: PropTypes.func,
   onClickAddText: PropTypes.func,
   onClickAddBox: PropTypes.func,
 
-  hiddenDevInfo: PropTypes.bool.isRequired,
-  hiddenListAdd: PropTypes.bool.isRequired,
-  hiddenListGate: PropTypes.bool.isRequired,
-  hiddenListLine: PropTypes.bool.isRequired,
-  hiddenListText: PropTypes.bool.isRequired,
-  hiddenListBox: PropTypes.bool.isRequired,
-
-  objectBehaviorForCollide: PropTypes.func.isRequired
+  panelListStatuses: PropTypes.object.isRequired,
+  doublePropertyToggle: PropTypes.func.isRequired,
+  propertyToggle: PropTypes.func.isRequired,
 };
 
 export default PanelList;

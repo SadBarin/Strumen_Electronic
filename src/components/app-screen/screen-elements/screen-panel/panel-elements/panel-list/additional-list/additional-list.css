@@ -1,0 +1,9 @@
+@import url('../../../../../../../styleGuide.css');
+
+.list-additional {
+  opacity: var(--listAdditinalOpacity);
+}
+
+.hidden {
+  display: none;
+}
