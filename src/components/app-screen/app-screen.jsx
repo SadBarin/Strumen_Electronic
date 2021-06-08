@@ -105,7 +105,6 @@ class AppScreen extends Component {
     this.setState({grid})
   }
 
-  //Remove it
   handleChangePin() {
     console.groupCollapsed('handleChangePin')
     console.log(this.state)
