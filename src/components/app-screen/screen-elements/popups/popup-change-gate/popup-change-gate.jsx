@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupChangeGate({hidden, closePopup, currentElement, handleChangeElementValue, heightGrid, widthGrid}) {
+function PopupChangeGate({hidden, closePopup, currentElement, changeGridElementValue, heightGrid, widthGrid}) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки вентеля">
       <div className="popup-content-container">
         <label htmlFor="logic">
           Логика:
           <select id="logic"
-                  onChange={(event) => handleChangeElementValue(event, 'content')}
+                  onChange={(event) => changeGridElementValue(event, 'content')}
                   value={currentElement.content}>
             <option value="1">1</option>
             <option value="0">0</option>
@@ -32,7 +32,7 @@ function PopupChangeGate({hidden, closePopup, currentElement, handleChangeElemen
                  max={150}
                  id="width"
                  value={currentElement.width}
-                 onChange={(e) => handleChangeElementValue(e, 'width')}/>
+                 onChange={(e) => changeGridElementValue(e, 'width')}/>
         </label>
 
         <label htmlFor="height" className="label-range">
@@ -42,13 +42,13 @@ function PopupChangeGate({hidden, closePopup, currentElement, handleChangeElemen
                  max={150}
                  id="height"
                  value={currentElement.height}
-                 onChange={(e) => handleChangeElementValue(e, 'height')}/>
+                 onChange={(e) => changeGridElementValue(e, 'height')}/>
         </label>
 
         <label htmlFor="color">
           Цвет:
           <select id="color"
-                  onChange={(e) => handleChangeElementValue(e, 'backgroundColor')}
+                  onChange={(e) => changeGridElementValue(e, 'backgroundColor')}
                   value={currentElement.backgroundColor}>
             <option value="hsl(290, 100%, 73%)">Фуксия</option>
             <option value="hsl(250, 100%, 73%)">Фиолетовый</option>
@@ -68,7 +68,7 @@ function PopupChangeGate({hidden, closePopup, currentElement, handleChangeElemen
                  id="cordX"
                  min={100}
                  max={widthGrid - 100}
-                 onChange={(e) => handleChangeElementValue(e, 'x')}
+                 onChange={(e) => changeGridElementValue(e, 'x')}
                  value={currentElement.x}/>
         </label>
 
@@ -78,7 +78,7 @@ function PopupChangeGate({hidden, closePopup, currentElement, handleChangeElemen
                  id="cordY"
                  min={100}
                  max={heightGrid - 100}
-                 onChange={(e) => handleChangeElementValue(e, 'y')}
+                 onChange={(e) => changeGridElementValue(e, 'y')}
                  value={currentElement.y}/>
         </label>
       </div>
@@ -92,7 +92,7 @@ PopupChangeGate.propTypes = {
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
   currentElement: PropTypes.object.isRequired,
-  handleChangeElementValue: PropTypes.func.isRequired
+  changeGridElementValue: PropTypes.func.isRequired
 };
 
 export default PopupChangeGate;

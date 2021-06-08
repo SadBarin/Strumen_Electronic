@@ -35,8 +35,8 @@ class ScreenPanel extends Component {
       onClickAddLine,
       onClickAddText,
 
-      panelListStatuses,
-      doublePropertyToggle,
+      panelStatuses,
+      objectPropertyToggle,
       propertyToggle
     } = this.props;
 
@@ -57,9 +57,9 @@ class ScreenPanel extends Component {
           onClickAddLine={onClickAddLine}
           onClickAddText={onClickAddText}
 
-          panelListStatuses={panelListStatuses}
+          panelStatuses={panelStatuses}
 
-          doublePropertyToggle={doublePropertyToggle}
+          objectPropertyToggle={objectPropertyToggle}
           propertyToggle={propertyToggle}
         />
       </div>
@@ -83,8 +83,8 @@ ScreenPanel.propTypes = {
   onClickAddLine: PropTypes.func.isRequired,
   onClickAddText: PropTypes.func.isRequired,
 
-  panelListStatuses: PropTypes.object.isRequired,
-  doublePropertyToggle: PropTypes.func.isRequired,
+  panelStatuses: PropTypes.object.isRequired,
+  objectPropertyToggle: PropTypes.func.isRequired,
   propertyToggle: PropTypes.func.isRequired
 };
 

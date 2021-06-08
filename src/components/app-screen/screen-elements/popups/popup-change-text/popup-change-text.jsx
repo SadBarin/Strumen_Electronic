@@ -4,21 +4,21 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupChangeText({hidden, closePopup, handleChangeElementValue, currentElement, widthGrid, heightGrid}) {
+function PopupChangeText({hidden, closePopup, changeGridElementValue, currentElement, widthGrid, heightGrid}) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки комментария">
       <div className="popup-content-container">
         <label htmlFor="content">
           Текст:
           <input type="text" id="content"
-                 onChange={(e) => handleChangeElementValue(e, 'content')}
+                 onChange={(e) => changeGridElementValue(e, 'content')}
                  value={currentElement.content}/>
         </label>
 
         <label htmlFor="color">
           Цвет:
           <select id="color"
-                  onChange={(e) => handleChangeElementValue(e, 'textColor')}
+                  onChange={(e) => changeGridElementValue(e, 'textColor')}
                   value={currentElement.textColor}>
             <option value="hsl(290, 100%, 73%)">Фуксия</option>
             <option value="hsl(250, 100%, 73%)">Фиолетовый</option>
@@ -38,7 +38,7 @@ function PopupChangeText({hidden, closePopup, handleChangeElementValue, currentE
                  id="cordX"
                  min={100}
                  max={widthGrid - 100}
-                 onChange={(e) => handleChangeElementValue(e, 'x')}
+                 onChange={(e) => changeGridElementValue(e, 'x')}
                  value={currentElement.x}/>
         </label>
 
@@ -48,7 +48,7 @@ function PopupChangeText({hidden, closePopup, handleChangeElementValue, currentE
                  id="cordY"
                  min={100}
                  max={heightGrid - 100}
-                 onChange={(e) => handleChangeElementValue(e, 'y')}
+                 onChange={(e) => changeGridElementValue(e, 'y')}
                  value={currentElement.y}/>
         </label>
       </div>
@@ -62,7 +62,7 @@ PopupChangeText.propTypes = {
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
   currentElement: PropTypes.object.isRequired,
-  handleChangeElementValue: PropTypes.func.isRequired
+  changeGridElementValue: PropTypes.func.isRequired
 };
 
 export default PopupChangeText;

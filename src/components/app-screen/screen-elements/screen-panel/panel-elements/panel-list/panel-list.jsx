@@ -18,30 +18,30 @@ function PanelList({
  onClickAddLine,
  onClickAddText,
 
- panelListStatuses,
- doublePropertyToggle,
+ panelStatuses,
+ objectPropertyToggle,
  propertyToggle
 }) {
   function toggleStatus(key) {
-    doublePropertyToggle('panelListStatuses', key)
+    objectPropertyToggle('panelStatuses', key)
   }
 
   return (
     <div className={`panel-list ${display}`}>
       <div className="list-main list">
-        <IconButton icon="bi-plus-circle" active={!panelListStatuses.add} onClick={() => toggleStatus('add')}/>
+        <IconButton icon="bi-plus-circle" active={!panelStatuses.add} onClick={() => toggleStatus('add')}/>
         <IconButton icon="bi-gear" onClick={() => propertyToggle('hiddenPopupGridSettings')}/>
         <IconButton icon="bi-save" onClick={onClickSave}/>
         <IconButton icon="bi-upload" onClick={() => propertyToggle('hiddenPopupUpload')}/>
-        <IconButton icon="bi-flag" active={!panelListStatuses.devInfo} onClick={() => toggleStatus('devInfo')}/>
+        <IconButton icon="bi-flag" active={!panelStatuses.devInfo} onClick={() => toggleStatus('devInfo')}/>
 
-        <div className={`list-flag list list-additional ${(panelListStatuses.devInfo)? 'hidden' : ''}`}>
+        <div className={`list-flag list list-additional ${(panelStatuses.devInfo)? 'hidden' : ''}`}>
           <IconButton icon="bi-arrow-counterclockwise" onClick={() => window.location.reload()}/>
           <IconButton icon="bi-info-circle" onClick={() => propertyToggle('hiddenPopupInfo')}/>
         </div>
       </div>
 
-      <div className={`list-add list list-additional ${(panelListStatuses.add)? 'hidden' : ''}`}>
+      <div className={`list-add list list-additional ${(panelStatuses.add)? 'hidden' : ''}`}>
         <IconButton icon="bi-file-binary" onClick={onClickAddGate}/>
         <IconButton icon="bi-bezier2" onClick={onClickAddLine}/>
         <IconButton icon="bi-chat-square-text" onClick={onClickAddText}/>
@@ -49,7 +49,7 @@ function PanelList({
 
       <AdditionalList
         listClass={'gate'}
-        display={panelListStatuses.gate}
+        display={panelStatuses.gate}
         onClickClone={onClickCloneElement}
         onClickRemove={onClickChangeRemoveStatus}
         pinStatus={selectElement.pin}
@@ -59,7 +59,7 @@ function PanelList({
 
       <AdditionalList
         listClass={'line'}
-        display={panelListStatuses.line}
+        display={panelStatuses.line}
         onClickClone={onClickCloneElement}
         onClickRemove={onClickChangeRemoveStatus}
         pinStatus={selectElement.pin}
@@ -69,7 +69,7 @@ function PanelList({
 
       <AdditionalList
         listClass={'text'}
-        display={panelListStatuses.text}
+        display={panelStatuses.text}
         onClickClone={onClickCloneElement}
         onClickRemove={onClickChangeRemoveStatus}
         pinStatus={selectElement.pin}
@@ -99,8 +99,8 @@ PanelList.propTypes = {
   onClickAddText: PropTypes.func,
   onClickAddBox: PropTypes.func,
 
-  panelListStatuses: PropTypes.object.isRequired,
-  doublePropertyToggle: PropTypes.func.isRequired,
+  panelStatuses: PropTypes.object.isRequired,
+  objectPropertyToggle: PropTypes.func.isRequired,
   propertyToggle: PropTypes.func.isRequired,
 };
 

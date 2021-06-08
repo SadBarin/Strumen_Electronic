@@ -19,24 +19,19 @@ class AppScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'Струмень_' + (
-        new Date().toLocaleDateString().replace(/\//gi, '-')
-        + '_' +
-        new Date().toLocaleTimeString().replace(/:/gi, '-'))
-          .replace(/\s/gi, '_'),
-
-
+      name: this.generateProjectName(),
       version: packageApp.version,
-      widthGrid: 2000,
-      heightGrid: 1000,
-      backgroundGrid: 'hsl(0, 0%, 98%)',
 
-      emergenceCordX: 200,
-      emergenceCordY: 200,
-      emergenceBalancer: 35,
-
-      gridList: [],
-      selectElementID: 0,
+      grid: {
+        width: 2000,
+        height: 1000,
+        background: 'hsl(0, 0%, 98%)',
+        emergenceCordX: 200,
+        emergenceCordY: 200,
+        emergenceBalancer: 35,
+        list: [],
+        selectElementID: 0,
+      },
 
       hiddenPopupGridSettings: false,
       hiddenPopupGate: true,
@@ -45,32 +40,120 @@ class AppScreen extends Component {
       hiddenPopupText: true,
       hiddenPopupUpload: true,
 
-      panelListStatuses: {
+      popupsStatuses: {
+        popupGridSettings: false,
+        popupGate: true,
+        popupLine: true,
+        popupInfo: true,
+        popupText: true,
+        popupUpload: true,
+      },
+
+      panelStatuses: {
         devInfo: true,
         add: true,
         gate: true,
         line: true,
         text: true
-      },
-
-      hiddenDevInfo: true,
-      hiddenListAdd: true,
-      hiddenListGate: true,
-      hiddenListLine: true,
-      hiddenListText: true,
-      hiddenListBox: true
+      }
     };
+  }
+
+  generateProjectName() {
+    console.groupCollapsed('generateProjectName')
+    console.log(this.state)
+    console.groupEnd()
+
+    return 'Strumen_' + (
+           new Date().toLocaleDateString().replace(/\//gi, '-')
+           + '_' +
+           new Date().toLocaleTimeString().replace(/:/gi, '-'))
+           .replace(/\s/gi, '_')
+  }
+
+  changeStateValue(value, key) {
+    console.groupCollapsed('changeStateValue')
+    console.log(this.state)
+    console.groupEnd()
+
+    const state = this.state
+    state[key] = value
+    this.setState(state)
+  }
+
+  changeStateObjectValue(value, object, key) {
+    console.groupCollapsed('changeStateObjectValue')
+    console.log(this.state)
+    console.groupEnd()
+
+    const state = this.state
+    state[object][key] = value
+    this.setState(state)
+  }
+
+  propertyToggle = (key) => this.changeStateValue(!this.state[key], key)
+  objectPropertyToggle = (object, key) => this.changeStateObjectValue(!this.state[object][key], object, key)
+
+  changeGridElementValue(event, key) {
+    console.groupCollapsed('changeGridElementValue')
+    console.log(this.state)
+    console.groupEnd()
+
+    const grid = this.state.grid
+    const pos = this.getElementArrayPositionByID(grid.list, this.state.grid.selectElementID)
+    grid[pos][key] = event.target.value
+    this.setState({grid})
+  }
+
+  //Remove it
+  handleChangePin() {
+    console.groupCollapsed('handleChangePin')
+    console.log(this.state)
+    console.groupEnd()
+
+    const grid = this.state.grid
+    const pos = this.getElementArrayPositionByID(grid.list, this.state.grid.selectElementID)
+    grid[pos].pin = !grid[pos].pin
+    this.setState({grid})
+  }
+
+  dischargePanelsSettings() {
+    console.groupCollapsed('dischargePanelsSettings')
+    console.log(this.state)
+    console.groupEnd()
+
+    const panelStatuses = this.state.panelStatuses
+    panelStatuses.gate = panelStatuses.line = panelStatuses.text = true
+    this.setState({panelStatuses});
+  }
+
+  setSelectElementID(id) {
+    console.groupCollapsed('setSelectElementID')
+    console.log(this.state)
+    console.groupEnd()
+
+    this.dischargePanelsSettings()
+    const element = this.getElementGridList(id)
+    const panelStatuses = this.state.panelStatuses
+    const grid = this.state.grid
+    if (Number(id) !== 0) panelStatuses[element.group] = false
+    grid.selectElementID = id
+    this.setState({panelStatuses, grid})
   }
 
   getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
-  getOffsetCoordinates = () => this.getRandomNumber(0, this.state.emergenceBalancer)
+  getOffsetCoordinates = () => this.getRandomNumber(0, this.state.grid.emergenceBalancer)
 
   getCoordinates() {
-    let x = this.state.emergenceCordX + this.getOffsetCoordinates()
-    let y = this.state.emergenceCordY + this.getOffsetCoordinates()
-    let width = this.state.widthGrid - 100
-    let height = this.state.heightGrid - 100
+    console.groupCollapsed('getCoordinates')
+    console.log(this.state)
+    console.groupEnd()
+
+    let x = this.state.grid.emergenceCordX + this.getOffsetCoordinates()
+    let y = this.state.grid.emergenceCordY + this.getOffsetCoordinates()
+    let width = this.state.grid.width - 100
+    let height = this.state.grid.height - 100
 
     if (x > width) x = width
     if (y > height) y = height
@@ -82,7 +165,11 @@ class AppScreen extends Component {
   }
 
   getElementArrayPositionByID(array, id) {
-    const list = this.state.gridList
+    console.groupCollapsed('getElementArrayPositionByID')
+    console.log(this.state)
+    console.groupEnd()
+
+    const list = this.state.grid.list
     let pos;
 
     for (let i = 0; i <= list.length; i++) {
@@ -96,77 +183,47 @@ class AppScreen extends Component {
   }
 
   getElementGridList(id) {
-    if(id !== 0) {
-      const list = this.state.gridList
+    console.groupCollapsed('getElementGridList')
+    console.log(this.state)
+    console.groupEnd()
+
+    if (id !== 0) {
+      const list = this.state.grid.list
       let pos = this.getElementArrayPositionByID(list, id)
 
       return {...list[pos]}
-    }else {
+    } else {
       return {}
     }
   }
 
-  propertyToggle(key) {
-    let buffer = {}
-    buffer[key] = !this.state[key]
-    this.setState(buffer);
-  }
+  removeItem = (id) => {
+    console.groupCollapsed('removeItem')
+    console.log(this.state)
+    console.groupEnd()
 
-  doublePropertyToggle(object, key) {
-    let buffer = this.state[object]
-    buffer[key] = !this.state[object][key]
-    this.setState(buffer);
-  }
-
-  handleSetSelectElementID(id) {
-    this.setState({selectElementID: id});
-
-    if (id !== 0) {
-      const element = this.getElementGridList(id)
-
-      if (element.group === 'gate' && id !== 0) {
-        this.setState({hiddenListGate: false, hiddenListLine: true, hiddenListText: true, hiddenListBox: true});
-      }else if (element.group === 'line' && id !== 0){
-        this.setState({hiddenListLine: false, hiddenListGate: true, hiddenListText: true, hiddenListBox: true});
-      }else if (element.group === 'text' && id !== 0){
-        this.setState({hiddenListLine: true, hiddenListGate: true, hiddenListText: false, hiddenListBox: true});
-      }else if (element.group === 'box' && id !== 0){
-        this.setState({hiddenListLine: true, hiddenListGate: true, hiddenListText: true, hiddenListBox: false});
-      }
-    } else {
-      this.setState({hiddenListGate: true, hiddenListLine: true, hiddenListText: true, hiddenListBox: true})
-    }
-  }
-
-  handleRemoveItem = (id) => {
-    this.setState((state) => {
-      const items = state.gridList.filter((item) => item.id !== id);
-      return {gridList: items, selectElementID: 0, hiddenListGate: true, hiddenListLine: true, hiddenListText: true};
-    });
-  }
-
-  handleChangePin() {
-    const list = this.state.gridList
-    const id = this.state.selectElementID
-    const pos = this.getElementArrayPositionByID(list, id)
-
-    const elementPin = list[pos].pin
-    list[pos].pin = !elementPin
-
-    this.setState({gridList: list})
+    this.dischargePanelsSettings()
+    const grid = this.state.grid
+    grid.list.filter((item) => item.id !== id)
+    grid.selectElementID = 0
+    this.setState({grid})
   }
 
   handleCloneElement() {
-    const list = this.state.gridList
-    const id = this.state.selectElementID
+    console.groupCollapsed('handleCloneElement')
+    console.log(this.state)
+    console.groupEnd()
+
+    const grid = this.state.grid
+    const id = this.state.grid.selectElementID
 
     let element = this.getElementGridList(id)
     element.id = Date.now()
 
     let x = this.getOffsetCoordinates()
     let y = this.getOffsetCoordinates()
-    let width = this.state.widthGrid - 80
-    let height = this.state.heightGrid - 60
+    let width = this.state.grid.width - 80
+    let height = this.state.grid.height - 60
 
     element.x += x
     element.y += y
@@ -174,47 +231,36 @@ class AppScreen extends Component {
     if (element.x > width) element.x = width
     if (element.y > height) element.y = height
 
-    list.push(element)
-    this.setState({gridList: list})
-    this.setState({selectElementID: element.id})
-  }
-
-  handleChangeElementValue(event, key) {
-    const list = this.state.gridList
-    const id = this.state.selectElementID
-    const element = list[this.getElementArrayPositionByID(list, id)]
-
-    element[key] = event.target.value
-    this.setState({gridList: list})
-  }
-
-  handleChangeStateValue(value, key) {
-    const localState = this.state
-
-    localState[key] = value
-    this.setState({localState})
+    grid.list.push(element)
+    grid.selectElementID = element.id
+    this.setState({grid})
   }
 
   changeCord(id, cord, size) {
+    console.groupCollapsed('changeCord')
+    console.log(this.state)
+    console.groupEnd()
+
     const balance = 10
+    const width = this.state.grid.width - size.width - balance
+    const height = this.state.grid.height - size.height - balance
+    const grid = this.state.grid
 
-    const width = this.state.widthGrid - size.width - balance
-    const height = this.state.heightGrid - size.height - balance
-
-    const list = this.state.gridList
-    let element = list[this.getElementArrayPositionByID(list, id)]
-
+    let element = grid.list[this.getElementArrayPositionByID(grid.list, id)]
 
     element.x = (cord.x > width)? width : cord.x
     element.y = (cord.y > height)? height : cord.y
-
     element.x = (element.x < balance)? balance : element.x
     element.y = (element.y < balance)? balance : element.y
 
-    this.setState({gridList: list})
+    this.setState({grid})
   }
 
   handleSetNewCord(id, event, size) {
+    console.groupCollapsed('handleSetNewCord')
+    console.log(this.state)
+    console.groupEnd()
+
     const element = event.target
     const screenGrid = document.querySelector('#screen-grid-wrapper')
 
@@ -227,12 +273,20 @@ class AppScreen extends Component {
   }
 
   handleAdd(item) {
-    this.setState((state) => {
-      return {gridList: [...state.gridList, item]}
-    })
+    console.groupCollapsed('handleAdd')
+    console.log(this.state)
+    console.groupEnd()
+
+    const grid = this.state.grid
+    grid.list.push(item)
+    this.setState({grid})
   }
 
   createObjectGrid = (cord, group) => {
+    console.groupCollapsed('createObjectGrid')
+    console.log(this.state)
+    console.groupEnd()
+
     const {x, y} = cord
 
     return {
@@ -309,15 +363,7 @@ class AppScreen extends Component {
   render() {
     const {
       name,
-      backgroundGrid,
-      widthGrid,
-      heightGrid,
-      emergenceCordX,
-      emergenceCordY,
-      emergenceBalancer,
-
-      gridList,
-      selectElementID,
+      grid,
 
       hiddenPopupGridSettings,
       hiddenPopupGate,
@@ -326,25 +372,26 @@ class AppScreen extends Component {
       hiddenPopupText,
       hiddenPopupUpload,
 
-      panelListStatuses
+      panelStatuses
     } = this.state;
 
-    const currentElement = this.getElementGridList(selectElementID)
+    const currentElement = this.getElementGridList(grid.selectElementID)
 
     return (
       <main id="app-screen">
         <section className="screen-popups-container">
-          <PopupGridSettings hidden={hiddenPopupGridSettings}
+          <PopupGridSettings
+                           hidden={hiddenPopupGridSettings}
                            name={name}
-                           widthGrid={widthGrid}
-                           heightGrid={heightGrid}
-                           backgroundGrid={backgroundGrid}
-                           emergenceCordX={emergenceCordX}
-                           emergenceCordY={emergenceCordY}
-                           emergenceBalancer={emergenceBalancer}
+                           widthGrid={grid.width}
+                           heightGrid={grid.height}
+                           backgroundGrid={grid.background}
+                           emergenceCordX={grid.emergenceCordX}
+                           emergenceCordY={grid.emergenceCordY}
+                           emergenceBalancer={grid.emergenceBalancer}
 
                            closePopup={() => this.propertyToggle('hiddenPopupGridSettings')}
-                           handleChangeStateValue={this.handleChangeStateValue.bind(this)}
+                           changeStateValue={this.changeStateValue.bind(this)}
           />
 
           <PopupInfo hidden={hiddenPopupInfo}
@@ -352,26 +399,26 @@ class AppScreen extends Component {
           />
 
           <PopupChangeGate hidden={hiddenPopupGate}
-                           widthGrid={widthGrid}
-                           heightGrid={heightGrid}
+                           widthGrid={grid.width}
+                           heightGrid={grid.height}
                            closePopup={() => this.propertyToggle('hiddenPopupGate')}
-                           handleChangeElementValue={this.handleChangeElementValue.bind(this)}
+                           changeGridElementValue={this.changeGridElementValue.bind(this)}
                            currentElement={currentElement}
           />
 
           <PopupChangeLine hidden={hiddenPopupLine}
-                           widthGrid={widthGrid}
-                           heightGrid={heightGrid}
+                           widthGrid={grid.width}
+                           heightGrid={grid.height}
                            closePopup={() => this.propertyToggle('hiddenPopupLine')}
-                           handleChangeElementValue={this.handleChangeElementValue.bind(this)}
+                           changeGridElementValue={this.changeGridElementValue.bind(this)}
                            currentElement={currentElement}
           />
 
           <PopupChangeText hidden={hiddenPopupText}
-                           widthGrid={widthGrid}
-                           heightGrid={heightGrid}
+                           widthGrid={grid.width}
+                           heightGrid={grid.height}
                            closePopup={() => this.propertyToggle('hiddenPopupText')}
-                           handleChangeElementValue={this.handleChangeElementValue.bind(this)}
+                           changeGridElementValue={this.changeGridElementValue.bind(this)}
                            currentElement={currentElement}
           />
 
@@ -382,40 +429,34 @@ class AppScreen extends Component {
         </section>
 
         <ScreenPanel
-          onClickChangeRemoveStatus={() => this.handleRemoveItem(selectElementID)}
+          onClickChangeRemoveStatus={() => this.removeItem(grid.selectElementID)}
           onClickChangePin={() => this.handleChangePin()}
           onClickCloneElement={() => this.handleCloneElement()}
           onClickSave={() => this.handleSave()}
-
           propertyToggle={this.propertyToggle.bind(this)}
-          doublePropertyToggle={this.doublePropertyToggle.bind(this)}
-
+          objectPropertyToggle={this.objectPropertyToggle.bind(this)}
           onClickAddGate={() => this.addObjectGrid(this.createGate)}
           onClickAddLine={() => this.addObjectGrid(this.createLine)}
           onClickAddText={() => this.addObjectGrid(this.createText)}
-
-          selectElement={this.getElementGridList(selectElementID)}
-
-          panelListStatuses={panelListStatuses}
+          selectElement={this.getElementGridList(grid.selectElementID)}
+          panelStatuses={panelStatuses}
         />
 
         <ScreenGrid
-          widthGrid={widthGrid}
-          heightGrid={heightGrid}
-          backgroundGrid={backgroundGrid}
+          widthGrid={grid.width}
+          heightGrid={grid.height}
+          backgroundGrid={grid.background}
+          selectElementID={grid.selectElementID}
+          items={grid.list}
 
-          selectElementID={selectElementID}
-          items={gridList}
-          onClickSetSelectElementID={this.handleSetSelectElementID.bind(this)}
-
+          onClickSetSelectElementID={this.setSelectElementID.bind(this)}
           handleSetNewCord={this.handleSetNewCord.bind(this)}
         />
 
         <ScreenInfo
-          hiddenDevInfo={panelListStatuses.devInfo}
-
-          selectElementID={selectElementID}
-          gridListLength={gridList.length}
+          hiddenDevInfo={panelStatuses.devInfo}
+          selectElementID={grid.selectElementID}
+          gridListLength={grid.list.length}
         />
       </main>
     );
