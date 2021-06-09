@@ -31,9 +31,7 @@ class ScreenPanel extends Component {
       onClickSave,
       selectElement,
 
-      onClickAddGate,
-      onClickAddLine,
-      onClickAddText,
+      addObjectGrid,
 
       panelStatuses,
       objectPropertyToggle,
@@ -53,9 +51,7 @@ class ScreenPanel extends Component {
           onClickCloneElement={onClickCloneElement}
           onClickSave={onClickSave}
 
-          onClickAddGate={onClickAddGate}
-          onClickAddLine={onClickAddLine}
-          onClickAddText={onClickAddText}
+          addObjectGrid={addObjectGrid}
 
           panelStatuses={panelStatuses}
 
@@ -79,9 +75,7 @@ ScreenPanel.propTypes = {
   onClickCloneElement: PropTypes.func.isRequired,
   onClickSave: PropTypes.func.isRequired,
 
-  onClickAddGate: PropTypes.func.isRequired,
-  onClickAddLine: PropTypes.func.isRequired,
-  onClickAddText: PropTypes.func.isRequired,
+  addObjectGrid: PropTypes.func.isRequired,
 
   panelStatuses: PropTypes.object.isRequired,
   objectPropertyToggle: PropTypes.func.isRequired,

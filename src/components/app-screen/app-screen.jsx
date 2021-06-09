@@ -287,50 +287,39 @@ class AppScreen extends Component {
     console.groupEnd()
 
     const {x, y} = cord
-
-    return {
+    const object = {
       id: Date.now(),
       x, y,
       group,
       pin: false,
       active: false,
-    };
+    }
+
+    switch (group) {
+      case 'gate':
+        object.width = 90
+        object.height = 50
+        object.content = '1'
+        object.status = true
+        object.backgroundColor = 'hsl(20, 100%, 73%)'
+        object.textColor = 'hsl(0, 0%, 98%)'
+        break;
+      case 'line':
+        object.width = 170
+        object.height = 8
+        object.status = false
+        object.backgroundColor = 'hsl(20, 100%, 73%)'
+        break;
+      case 'text':
+        object.textColor = 'hsl(0, 0%, 0%)'
+        object.content = 'Блок комментария'
+        break;
+    }
+
+    return object
   }
 
-  addObjectGrid = (constructor) => this.handleAdd(constructor(this.getCoordinates()))
-
-  createGate = (cord) => {
-    let gate = this.createObjectGrid(cord,  'gate')
-
-    gate.width = 90
-    gate.height = 50
-    gate.content = '1'
-    gate.status = true
-    gate.backgroundColor = 'hsl(20, 100%, 73%)'
-    gate.textColor = 'hsl(0, 0%, 98%)'
-
-    return gate
-  }
-
-  createLine = (cord) => {
-    let line = this.createObjectGrid(cord, 'line')
-
-    line.width = 170
-    line.height = 8
-    line.status = false
-    line.backgroundColor = 'hsl(20, 100%, 73%)'
-
-    return line
-  }
-
-  createText = (cord) => {
-    let text = this.createObjectGrid(cord,  'text')
-
-    text.textColor = 'hsl(0, 0%, 0%)'
-    text.content = 'Блок комментария'
-
-    return text
-  }
+  addObjectGrid = (group) => this.handleAdd(this.createObjectGrid(this.getCoordinates(), group))
 
   handleSave() {
     let a = document.createElement("a");
@@ -426,9 +415,7 @@ class AppScreen extends Component {
           propertyToggle={this.propertyToggle.bind(this)}
           objectPropertyToggle={this.objectPropertyToggle.bind(this)}
 
-          onClickAddGate={() => this.addObjectGrid(this.createGate)}
-          onClickAddLine={() => this.addObjectGrid(this.createLine)}
-          onClickAddText={() => this.addObjectGrid(this.createText)}
+          addObjectGrid={this.addObjectGrid.bind(this)}
 
           selectElement={this.getElementGridList(grid.selectElementID)}
           panelStatuses={panelStatuses}
@@ -441,8 +428,8 @@ class AppScreen extends Component {
         />
 
         <ScreenInfo
-          hiddenDevInfo={panelStatuses.devInfo}
           grid={grid}
+          hiddenDevInfo={panelStatuses.devInfo}
         />
       </main>
     );

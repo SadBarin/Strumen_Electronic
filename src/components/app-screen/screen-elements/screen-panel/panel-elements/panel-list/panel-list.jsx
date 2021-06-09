@@ -14,9 +14,7 @@ function PanelList({
  onClickCloneElement,
  onClickSave,
 
- onClickAddGate,
- onClickAddLine,
- onClickAddText,
+ addObjectGrid,
 
  panelStatuses,
  objectPropertyToggle,
@@ -42,9 +40,9 @@ function PanelList({
       </div>
 
       <div className={`list-add list list-additional ${(panelStatuses.add)? 'hidden' : ''}`}>
-        <IconButton icon="bi-file-binary" onClick={onClickAddGate}/>
-        <IconButton icon="bi-bezier2" onClick={onClickAddLine}/>
-        <IconButton icon="bi-chat-square-text" onClick={onClickAddText}/>
+        <IconButton icon="bi-file-binary" onClick={() => addObjectGrid('gate')}/>
+        <IconButton icon="bi-bezier2" onClick={() => addObjectGrid('line')}/>
+        <IconButton icon="bi-chat-square-text" onClick={() => addObjectGrid('text')}/>
       </div>
 
       <AdditionalList
@@ -94,10 +92,7 @@ PanelList.propTypes = {
   onClickChangePin: PropTypes.func.isRequired,
   onClickSave: PropTypes.func.isRequired,
 
-  onClickAddGate: PropTypes.func,
-  onClickAddLine: PropTypes.func,
-  onClickAddText: PropTypes.func,
-  onClickAddBox: PropTypes.func,
+  addObjectGrid: PropTypes.func.isRequired,
 
   panelStatuses: PropTypes.object.isRequired,
   objectPropertyToggle: PropTypes.func.isRequired,
