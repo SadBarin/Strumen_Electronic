@@ -101,7 +101,7 @@ class AppScreen extends Component {
 
     const grid = this.state.grid
     const pos = this.getElementArrayPositionByID(grid.list, this.state.grid.selectElementID)
-    grid[pos][key] = event.target.value
+    grid.list[pos][key] = event.target.value
     this.setState({grid})
   }
 
