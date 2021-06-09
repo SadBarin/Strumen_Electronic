@@ -4,20 +4,10 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupChangeLine({ hidden, closePopup, changeGridElementValue, currentElement, widthGrid, heightGrid }) {
+function PopupChangeLine({ hidden, closePopup, changeGridElementValue, currentElement, grid }) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки линии">
       <div className="popup-content-container">
-        {/*<label htmlFor="active">*/}
-        {/*  Активен:*/}
-        {/*  <select id="active"*/}
-        {/*          onChange={(e) => changeGridElementValue(e, 'active')}*/}
-        {/*          value={currentElement.status}>*/}
-        {/*    <option value={true}>Да</option>*/}
-        {/*    <option value={false}>Нет</option>*/}
-        {/*  </select>*/}
-        {/*</label>*/}
-
         <label htmlFor="width" className="label-range">
           Ширина: {currentElement.width}
           <input type="range"
@@ -60,7 +50,7 @@ function PopupChangeLine({ hidden, closePopup, changeGridElementValue, currentEl
           <input type="range"
                  id="cordX"
                  min={100}
-                 max={widthGrid - 100}
+                 max={grid.width - 100}
                  onChange={(e) => changeGridElementValue(e, 'x')}
                  value={currentElement.x}/>
         </label>
@@ -70,7 +60,7 @@ function PopupChangeLine({ hidden, closePopup, changeGridElementValue, currentEl
           <input type="range"
                  id="cordY"
                  min={100}
-                 max={heightGrid - 100}
+                 max={grid.height - 100}
                  onChange={(e) => changeGridElementValue(e, 'y')}
                  value={currentElement.y}/>
         </label>
@@ -80,8 +70,7 @@ function PopupChangeLine({ hidden, closePopup, changeGridElementValue, currentEl
 }
 
 PopupChangeLine.propTypes = {
-  heightGrid: PropTypes.number.isRequired,
-  widthGrid: PropTypes.number.isRequired,
+  grid: PropTypes.object.isRequired,
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
   currentElement: PropTypes.object.isRequired,

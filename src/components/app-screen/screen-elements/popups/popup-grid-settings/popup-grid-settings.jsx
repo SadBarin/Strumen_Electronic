@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupGridSettings({hidden, closePopup, changeStateValue, name, widthGrid, heightGrid, emergenceCordX, emergenceCordY, emergenceBalancer}) {
+function PopupGridSettings({hidden, closePopup, changeStateValue, changeStateObjectValue, grid, name}) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки проекта">
       <div className="popup-content-container">
@@ -17,53 +17,53 @@ function PopupGridSettings({hidden, closePopup, changeStateValue, name, widthGri
         </label>
 
         <label htmlFor="width" className='label-range'>
-          Ширина: {widthGrid}
+          Ширина: {grid.width}
           <input type="range"
                  id="width"
                  min={500}
                  max={3000}
-                 value={widthGrid}
-                 onChange={(event) => changeStateValue(event.target.value, 'widthGrid')}/>
+                 value={grid.width}
+                 onChange={(event) => changeStateObjectValue(Number(event.target.value), 'grid', 'width')}/>
         </label>
 
         <label htmlFor="height" className='label-range'>
-          Высота: {heightGrid}
+          Высота: {grid.height}
           <input type="range"
                  id="height"
                  min={500}
                  max={3000}
-                 value={heightGrid}
-                 onChange={(event) => changeStateValue(event.target.value, 'heightGrid')}/>
+                 value={grid.height}
+                 onChange={(event) => changeStateObjectValue(Number(event.target.value), 'grid', 'height')}/>
         </label>
 
         <label htmlFor="cordX" className='label-range'>
-          Корд. появл. X: {emergenceCordX}
+          Корд. появл. X: {grid.emergenceCordX}
           <input type="range"
                  id="cordX"
                  min={100}
-                 max={widthGrid - 100}
-                 value={emergenceCordX}
-                 onChange={(event) => changeStateValue(Number(event.target.value), 'emergenceCordX')}/>
+                 max={grid.width - 100}
+                 value={grid.emergenceCordX}
+                 onChange={(event) => changeStateObjectValue(Number(event.target.value), 'grid', 'emergenceCordX')}/>
         </label>
 
         <label htmlFor="cordY" className='label-range'>
-          Корд. появл. Y: {emergenceCordY}
+          Корд. появл. Y: {grid.emergenceCordY}
           <input type="range"
                  id="cordY"
                  min={100}
-                 max={heightGrid - 100}
-                 value={emergenceCordY}
-                 onChange={(event) => changeStateValue(Number(event.target.value), 'emergenceCordY')}/>
+                 max={grid.height - 100}
+                 value={grid.emergenceCordY}
+                 onChange={(event) => changeStateObjectValue(Number(event.target.value), 'grid', 'emergenceCordY')}/>
         </label>
 
         <label htmlFor="balancer" className='label-range'>
-          Число смещен: {emergenceBalancer}
+          Число смещен: {grid.emergenceBalancer}
           <input type="range"
                  id="balancer"
                  min={0}
                  max={100}
-                 value={emergenceBalancer}
-                 onChange={(event) => changeStateValue(Number(event.target.value), 'emergenceBalancer')}/>
+                 value={grid.emergenceBalancer}
+                 onChange={(event) => changeStateObjectValue(Number(event.target.value), 'grid', 'emergenceBalancer')}/>
         </label>
       </div>
     </PopupWrapper>
@@ -72,15 +72,10 @@ function PopupGridSettings({hidden, closePopup, changeStateValue, name, widthGri
 
 PopupGridSettings.propTypes = {
   name: PropTypes.string.isRequired,
-  widthGrid: PropTypes.any.isRequired,
-  heightGrid: PropTypes.any.isRequired,
-  emergenceCordX: PropTypes.any.isRequired,
-  emergenceCordY: PropTypes.any.isRequired,
-  emergenceBalancer: PropTypes.any.isRequired,
-
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
-  changeStateValue: PropTypes.func.isRequired
+  changeStateValue: PropTypes.func.isRequired,
+  changeStateObjectValue: PropTypes.func.isRequired
 };
 
 export default PopupGridSettings;

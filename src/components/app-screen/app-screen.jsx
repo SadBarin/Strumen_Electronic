@@ -379,18 +379,12 @@ class AppScreen extends Component {
     return (
       <main id="app-screen">
         <section className="screen-popups-container">
-          <PopupGridSettings
-                           hidden={hiddenPopupGridSettings}
-                           name={name}
-                           widthGrid={grid.width}
-                           heightGrid={grid.height}
-                           backgroundGrid={grid.background}
-                           emergenceCordX={grid.emergenceCordX}
-                           emergenceCordY={grid.emergenceCordY}
-                           emergenceBalancer={grid.emergenceBalancer}
-
-                           closePopup={() => this.propertyToggle('hiddenPopupGridSettings')}
-                           changeStateValue={this.changeStateValue.bind(this)}
+          <PopupGridSettings hidden={hiddenPopupGridSettings}
+                             name={name}
+                             grid={grid}
+                             closePopup={() => this.propertyToggle('hiddenPopupGridSettings')}
+                             changeStateValue={this.changeStateValue.bind(this)}
+                             changeStateObjectValue={this.changeStateObjectValue.bind(this)}
           />
 
           <PopupInfo hidden={hiddenPopupInfo}
@@ -398,24 +392,21 @@ class AppScreen extends Component {
           />
 
           <PopupChangeGate hidden={hiddenPopupGate}
-                           widthGrid={grid.width}
-                           heightGrid={grid.height}
+                           grid={grid}
                            closePopup={() => this.propertyToggle('hiddenPopupGate')}
                            changeGridElementValue={this.changeGridElementValue.bind(this)}
                            currentElement={currentElement}
           />
 
           <PopupChangeLine hidden={hiddenPopupLine}
-                           widthGrid={grid.width}
-                           heightGrid={grid.height}
+                           grid={grid}
                            closePopup={() => this.propertyToggle('hiddenPopupLine')}
                            changeGridElementValue={this.changeGridElementValue.bind(this)}
                            currentElement={currentElement}
           />
 
           <PopupChangeText hidden={hiddenPopupText}
-                           widthGrid={grid.width}
-                           heightGrid={grid.height}
+                           grid={grid}
                            closePopup={() => this.propertyToggle('hiddenPopupText')}
                            changeGridElementValue={this.changeGridElementValue.bind(this)}
                            currentElement={currentElement}
@@ -434,28 +425,24 @@ class AppScreen extends Component {
           onClickSave={() => this.handleSave()}
           propertyToggle={this.propertyToggle.bind(this)}
           objectPropertyToggle={this.objectPropertyToggle.bind(this)}
+
           onClickAddGate={() => this.addObjectGrid(this.createGate)}
           onClickAddLine={() => this.addObjectGrid(this.createLine)}
           onClickAddText={() => this.addObjectGrid(this.createText)}
+
           selectElement={this.getElementGridList(grid.selectElementID)}
           panelStatuses={panelStatuses}
         />
 
         <ScreenGrid
-          widthGrid={grid.width}
-          heightGrid={grid.height}
-          backgroundGrid={grid.background}
-          selectElementID={grid.selectElementID}
-          items={grid.list}
-
+          grid={grid}
           onClickSetSelectElementID={this.setSelectElementID.bind(this)}
           handleSetNewCord={this.handleSetNewCord.bind(this)}
         />
 
         <ScreenInfo
           hiddenDevInfo={panelStatuses.devInfo}
-          selectElementID={grid.selectElementID}
-          gridListLength={grid.list.length}
+          grid={grid}
         />
       </main>
     );

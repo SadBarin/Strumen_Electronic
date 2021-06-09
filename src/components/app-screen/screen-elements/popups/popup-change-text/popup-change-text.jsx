@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupChangeText({hidden, closePopup, changeGridElementValue, currentElement, widthGrid, heightGrid}) {
+function PopupChangeText({hidden, closePopup, changeGridElementValue, currentElement, grid}) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки комментария">
       <div className="popup-content-container">
@@ -37,7 +37,7 @@ function PopupChangeText({hidden, closePopup, changeGridElementValue, currentEle
           <input type="range"
                  id="cordX"
                  min={100}
-                 max={widthGrid - 100}
+                 max={grid.width - 100}
                  onChange={(e) => changeGridElementValue(e, 'x')}
                  value={currentElement.x}/>
         </label>
@@ -47,7 +47,7 @@ function PopupChangeText({hidden, closePopup, changeGridElementValue, currentEle
           <input type="range"
                  id="cordY"
                  min={100}
-                 max={heightGrid - 100}
+                 max={grid.height - 100}
                  onChange={(e) => changeGridElementValue(e, 'y')}
                  value={currentElement.y}/>
         </label>
@@ -57,8 +57,7 @@ function PopupChangeText({hidden, closePopup, changeGridElementValue, currentEle
 }
 
 PopupChangeText.propTypes = {
-  heightGrid: PropTypes.number.isRequired,
-  widthGrid: PropTypes.number.isRequired,
+  grid: PropTypes.object.isRequired,
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
   currentElement: PropTypes.object.isRequired,

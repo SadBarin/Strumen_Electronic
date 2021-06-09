@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
 
-function PopupChangeGate({hidden, closePopup, currentElement, changeGridElementValue, heightGrid, widthGrid}) {
+function PopupChangeGate({hidden, closePopup, currentElement, changeGridElementValue, grid}) {
   return (
     <PopupWrapper closePopup={closePopup} hidden={hidden} title="Настройки вентеля">
       <div className="popup-content-container">
@@ -67,7 +67,7 @@ function PopupChangeGate({hidden, closePopup, currentElement, changeGridElementV
           <input type="range"
                  id="cordX"
                  min={100}
-                 max={widthGrid - 100}
+                 max={grid.width - 100}
                  onChange={(e) => changeGridElementValue(e, 'x')}
                  value={currentElement.x}/>
         </label>
@@ -77,7 +77,7 @@ function PopupChangeGate({hidden, closePopup, currentElement, changeGridElementV
           <input type="range"
                  id="cordY"
                  min={100}
-                 max={heightGrid - 100}
+                 max={grid.height - 100}
                  onChange={(e) => changeGridElementValue(e, 'y')}
                  value={currentElement.y}/>
         </label>
@@ -87,8 +87,7 @@ function PopupChangeGate({hidden, closePopup, currentElement, changeGridElementV
 }
 
 PopupChangeGate.propTypes = {
-  heightGrid: PropTypes.number.isRequired,
-  widthGrid: PropTypes.number.isRequired,
+  grid: PropTypes.object.isRequired,
   hidden: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
   currentElement: PropTypes.object.isRequired,
