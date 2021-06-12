@@ -9,70 +9,68 @@ function PanelList({
  display,
  selectElement,
 
- onClickChangeRemoveStatus,
- onClickChangePin,
- onClickCloneElement,
- onClickSave,
+ removeGridElement,
+ cloneGridElement,
+ downloadSaveFile,
 
- addObjectGrid,
+ builderGridElement,
 
  panelStatuses,
- objectPropertyToggle,
- propertyToggle
+ toggleGridElementProperty,
+ objectPropertyToggle
 }) {
-  function toggleStatus(key) {
-    objectPropertyToggle('panelStatuses', key)
-  }
+  const togglePanelStatus = (key) => objectPropertyToggle('panelStatuses', key)
+  const togglePopupStatus = (key) => objectPropertyToggle('popupStatuses', key)
 
   return (
     <div className={`panel-list ${display}`}>
       <div className="list-main list">
-        <IconButton icon="bi-plus-circle" active={!panelStatuses.add} onClick={() => toggleStatus('add')}/>
-        <IconButton icon="bi-gear" onClick={() => propertyToggle('hiddenPopupGridSettings')}/>
-        <IconButton icon="bi-save" onClick={onClickSave}/>
-        <IconButton icon="bi-upload" onClick={() => propertyToggle('hiddenPopupUpload')}/>
-        <IconButton icon="bi-flag" active={!panelStatuses.devInfo} onClick={() => toggleStatus('devInfo')}/>
+        <IconButton icon="bi-plus-circle" active={!panelStatuses.add} onClick={() => togglePanelStatus('add')}/>
+        <IconButton icon="bi-gear" onClick={() => togglePopupStatus('gridSettings')}/>
+        <IconButton icon="bi-save" onClick={downloadSaveFile}/>
+        <IconButton icon="bi-upload" onClick={() => togglePopupStatus('uploadSave')}/>
+        <IconButton icon="bi-flag" active={!panelStatuses.devInfo} onClick={() => togglePanelStatus('devInfo')}/>
 
         <div className={`list-flag list list-additional ${(panelStatuses.devInfo)? 'hidden' : ''}`}>
           <IconButton icon="bi-arrow-counterclockwise" onClick={() => window.location.reload()}/>
-          <IconButton icon="bi-info-circle" onClick={() => propertyToggle('hiddenPopupInfo')}/>
+          <IconButton icon="bi-info-circle" onClick={() => togglePopupStatus('info')}/>
         </div>
       </div>
 
       <div className={`list-add list list-additional ${(panelStatuses.add)? 'hidden' : ''}`}>
-        <IconButton icon="bi-file-binary" onClick={() => addObjectGrid('gate')}/>
-        <IconButton icon="bi-bezier2" onClick={() => addObjectGrid('line')}/>
-        <IconButton icon="bi-chat-square-text" onClick={() => addObjectGrid('text')}/>
+        <IconButton icon="bi-file-binary" onClick={() => builderGridElement('gate')}/>
+        <IconButton icon="bi-bezier2" onClick={() => builderGridElement('line')}/>
+        <IconButton icon="bi-chat-square-text" onClick={() => builderGridElement('text')}/>
       </div>
 
       <AdditionalList
         listClass={'gate'}
         display={panelStatuses.gate}
-        onClickClone={onClickCloneElement}
-        onClickRemove={onClickChangeRemoveStatus}
+        onClickClone={cloneGridElement}
+        onClickRemove={removeGridElement}
         pinStatus={selectElement.pin}
-        onClickPin={onClickChangePin}
-        onClickSettings={() => propertyToggle('hiddenPopupGate')}
+        onClickPin={() => toggleGridElementProperty('pin')}
+        onClickSettings={() => togglePopupStatus('changeGate')}
       />
 
       <AdditionalList
         listClass={'line'}
         display={panelStatuses.line}
-        onClickClone={onClickCloneElement}
-        onClickRemove={onClickChangeRemoveStatus}
+        onClickClone={cloneGridElement}
+        onClickRemove={removeGridElement}
         pinStatus={selectElement.pin}
-        onClickPin={onClickChangePin}
-        onClickSettings={() => propertyToggle('hiddenPopupLine')}
+        onClickPin={() => toggleGridElementProperty('pin')}
+        onClickSettings={() => togglePopupStatus('changeLine')}
       />
 
       <AdditionalList
         listClass={'text'}
         display={panelStatuses.text}
-        onClickClone={onClickCloneElement}
-        onClickRemove={onClickChangeRemoveStatus}
+        onClickClone={cloneGridElement}
+        onClickRemove={removeGridElement}
         pinStatus={selectElement.pin}
-        onClickPin={onClickChangePin}
-        onClickSettings={() => propertyToggle('hiddenPopupText')}
+        onClickPin={() => toggleGridElementProperty('pin')}
+        onClickSettings={() => togglePopupStatus('changeText')}
       />
     </div>
   );
@@ -80,23 +78,21 @@ function PanelList({
 
 PanelList.defaultProps = {
   selectElementID: false,
-  onClickAdd: () => {
-  }
+  onClickAdd: () => {}
 };
 
 PanelList.propTypes = {
   display: PropTypes.string.isRequired,
   selectElement: PropTypes.any.isRequired,
 
-  onClickChangeRemoveStatus: PropTypes.func,
-  onClickChangePin: PropTypes.func.isRequired,
-  onClickSave: PropTypes.func.isRequired,
+  removeGridElement: PropTypes.func,
+  toggleGridElementProperty: PropTypes.func.isRequired,
+  downloadSaveFile: PropTypes.func.isRequired,
 
-  addObjectGrid: PropTypes.func.isRequired,
+  builderGridElement: PropTypes.func.isRequired,
 
   panelStatuses: PropTypes.object.isRequired,
-  objectPropertyToggle: PropTypes.func.isRequired,
-  propertyToggle: PropTypes.func.isRequired,
+  objectPropertyToggle: PropTypes.func.isRequired
 };
 
 export default PanelList;

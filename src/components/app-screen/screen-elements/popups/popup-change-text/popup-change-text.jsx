@@ -3,6 +3,8 @@ import './popup-change-text.css';
 import PropTypes from 'prop-types';
 
 import PopupWrapper from '../popup-wrapper';
+import GridElementCordInputs from "../gridElementCordInputs";
+import GridElementColorInput from "../gridElementColorInput";
 
 function PopupChangeText({hidden, closePopup, changeGridElementValue, currentElement, grid}) {
   return (
@@ -11,46 +13,21 @@ function PopupChangeText({hidden, closePopup, changeGridElementValue, currentEle
         <label htmlFor="content">
           Текст:
           <input type="text" id="content"
-                 onChange={(e) => changeGridElementValue(e, 'content')}
+                 onChange={(event) =>
+                   changeGridElementValue(event.target.value, 'content')}
                  value={currentElement.content}/>
         </label>
 
-        <label htmlFor="color">
-          Цвет:
-          <select id="color"
-                  onChange={(e) => changeGridElementValue(e, 'textColor')}
-                  value={currentElement.textColor}>
-            <option value="hsl(290, 100%, 73%)">Фуксия</option>
-            <option value="hsl(250, 100%, 73%)">Фиолетовый</option>
-            <option value="hsl(220, 100%, 73%)">Синий</option>
-            <option value="hsl(200, 100%, 73%)">Голубой</option>
-            <option value="hsl(120, 100%, 73%)">Зелёный</option>
-            <option value="hsl(40, 100%, 73%)">Жёлтый</option>
-            <option value="hsl(20, 100%, 73%)">Оранжевый</option>
-            <option value="hsl(252, 3%, 62%)">Серый</option>
-            <option value="hsl(0, 0%, 0%)">Чёрный</option>
-          </select>
-        </label>
+        <GridElementColorInput changeGridElementValue={changeGridElementValue}
+                               currentElement={currentElement}
+                               property='textColor'
+        />
 
-        <label htmlFor="cordX" className="label-range">
-          Коорд. X: {currentElement.x}
-          <input type="range"
-                 id="cordX"
-                 min={100}
-                 max={grid.width - 100}
-                 onChange={(e) => changeGridElementValue(e, 'x')}
-                 value={currentElement.x}/>
-        </label>
 
-        <label htmlFor="cordY" className="label-range">
-          Коорд. Y: {currentElement.y}
-          <input type="range"
-                 id="cordY"
-                 min={100}
-                 max={grid.height - 100}
-                 onChange={(e) => changeGridElementValue(e, 'y')}
-                 value={currentElement.y}/>
-        </label>
+        <GridElementCordInputs changeGridElementValue={changeGridElementValue}
+                               currentElement={currentElement}
+                               grid={grid}
+        />
       </div>
     </PopupWrapper>
   );

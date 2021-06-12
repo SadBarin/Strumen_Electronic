@@ -9,7 +9,7 @@ function GridText(props) {
     item,
     selectStatus,
     onClickSetSelectElementID,
-    handleSetNewCord
+    getNewCord
   } = props;
 
   const {id, x, y, pin, content, textColor} = item;
@@ -25,7 +25,7 @@ function GridText(props) {
 
       <Draggable position={{ x: Number(x), y: Number(y) }}
                  disabled={pin}
-                 onStop={(event) => {handleSetNewCord(id, event, {width: 10, height: 10})}}>
+                 onStop={(event) => {getNewCord(id, event, {width: 10, height: 10})}}>
         <div className={`grid-text${LogicElementSelect}${LogicElementPin}`}
              style={{color: textColor}}
         >
@@ -39,7 +39,7 @@ function GridText(props) {
 GridText.propTypes = {
   item: PropTypes.object.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
-  handleSetNewCord: PropTypes.func.isRequired
+  getNewCord: PropTypes.func.isRequired
 };
 
 export default GridText;

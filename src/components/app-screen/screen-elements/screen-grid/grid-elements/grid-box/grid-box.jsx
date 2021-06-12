@@ -8,7 +8,7 @@ function GridBox(props) {
   const {
     item,
     onClickSetSelectElementID,
-    handleSetNewCord
+    getNewCord
   } = props;
 
   const {id, x, y, pin, width, height, backgroundColor} = item;
@@ -27,7 +27,7 @@ function GridBox(props) {
     >
 
       <Draggable position={{ x: Number(x), y: Number(y) }}
-                 disabled={pin} onStop={(event) => {handleSetNewCord(id, event, {width, height})}}>
+                 disabled={pin} onStop={(event) => {getNewCord(id, event, {width, height})}}>
         <div className="grid-box-wrapper">
           <div className={`grid-box`}
                style={style}/>
@@ -40,7 +40,7 @@ function GridBox(props) {
 GridBox.propTypes = {
   item: PropTypes.object.isRequired,
   onClickSetSelectElementID: PropTypes.func.isRequired,
-  handleSetNewCord: PropTypes.func.isRequired
+  getNewCord: PropTypes.func.isRequired
 };
 
 export default GridBox;

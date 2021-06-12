@@ -25,17 +25,16 @@ class ScreenPanel extends Component {
   render() {
     const {panelVisible} = this.state;
     const {
-      onClickChangeRemoveStatus,
-      onClickChangePin,
-      onClickCloneElement,
-      onClickSave,
+      removeGridElement,
+      toggleGridElementProperty,
+      cloneGridElement,
+      downloadSaveFile,
       selectElement,
 
-      addObjectGrid,
+      builderGridElement,
 
       panelStatuses,
-      objectPropertyToggle,
-      propertyToggle
+      objectPropertyToggle
     } = this.props;
 
     return (
@@ -46,17 +45,16 @@ class ScreenPanel extends Component {
           display={panelVisible ? '' : ' panel-hidden'}
           selectElement={selectElement}
 
-          onClickChangeRemoveStatus={onClickChangeRemoveStatus}
-          onClickChangePin={onClickChangePin}
-          onClickCloneElement={onClickCloneElement}
-          onClickSave={onClickSave}
+          removeGridElement={removeGridElement}
+          toggleGridElementProperty={toggleGridElementProperty}
+          cloneGridElement={cloneGridElement}
+          downloadSaveFile={downloadSaveFile}
 
-          addObjectGrid={addObjectGrid}
+          builderGridElement={builderGridElement}
 
           panelStatuses={panelStatuses}
 
           objectPropertyToggle={objectPropertyToggle}
-          propertyToggle={propertyToggle}
         />
       </div>
     );
@@ -71,15 +69,14 @@ ScreenPanel.propTypes = {
   selectElementID: PropTypes.number,
   selectElement: PropTypes.any.isRequired,
 
-  onClickChangePin: PropTypes.func.isRequired,
-  onClickCloneElement: PropTypes.func.isRequired,
-  onClickSave: PropTypes.func.isRequired,
+  toggleGridElementProperty: PropTypes.func.isRequired,
+  cloneGridElement: PropTypes.func.isRequired,
+  downloadSaveFile: PropTypes.func.isRequired,
 
-  addObjectGrid: PropTypes.func.isRequired,
+  builderGridElement: PropTypes.func.isRequired,
 
   panelStatuses: PropTypes.object.isRequired,
-  objectPropertyToggle: PropTypes.func.isRequired,
-  propertyToggle: PropTypes.func.isRequired
+  objectPropertyToggle: PropTypes.func.isRequired
 };
 
 export default ScreenPanel;

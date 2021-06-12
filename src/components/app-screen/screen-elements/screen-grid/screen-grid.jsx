@@ -7,7 +7,7 @@ import GridLine from "./grid-elements/grid-line";
 import GridText from "./grid-elements/grid-text";
 
 function ScreenGrid(props) {
-  const {onClickSetSelectElementID, handleSetNewCord, grid} = props;
+  const {onClickSetSelectElementID, getNewCord, grid} = props;
 
   let wrapperWidth = window.innerWidth - 16;
   let wrapperHeight = window.innerHeight - 16;
@@ -28,7 +28,7 @@ function ScreenGrid(props) {
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={grid.selectElementID}
             selectStatus={elementSelectStatus}
-            handleSetNewCord={handleSetNewCord}
+            getNewCord={getNewCord}
           />
         </div>
       );
@@ -46,7 +46,7 @@ function ScreenGrid(props) {
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={grid.selectElementID}
             selectStatus={elementSelectStatus}
-            handleSetNewCord={handleSetNewCord}
+            getNewCord={getNewCord}
           />
         </div>
       );
@@ -64,7 +64,7 @@ function ScreenGrid(props) {
             onClickSetSelectElementID={onClickSetSelectElementID}
             selectElementID={grid.selectElementID}
             selectStatus={elementSelectStatus}
-            handleSetNewCord={handleSetNewCord}
+            getNewCord={getNewCord}
           />
         </div>
       );
@@ -95,7 +95,7 @@ function ScreenGrid(props) {
 
 ScreenGrid.propTypes = {
   onClickSetSelectElementID: PropTypes.func.isRequired,
-  handleSetNewCord: PropTypes.func.isRequired,
+  getNewCord: PropTypes.func.isRequired,
   grid: PropTypes.object.isRequired
 };
 
