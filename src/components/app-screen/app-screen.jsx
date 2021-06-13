@@ -54,10 +54,10 @@ class AppScreen extends Component {
 
   generateProjectName() {
     return 'Strumen_' + (
-           new Date().toLocaleDateString().replace(/\//gi, '-')
-           + '_' +
-           new Date().toLocaleTimeString().replace(/:/gi, '-'))
-           .replace(/\s/gi, '_')
+      new Date().toLocaleDateString().replace(/\//gi, '-')
+      + '_' +
+      new Date().toLocaleTimeString().replace(/:/gi, '-'))
+      .replace(/\s/gi, '_')
   }
 
   getGridElementPosition(id) {
@@ -74,23 +74,19 @@ class AppScreen extends Component {
     return pos
   }
 
-  changeStateValue(value, key) {
-    const state = this.state
-    state[key] = value
-    this.setState(state)
-  }
+  changeStateValue = (value, key) => this.setState({[key]:[value]})
 
   changeStateObjectValue(value, object, key) {
-    const state = this.state
-    state[object][key] = value
-    this.setState(state)
+    const localObject = {...this.state[object]}
+    localObject[key] = value
+    this.setState({[object]:localObject})
   }
 
   propertyToggle = (key) => this.changeStateValue(!this.state[key], key)
   objectPropertyToggle = (object, key) => this.changeStateObjectValue(!this.state[object][key], object, key)
 
   changeGridElementValue(value, key) {
-    const grid = this.state.grid
+    const grid = {...this.state.grid}
     const pos = this.getGridElementPosition(grid.selectElementID)
     grid.list[pos][key] = value
     this.setState({grid})
@@ -102,18 +98,21 @@ class AppScreen extends Component {
   }
 
   dischargePanelsSettings() {
-    const panelStatuses = this.state.panelStatuses
+    const panelStatuses = {...this.state.panelStatuses}
     panelStatuses.gate = panelStatuses.line = panelStatuses.text = true
     this.setState({panelStatuses});
   }
 
   setSelectElementID(id) {
     this.dischargePanelsSettings()
+
     const element = this.getElementGridList(id)
-    const panelStatuses = this.state.panelStatuses
-    const grid = this.state.grid
+    const panelStatuses = {...this.state.panelStatuses}
+    const grid = {...this.state.grid}
+
     if (Number(id) !== 0) panelStatuses[element.group] = false
     grid.selectElementID = id
+
     this.setState({panelStatuses, grid})
   }
 
@@ -137,7 +136,7 @@ class AppScreen extends Component {
 
   getElementGridList(id) {
     if (id !== 0) {
-      const list = this.state.grid.list
+      const list = {...this.state.grid.list}
       let pos = this.getGridElementPosition(id)
 
       return {...list[pos]}
@@ -148,14 +147,14 @@ class AppScreen extends Component {
 
   removeGridElement(id) {
     this.dischargePanelsSettings()
-    const grid = this.state.grid
+    const grid = {...this.state.grid}
     grid.list.filter((item) => item.id !== id)
     grid.selectElementID = 0
     this.setState({grid})
   }
 
   cloneGridElement() {
-    const grid = this.state.grid
+    const grid = {...this.state.grid}
     const id = this.state.grid.selectElementID
 
     let element = this.getElementGridList(id)
@@ -181,7 +180,7 @@ class AppScreen extends Component {
     const balance = 10
     const width = this.state.grid.width - size.width - balance
     const height = this.state.grid.height - size.height - balance
-    const grid = this.state.grid
+    const grid = {...this.state.grid}
 
     let element = grid.list[this.getGridElementPosition(id)]
 
@@ -206,7 +205,7 @@ class AppScreen extends Component {
   }
 
   addGridElement(item) {
-    const grid = this.state.grid
+    const grid = {...this.state.grid}
     grid.list.push(item)
     this.setState({grid})
   }
@@ -269,9 +268,9 @@ class AppScreen extends Component {
 
   checkGridElementsCollide(activeElement, passiveElement) {
     return activeElement.x < passiveElement.x + passiveElement.width &&
-           activeElement.x + activeElement.width > passiveElement.x &&
-           activeElement.y < passiveElement.y + passiveElement.height &&
-           activeElement.height + activeElement.y > passiveElement.y;
+      activeElement.x + activeElement.width > passiveElement.x &&
+      activeElement.y < passiveElement.y + passiveElement.height &&
+      activeElement.height + activeElement.y > passiveElement.y;
   }
 
   render() {
