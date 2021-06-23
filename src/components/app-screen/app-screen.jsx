@@ -100,14 +100,12 @@ class AppScreen extends Component {
   dischargePanelsSettings() {
     const panelStatuses = {...this.state.panelStatuses}
     panelStatuses.gate = panelStatuses.line = panelStatuses.text = true
-    this.setState({panelStatuses});
+    return panelStatuses
   }
 
   setSelectElementID(id) {
-    this.dischargePanelsSettings()
-
     const element = this.getElementGridList(id)
-    const panelStatuses = {...this.state.panelStatuses}
+    const panelStatuses = this.dischargePanelsSettings()
     const grid = {...this.state.grid}
 
     if (Number(id) !== 0) panelStatuses[element.group] = false
@@ -146,11 +144,15 @@ class AppScreen extends Component {
   }
 
   removeGridElement(id) {
-    this.dischargePanelsSettings()
     const grid = {...this.state.grid}
-    grid.list.filter((item) => item.id !== id)
+    grid.list = grid.list.filter((item) => item.id !== id)
     grid.selectElementID = 0
     this.setState({grid})
+
+    console.log('1')
+
+    const panelStatuses = this.dischargePanelsSettings()
+    this.setState({panelStatuses});
   }
 
   cloneGridElement() {
